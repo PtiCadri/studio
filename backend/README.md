@@ -1,1 +1,0 @@
-README du studio

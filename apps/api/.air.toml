@@ -1,0 +1,24 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+cmd = "go build -o ./tmp/api ./cmd/api"
+
+# New-style entrypoint (recommended)
+entrypoint = ["./tmp/api"]
+
+include_ext = ["go"]
+exclude_dir = ["tmp", "vendor", ".git"]
+
+# IMPORTANT for Windows/Docker: use polling
+poll = true
+poll_interval = 500 # ms
+
+# optional: prevents too-frequent rebuilds on multiple saves
+delay = 200 # ms
+
+# stop old binary if build fails
+stop_on_error = true
+
+[log]
+time = true
