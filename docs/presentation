@@ -1,0 +1,147 @@
+🎵 Studio Website – Site Vitrine & Formulaire de Contact
+📌 Contexte
+
+Ce projet consiste à concevoir et développer le site web officiel d’un studio de musique.
+
+Le site aura pour objectif principal :
+
+	🎨 Mettre en valeur le studio et ses services
+    🎨 Mettre en valeur les artistes collaborateurs de Nhadès Records ainsi que leurs réseaux.
+    🎨 Mettre en valeur les evenements organisés/soutenus par Nhadès Records
+	📩 Permettre aux personnes intéressées de contacter le studio via un formulaire dédié
+	Les demandes seront ensuite traitées manuellement par le propriétaire du studio.
+
+🎯 Objectifs du Projet
+Objectif fonctionnel
+
+	Présenter le studio (identité, univers, équipements)
+	Présenter les services proposés (enregistrement, mixage, mastering, coaching, etc.)
+	Centraliser les demandes via un formulaire de contact en ligne qui renverra directement sur la boite email du studio
+	Permettre au propriétaire de consulter les demandes via une interface admin sécurisée
+    Suivre les evenements organisés/soutenus par Nhadès Records
+
+Objectif technique
+
+Mettre en place une architecture moderne (Frontend / Backend séparés)
+Assurer la sécurité des données collectées
+Déployer une première version fonctionnelle
+Garantir une base évolutive pour de futures fonctionnalités
+
+👥 Organisation de l’équipe
+Projet réalisé par une équipe de 2 développeurs :
+
+🔹 Développeur Backend (API Go)
+🔹 Développeur Frontend (Next.js)
+🔹 Voir ensemble Architecture / Sécurité
+
+🧱 Architecture Technique
+Frontend
+
+Next.js (React)
+TypeScript
+Tailwind CSS
+Déploiement sur Vercel
+
+Backend
+
+Go
+Framework HTTP : Chi
+API REST
+Authentification JWT (admin uniquement)
+Containerisation via Docker
+Base de données
+
+PostgreSQL
+
+🗂️ Fonctionnalités
+🌐 Partie Publique
+1️⃣ Site Vitrine
+
+    Page d’accueil
+-Présentation du studio
+-Présentation des services :
+        Enregistrement
+        Mixage
+        Mastering
+        Coaching
+
+-Autres prestations
+
+2️⃣ Formulaire de Contact
+
+    Le formulaire permettra aux utilisateurs de transmettre une demande au studio.
+Champs prévus :
+
+Nom / Pseudo *
+Email *
+Type de service *
+Message
+Disponibilités souhaitées
+
+    Après soumission :
+Enregistrement en base de données
+Notification au studio (email)
+Message de confirmation à l’utilisateur contenant les coordonnées du client 
+
+🔐 Partie Admin
+
+Interface sécurisée permettant :
+    Authentification
+    Consultation des demandes reçues
+Modification du statut d’une demande :
+    new
+    contacted
+    closed
+
+
+🔒 Sécurité
+
+Les mesures de sécurité prévues :
+    Validation backend stricte des données du formulaire
+    Requêtes SQL paramétrées
+    Rate limiting (anti-spam)
+    Protection contre les injections
+    Hash des mots de passe (bcrypt)
+    Authentification JWT pour l’administration
+    Gestion sécurisée des variables d’environnement
+    CORS restreint
+
+📅 Planning Prévisionnel
+    Phase 1
+Setup projet (repo, Docker, Vercel)
+Création des maquettes Figma
+Mise en place architecture
+
+    Phase 2
+Développement du formulaire de contact
+Intégration base de données
+Interface admin
+
+    Phase 3
+Sécurisation
+Tests
+Documentation finale
+
+🚀 Perspectives d’évolution
+
+À terme, le projet pourra évoluer vers :
+Gestion automatisée des créneaux
+Système de réservation complet
+Paiement en ligne
+Tableau de bord avancé
+
+
+
+Direction Artistique;
+    Thème: Espace 
+    Couleur principale: noir avec eclairage d'étoiles 
+    Style épuré
+    Mettre en valeur le studio et ses services
+    Mettre en valeur les artistes collaborateurs de Nhadès Records ainsi que leurs réseaux.
+    Mettre en valeur les evenements organisés/soutenus par Nhadès Records
+
+    Parle-t-on de l'"histoire" du studio, comment Nha dès Records a été créé, son évolution, les premiers projets, etc. ?
+
+Le design du site s’inspirera de l’univers musical et créatif du studio, avec une palette de couleurs sombres et un style minimaliste.
+L’accent sera mis sur une navigation fluide et intuitive, avec des animations subtiles pour renforcer l’expérience utilisateur sans la surcharger.
+Les visuels mettront en avant les équipements du studio, les artistes collaborateurs et les événements organisés/soutenus par Nhadès Records, créant ainsi une atmosphère immersive pour les visiteurs du site.
