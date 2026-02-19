@@ -1,6 +1,6 @@
 # 📦 Backend -- Studio API
 
-This directory contains the Go backend for the Studio website.
+This directory contains the Go backend for the studio's website.
 
 The API is responsible for: - Exposing HTTP endpoints - Managing
 database access (PostgreSQL) - Handling business logic related to blog
@@ -38,7 +38,7 @@ The backend follows a simple layered structure:
 From the project root:
 
 ``` bash
-docker compose up --build db api
+make up
 ```
 
 The API will be available at:
@@ -110,25 +110,37 @@ All internal imports must start with:
 Rebuild containers:
 
 ``` bash
-docker compose down
-docker compose up --build db api
+make down
+make up
 ```
 
 Run only API logs:
 
 ``` bash
-docker compose logs -f api
+make logs-api
+```
+
+Run only Database logs:
+
+``` bash
+make logs-db
 ```
 
 Enter API container:
 
 ```bash
-docker exec -it apps-api-1 sh
+make enter-api
+```
+
+Enter Database container:
+
+```bash
+make enter-db
 ```
 
 ------------------------------------------------------------------------
 
-## 📌 Notes for Contributors
+## 📌 Development Guidelines
 
 - Do not put business logic inside `main.go`
 - Keep handlers small and focused

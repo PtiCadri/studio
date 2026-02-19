@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 Frontend -- Studio Web App
 
-## Getting Started
+This directory contains the Next.js frontend for the Studio website.
 
-First, run the development server:
+The frontend is responsible for: - Rendering public pages (home,
+presentations, references, shop, contact) - Handling client-side
+interactions - Communicating with the Go backend API - Managing UI using
+Material UI (MUI)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The frontend runs inside Docker and is part of the full-stack
+environment defined in the root `docker-compose.yml`.
+
+------------------------------------------------------------------------
+
+## 🏗 Architecture Overview
+
+The frontend uses:
+
+- **Next.js (App Router)**
+- **TypeScript**
+- **Material UI (MUI)**
+- **Emotion (SSR-compatible setup)**
+- **Docker (development environment)**
+
+Project structure:
+
+    apps/web/
+      src/
+        app/              # Next.js routes (App Router)
+          (pages)/        # Route grouping
+          api/            # (optional) Next route handlers
+          layout.tsx      # Root layout
+        components/       # Reusable UI components
+        hooks/            # Custom React hooks
+        theme/            # MUI theme + Emotion SSR setup
+        types/            # Shared TypeScript types
+      public/             # Static assets
+
+------------------------------------------------------------------------
+
+## 🚀 Running the Frontend (Development)
+
+From the project root:
+
+``` bash
+make up
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Or, if you only want to run the frontend:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+``` bash
+make up-web
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application will be available at:
 
-## Learn More
+    http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
+------------------------------------------------------------------------
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔗 Backend Connection
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The frontend communicates with the backend API using:
 
-## Deploy on Vercel
+    NEXT_PUBLIC_API_URL
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Defined in the root `.env` file:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+``` env
+NEXT_PUBLIC_API_URL=http://localhost:8080
+```
+
+Only variables prefixed with `NEXT_PUBLIC_` are exposed to the browser.
+
+------------------------------------------------------------------------
+
+## 🎨 UI Setup (Material UI)
+
+The app uses MUI with proper SSR integration for Next.js App Router.
+
+Theme setup:
+
+    src/theme/
+      createEmotionCache.ts
+      ThemeRegistry.tsx
+      theme.ts
+
+- `ThemeRegistry` ensures Emotion styles are injected consistently
+- Prevents hydration mismatches
+- Wraps the app inside `layout.tsx`
+
+------------------------------------------------------------------------
+
+## 📦 Important Decisions
+
+- App Router is used instead of Pages Router
+- React Compiler is disabled (project stability \> experimental
+    features)
+- Tailwind is not used (MUI is the chosen UI system)
+- `src/` directory is used for clean project structure
+- Default import alias `@/*` is preserved
+
+------------------------------------------------------------------------
+
+## 🧪 Useful Commands
+
+Restart frontend container:
+
+``` bash
+make restart-web
+```
+
+View frontend logs:
+
+``` bash
+make logs-web
+```
+
+Access web container:
+
+``` bash
+make enter-web
+```
+
+------------------------------------------------------------------------
+
+## 📌 Development Guidelines
+
+- Keep pages inside `app/(pages)/` minimal and focused on layout
+- Move reusable UI into `components/`
+- API calls should live inside a `services/` layer (to be added)
+- Keep components small and readable
+- Prefer clarity over premature optimization
