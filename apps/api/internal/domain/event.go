@@ -7,10 +7,10 @@ import (
 )
 
 type Event struct {
-	ID         uuid.UUID
-	Name       string
-	ImageURL   string
-	ExtraitURL string
-	MediaURL   string
-	CreatedAt  time.Time
+	ID          uuid.UUID
+	Name        string
+	Description string
+	location    string
+	EventDate   time.Time
+	CreatedAt   time.Time
 }
