@@ -27,4 +27,3 @@ WHERE id = $5;
 --Delete event 'admin side'
 DELETE FROM events
 WHERE id = $1;
-
