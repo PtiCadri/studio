@@ -10,7 +10,7 @@ type Artist struct {
 	ID         uuid.UUID
 	Name       string
 	ImageURL   string
-	ExtraitURL string
+	ExtractURL string
 	MediaURL   string
 	CreatedAt  time.Time
 }
