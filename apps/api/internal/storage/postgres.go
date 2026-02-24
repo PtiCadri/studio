@@ -2,6 +2,7 @@ package storage
 
 import (
 	"database/sql"
+	"log"
 	"time"
 
 	_ "github.com/jackc/pgx/v5/stdlib"
@@ -25,6 +26,8 @@ func NewPostgres(databaseURL string) (*Postgres, error) {
 		_ = db.Close()
 		return nil, err
 	}
+
+	log.Println("Connected to PostgreSQL database successfully")
 
 	return &Postgres{DB: db}, nil
 }
