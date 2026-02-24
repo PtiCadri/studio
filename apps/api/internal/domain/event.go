@@ -10,7 +10,7 @@ type Event struct {
 	ID          uuid.UUID
 	Name        string
 	Description string
-	location    string
+	Location    string
 	EventDate   time.Time
 	CreatedAt   time.Time
 }
