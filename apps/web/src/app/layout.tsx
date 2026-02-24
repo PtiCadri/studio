@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ThemeRegistry from '@/theme/ThemeRegistry';
+import { ibmPlexSans } from "@/theme/fonts";
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="fr">
+        <html lang="fr" className={ibmPlexSans.variable}>
             <body>
                 <ThemeRegistry>
                     {children}
