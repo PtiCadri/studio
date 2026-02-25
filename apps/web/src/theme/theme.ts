@@ -39,9 +39,4 @@ export const theme = createTheme({
 
     divider: "#1A1A1A",
   },
-
-  shape: {
-    borderRadius: 10,
-  },
-
 });

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ThemeRegistry from '@/theme/ThemeRegistry';
+import Navbar from '@/components/navbar/Navbar';
 import { ibmPlexSans } from "@/theme/fonts";
 import React from 'react';
 
@@ -17,6 +18,7 @@ export default function RootLayout({
         <html lang="fr" className={ibmPlexSans.variable}>
             <body>
                 <ThemeRegistry>
+                    <Navbar />
                     {children}
                 </ThemeRegistry>
             </body>
