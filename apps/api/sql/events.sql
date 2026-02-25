@@ -1,7 +1,7 @@
 --Create event 'admin side'
 INSERT INTO events (name, description, location, event_date)
 VALUES ($1, $2, $3, $4);
-RETURNING id, created_at;
+--TURNING id, created_at;
 
 --Get all upcoming events 'public side'
 SELECT id, name, description, location, event_date

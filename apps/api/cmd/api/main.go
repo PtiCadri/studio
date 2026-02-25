@@ -20,6 +20,7 @@ func main() {
 	router := server.NewRouter(pg.DB)
 	srv := server.New(":"+cfg.Port, router)
 
+	log.Println("Database URL:", cfg.DatabaseUrl)
 	log.Println("🚀 Server running on port", cfg.Port)
 	log.Fatal(srv.Start())
 }

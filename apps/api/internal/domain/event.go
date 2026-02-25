@@ -7,10 +7,10 @@ import (
 )
 
 type Event struct {
-	ID          uuid.UUID
-	Name        string
-	Description string
-	Location    string
-	EventDate   time.Time
-	CreatedAt   time.Time
+	ID          uuid.UUID `json:"id"`
+	Name        string    `json:"name"`
+	Description string    `json:"description"`
+	Location    string    `json:"location"`
+	EventDate   time.Time `json:"event_date"`
+	CreatedAt   time.Time `json:"created_at"`
 }

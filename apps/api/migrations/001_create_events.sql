@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS events (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name varchar(150) NOT NULL CHECK (char_length(name) >= 3),
-    description TEXT,
-    location TEXT,
-    event_date DATE NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT now(),
-);
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+CREATE TABLE events (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name TEXT NOT NULL,
+    description TEXT,
+    location TEXT NOT NULL,
+    event_date TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
