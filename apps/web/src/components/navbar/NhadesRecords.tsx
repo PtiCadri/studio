@@ -18,14 +18,14 @@ export default function NhadesRecords({ isActive = false }: { isActive?: boolean
             <Box
                 component="span"
                 className={montserrat.variable}
-                sx={{ mr: "28px", ...wordSx, ...afterSx(isActive) }}
+                sx={nhadesSx(isActive)}
             >
                 NHADÈS
             </Box>
             <Box
                 component="span"
                 className={montserrat.variable}
-                sx={{ ml: "20px", my: "6px", fontWeight: 300 , ...wordSx, ...afterSx(isActive) }}
+                sx={recordsSx(isActive)}
             >
                 RECORDS
             </Box>
@@ -33,6 +33,20 @@ export default function NhadesRecords({ isActive = false }: { isActive?: boolean
     </ButtonBase>
   );
 }
+
+const nhadesSx = (isActive: boolean) => ({
+    mr: "28px",
+    ...wordSx,
+    ...afterSx(isActive)
+});
+
+const recordsSx = (isActive: boolean) => ({
+    ml: "20px",
+    my: "6px",
+    fontWeight: 300 ,
+    ...wordSx,
+    ...afterSx(isActive)
+});
 
 const btnSx = {
     height: NAVBAR_HEIGHT,

@@ -8,8 +8,11 @@ import { NAVBAR_HEIGHT } from '@/constants/layout';
 import { ibmPlexSans } from "@/theme/fonts";
 
 export const metadata: Metadata = {
-    title: 'Nhadès Records',
-    description: 'Site officiel de Nhadès Records, studio de musique indépendant.',
+    title: {
+        default: 'Nhadès Records',
+        template: '%s | Nhadès Records',
+    },
+    description: 'Nhadès Records, studio de musique indépendant situé à 5 minutes de Rouen.',
 };
 
 export default function RootLayout({
