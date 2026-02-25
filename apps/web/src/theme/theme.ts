@@ -37,6 +37,6 @@ export const theme = createTheme({
       secondary: "#BDBDBD",
     },
 
-    divider: "#1A1A1A",
+    divider: "#666666",
   },
 });

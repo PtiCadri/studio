@@ -1,8 +1,11 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import ThemeRegistry from '@/theme/ThemeRegistry';
+
 import Navbar from '@/components/navbar/Navbar';
+import { Box } from '@mui/material';
+import { NAVBAR_HEIGHT } from '@/constants/layout';
 import { ibmPlexSans } from "@/theme/fonts";
-import React from 'react';
 
 export const metadata: Metadata = {
     title: 'Nhadès Records',
@@ -19,7 +22,17 @@ export default function RootLayout({
             <body>
                 <ThemeRegistry>
                     <Navbar />
-                    {children}
+
+                    <Box
+                        sx={{
+                            pt: `${NAVBAR_HEIGHT}px`,
+                            height: "100vh",
+                            overflowY: "auto",
+                            overflowX: "hidden",
+                        }}
+                    >
+                        {children}
+                    </Box>
                 </ThemeRegistry>
             </body>
         </html>

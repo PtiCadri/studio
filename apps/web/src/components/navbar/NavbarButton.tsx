@@ -1,16 +1,18 @@
 import Link from 'next/link';
-import { Button } from '@mui/material';
+import { Button, Box } from '@mui/material';
 
 interface NavbarButtonProps {
     label: string;
     href: string;
     ariaLabel: string;
+    isActive?: boolean;
 }
 
 export default function NavbarButton({
     label,
     href,
-    ariaLabel
+    ariaLabel,
+    isActive = false,
 }: NavbarButtonProps) {
 
     return (
@@ -21,42 +23,52 @@ export default function NavbarButton({
             variant="text"
             disableRipple
             disableElevation
-            sx={btnSx}
+            sx={btnSx(isActive)}
         >
-            {label}
+            <Box
+                component="span"
+                sx={labelSx(isActive)}
+            >
+                {label}
+            </Box>
         </Button>
     );
 }
 
-const btnSx = {
+const btnSx = (isActive: boolean) => ({
     fontSize: "18px",
     fontWeight: 400,
+    color: isActive ? "text.primary" : "text.secondary",
 
     position: "relative",
     px: 0,
+    py: 0,
     backgroundColor: "transparent",
-    transition: "none",
 
     "&:hover": {
-      backgroundColor: "transparent",
-      transform: "scale(1.05)",
-      transition: "transform 0.2s ease",
+        backgroundColor: "transparent",
+        color: "text.primary",
     },    
+});
+
+const labelSx = (isActive: boolean) => ({
+    position: "relative",
+    display: "inline-block",
 
     "&::after": {
-      content: '""',
-      position: "absolute",
-      left: 0,
-      right: 0,
-      bottom: 4,
-      height: "1px",
-      backgroundColor: "common.white",
-      transform: "scaleX(0)",
-      transformOrigin: "left",
-      transition: "transform 180ms cubic-bezier(.4,0,.2,1)",
+        content: '""',
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: -2,
+        height: "1px",
+        backgroundColor: "text.secondary",
+        transform: isActive ? "scaleX(1)" : "scaleX(0)",
+        transformOrigin: "center",
+        transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
     },
 
-    "&:hover::after, &:focus-visible::after": {
-      transform: "scaleX(1)",
+    ".MuiButton-root:hover &::after, .MuiButton-root:focus-visible &::after": {
+        transform: "scaleX(1)",
     },
-};
+});

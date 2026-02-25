@@ -1,29 +1,83 @@
-import Link from 'next/link';
-import { Box } from '@mui/material';
+"use client";
 
-export default function NhadesRecords() {
+import Link from "next/link";
+import { Box, ButtonBase } from "@mui/material";
+import { NAVBAR_HEIGHT } from "@/constants/layout";
+import { montserrat } from "@/theme/fonts";
 
-    return (
-        <Link href="/" style={{ textDecoration: "none" }}>
+export default function NhadesRecords({ isActive = false }: { isActive?: boolean }) {
+  return (
+    <ButtonBase
+        component={Link}
+        href="/"
+        aria-label="Vers la page d'Accueil de Nhadès Records"
+        disableTouchRipple
+        sx={btnSx}
+    >
+        <Box sx={labelSx(isActive)}>
             <Box
-                component="img"
-                src="nhades.svg"
-                alt="Studio Nhadès Records"
-                sx={imgSx}
-            />
-        </Link>
-    );
+                component="span"
+                className={montserrat.variable}
+                sx={{ mr: "28px", ...wordSx, ...afterSx(isActive) }}
+            >
+                NHADÈS
+            </Box>
+            <Box
+                component="span"
+                className={montserrat.variable}
+                sx={{ ml: "20px", my: "6px", fontWeight: 300 , ...wordSx, ...afterSx(isActive) }}
+            >
+                RECORDS
+            </Box>
+        </Box>
+    </ButtonBase>
+  );
 }
 
-const imgSx = {
-    height: "80px",
-    mx: "15px",
-    p: "20px",
-    cursor: "pointer",
-    transition: "opacity 0.2s ease",
-    "&:hover": {
-        opacity: 0.7,
-        transform: "scale(1.05)",
-        transition: "transform 0.2s ease",
-    },
+const btnSx = {
+    height: NAVBAR_HEIGHT,
+    pl: "20px",
 };
+
+const labelSx = (isActive: boolean) => ({
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "left",
+    justifyContent: "center",
+    fontSize: "22px",
+    fontWeight: 500,
+    color: isActive ? "text.primary" : "text.secondary",
+    "&:hover": {
+        color: "text.primary",
+    },
+});
+
+const wordSx = {
+    position: "relative",
+    height: "26px",
+
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "left",
+    justifyContent: "center",
+};
+
+const afterSx = (isActive: boolean) => ({
+    "&::after": {
+        content: '""',
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: -2,
+        height: "1px",
+        backgroundColor: "text.secondary",
+        transform: isActive ? "scaleX(1)" : "scaleX(0)",
+        transformOrigin: "center",
+        transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
+    },
+
+    ".MuiButtonBase-root:hover &::after, .MuiButtonBase-root:focus-visible &::after": {
+        transform: "scaleX(1)",
+    },
+});
