@@ -17,7 +17,7 @@ func main() {
 	}
 	defer pg.DB.Close()
 
-	router := server.NewRouter(pg.DB)
+	router := server.NewRouter(pg.DB, cfg)
 	srv := server.New(":"+cfg.Port, router)
 
 	log.Println("Database URL:", cfg.DatabaseUrl)

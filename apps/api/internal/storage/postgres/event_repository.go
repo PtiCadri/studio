@@ -21,8 +21,8 @@ func NewEventRepository(db *sql.DB) *EventRepository {
 // Create a new event in the database (admin side).
 func (r *EventRepository) CreateEvent(ctx context.Context, event *domain.Event) error {
 	query :=
-		`INSERT INTO events (name, description, location, event_date)
-	VALUES ($1, $2, $3, $4) 
+		`INSERT INTO events (name, description, location, start_date, end_date)
+	VALUES ($1, $2, $3, $4, $5) 
 	RETURNING id, created_at
 	`
 	fmt.Printf("Creating event: %s\n", event.Name)
@@ -32,17 +32,18 @@ func (r *EventRepository) CreateEvent(ctx context.Context, event *domain.Event) 
 		event.Name,
 		event.Description,
 		event.Location,
-		event.EventDate,
+		event.StartDate,
+		event.EndDate,
 	).Scan(&event.ID, &event.CreatedAt)
 }
 
 // Get upcoming events from the database (public side).
 func (r *EventRepository) GetUpcomingEvents(ctx context.Context) ([]domain.Event, error) {
 	query :=
-		`SELECT id, name, description, location, event_date, created_at
+		`SELECT id, name, description, location, start_date, end_date, created_at
 	FROM events
-	WHERE event_date >= CURRENT_DATE
-	ORDER BY event_date ASC
+	WHERE start_date >= CURRENT_DATE
+	ORDER BY start_date ASC
 	`
 
 	rows, err := r.db.QueryContext(ctx, query)
@@ -59,7 +60,8 @@ func (r *EventRepository) GetUpcomingEvents(ctx context.Context) ([]domain.Event
 			&event.Name,
 			&event.Description,
 			&event.Location,
-			&event.EventDate,
+			&event.StartDate,
+			&event.EndDate,
 			&event.CreatedAt,
 		); err != nil {
 			return nil, err
@@ -74,7 +76,7 @@ func (r *EventRepository) GetUpcomingEvents(ctx context.Context) ([]domain.Event
 
 func (r *EventRepository) GetEventByID(ctx context.Context, id uuid.UUID) (*domain.Event, error) {
 	query := `
-	SELECT id, name, description, location, event_date, created_at
+	SELECT id, name, description, location, start_date, end_date, created_at
 	FROM events
 	WHERE id = $1
 	`
@@ -84,7 +86,8 @@ func (r *EventRepository) GetEventByID(ctx context.Context, id uuid.UUID) (*doma
 		&event.Name,
 		&event.Description,
 		&event.Location,
-		&event.EventDate,
+		&event.StartDate,
+		&event.EndDate,
 		&event.CreatedAt,
 	)
 	if err != nil {
@@ -98,19 +101,20 @@ func (r *EventRepository) GetEventByID(ctx context.Context, id uuid.UUID) (*doma
 func (r *EventRepository) UpdateEvent(ctx context.Context, event *domain.Event) error {
 	query := `
 	UPDATE events
-	SET name = $1, description = $2, location = $3, event_date = $4
-	WHERE id = $5
+	SET name = $1, description = $2, location = $3, start_date = $4, end_date = $5
+	WHERE id = $6
 	`
-	fmt.Printf("Updating event with ID: %s\n", event.ID)
-	return r.db.QueryRowContext(
-		ctx,
-		query,
+	_, err := r.db.ExecContext(
+		ctx, query,
 		event.Name,
 		event.Description,
 		event.Location,
-		event.EventDate,
+		event.StartDate,
+		event.EndDate,
 		event.ID,
-	).Err()
+	)
+	fmt.Printf("Updating event with ID: %s\n", event.ID)
+	return err
 }
 
 // DeleteEvent deletes an event from the database by its ID (admin side).

@@ -13,8 +13,8 @@ type ArtistRepository struct {
 	db *sql.DB
 }
 
-func NewArtistRepository(db *sql.DB) ArtistRepository {
-	return ArtistRepository{db: db}
+func NewArtistRepository(db *sql.DB) *ArtistRepository {
+	return &ArtistRepository{db: db}
 }
 
 // CreateArtist inserts a new artist into the database and returns the created artist with its ID (admin side).

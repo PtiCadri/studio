@@ -2,10 +2,13 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"strings"
 
 	"github.com/PtiCadri/studio/apps/api/internal/domain"
 	"github.com/PtiCadri/studio/apps/api/internal/storage/postgres"
+	"github.com/google/uuid"
 )
 
 type EventHandler struct {
@@ -39,4 +42,46 @@ func (h *EventHandler) GetUpcomingEvents(w http.ResponseWriter, r *http.Request)
 	}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(events)
+}
+
+func (h *EventHandler) UpdateEvent(w http.ResponseWriter, r *http.Request) {
+	idStr := strings.TrimPrefix(r.URL.Path, "/admin/events/")
+	id, err := uuid.Parse(idStr)
+	log.Printf("...Updating event with ID: %s\n", idStr)
+	if err != nil {
+		http.Error(w, "invalid id", http.StatusBadRequest)
+		return
+	}
+	var input domain.UpdateEventInput
+	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+		http.Error(w, "invalid body", http.StatusBadRequest)
+		return
+	}
+	event := domain.Event{
+		ID:          id,
+		Name:        input.Name,
+		Description: input.Description,
+		Location:    input.Location,
+		StartDate:   input.StartDate,
+		EndDate:     input.EndDate,
+	}
+	if err := h.eventRepo.UpdateEvent(r.Context(), &event); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
+
+func (h *EventHandler) DeleteEvent(w http.ResponseWriter, r *http.Request) {
+	idStr := strings.TrimPrefix(r.URL.Path, "/admin/events/")
+	id, err := uuid.Parse(idStr)
+	if err != nil {
+		http.Error(w, "invalid id", http.StatusBadRequest)
+		return
+	}
+	if err := h.eventRepo.DeleteEvent(r.Context(), id); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
 }
