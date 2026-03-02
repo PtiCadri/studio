@@ -8,10 +8,12 @@ import (
 	_ "github.com/jackc/pgx/v5/stdlib"
 )
 
+// Postgres encapsulates the database connection for PostgreSQL.
 type Postgres struct {
 	DB *sql.DB
 }
 
+// NewPostgres establishes a new connection to the PostgreSQL database using the provided database URL.
 func NewPostgres(databaseURL string) (*Postgres, error) {
 	db, err := sql.Open("pgx", databaseURL)
 	if err != nil {

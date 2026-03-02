@@ -10,10 +10,12 @@ import (
 	"github.com/google/uuid"
 )
 
+// EventRepository provides methods to interact with the events table in the database.
 type EventRepository struct {
 	db *sql.DB
 }
 
+// NewEventRepository creates a new EventRepository with the given database connection.
 func NewEventRepository(db *sql.DB) *EventRepository {
 	return &EventRepository{db: db}
 }
@@ -73,7 +75,6 @@ func (r *EventRepository) GetUpcomingEvents(ctx context.Context) ([]domain.Event
 }
 
 // GetEventByID retrieves an event by its ID (admin side).
-
 func (r *EventRepository) GetEventByID(ctx context.Context, id uuid.UUID) (*domain.Event, error) {
 	query := `
 	SELECT id, name, description, location, start_date, end_date, created_at

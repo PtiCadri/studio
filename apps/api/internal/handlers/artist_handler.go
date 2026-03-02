@@ -11,14 +11,17 @@ import (
 	"github.com/google/uuid"
 )
 
+// ArtistHandler handles HTTP requests related to artists.
 type ArtistHandler struct {
 	repo *postgres.ArtistRepository
 }
 
+// NewArtistHandler creates a new ArtistHandler with the given repository.
 func NewArtistHandler(repo *postgres.ArtistRepository) *ArtistHandler {
 	return &ArtistHandler{repo: repo}
 }
 
+// CreateArtist handles the creation of a new artist (admin side).
 func (h *ArtistHandler) CreateArtist(w http.ResponseWriter, r *http.Request) {
 	var artist domain.Artist
 
@@ -36,6 +39,7 @@ func (h *ArtistHandler) CreateArtist(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(artist)
 }
 
+// GetAllArtists handles the retrieval of all artists (public side).
 func (h *ArtistHandler) GetAllArtists(w http.ResponseWriter, r *http.Request) {
 	artists, err := h.repo.GetAllArtists(r.Context())
 	if err != nil {
@@ -46,6 +50,7 @@ func (h *ArtistHandler) GetAllArtists(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(artists)
 }
 
+// UpdateArtist handles the update of an existing artist (admin side).
 func (h *ArtistHandler) UpdateArtist(w http.ResponseWriter, r *http.Request) {
 	strId := strings.TrimPrefix(r.URL.Path, "/admin/artists/")
 	id, err := uuid.Parse(strId)
@@ -73,6 +78,7 @@ func (h *ArtistHandler) UpdateArtist(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
+// DeleteArtist handles the deletion of an artist by ID (admin side).
 func (h *ArtistHandler) DeleteArtist(w http.ResponseWriter, r *http.Request) {
 	strId := strings.TrimPrefix(r.URL.Path, "/admin/artists/")
 	id, err := uuid.Parse(strId)

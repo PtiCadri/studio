@@ -9,10 +9,12 @@ import (
 	"github.com/google/uuid"
 )
 
+// ArtistRepository provides methods to interact with the artists table in the database.
 type ArtistRepository struct {
 	db *sql.DB
 }
 
+// NewArtistRepository creates a new ArtistRepository with the given database connection.
 func NewArtistRepository(db *sql.DB) *ArtistRepository {
 	return &ArtistRepository{db: db}
 }

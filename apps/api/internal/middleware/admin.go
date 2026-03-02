@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Admin returns a middleware that checks if the request is authenticated as an admin.
+// AdminMiddleware checks for a valid admin token in the Authorization header.
 func AdminMiddleware(adminToken string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
