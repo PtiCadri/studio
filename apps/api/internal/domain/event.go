@@ -6,6 +6,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// Event represents a musical event with relevant information.
 type Event struct {
 	ID          uuid.UUID  `json:"id"`
 	Name        string     `json:"name"`
@@ -16,6 +17,7 @@ type Event struct {
 	CreatedAt   time.Time  `json:"created_at"`
 }
 
+// UpdateEventInput is used for updating an event's information.
 type UpdateEventInput struct {
 	Name        string     `json:"name"`
 	Description string     `json:"description"`
