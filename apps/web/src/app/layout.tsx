@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import ThemeRegistry from '@/theme/ThemeRegistry';
 
 import Navbar from '@/components/navbar/Navbar';
+import Starfield from '@/components/background/Starfield';
 import { Box } from '@mui/material';
 import { NAVBAR_HEIGHT } from '@/constants/layout';
 import { ibmPlexSans } from "@/theme/fonts";
@@ -23,6 +24,7 @@ export default function RootLayout({
     return (
         <html lang="fr" className={ibmPlexSans.variable}>
             <body>
+                <Starfield />
                 <ThemeRegistry>
                     <Navbar />
 
@@ -30,7 +32,6 @@ export default function RootLayout({
                         sx={{
                             pt: `${NAVBAR_HEIGHT}px`,
                             height: "100vh",
-                            overflowY: "auto",
                             overflowX: "hidden",
                         }}
                     >

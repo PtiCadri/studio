@@ -20,14 +20,14 @@ export default function NhadesRecords({ isActive = false }: { isActive?: boolean
                 className={montserrat.variable}
                 sx={nhadesSx(isActive)}
             >
-                NHADÈS
+                Nhadès
             </Box>
             <Box
                 component="span"
                 className={montserrat.variable}
                 sx={recordsSx(isActive)}
             >
-                RECORDS
+                Records
             </Box>
         </Box>
     </ButtonBase>

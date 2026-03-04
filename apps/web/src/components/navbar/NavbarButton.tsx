@@ -36,6 +36,7 @@ export default function NavbarButton({
 }
 
 const btnSx = (isActive: boolean) => ({
+    zIndex: 1,
     fontSize: "18px",
     fontWeight: 400,
     color: isActive ? "text.primary" : "text.secondary",
