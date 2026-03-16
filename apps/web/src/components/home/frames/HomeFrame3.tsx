@@ -54,8 +54,16 @@ export default function HomeFrame3() {
         alignItems: "center",
       }}
     >
-      <GlassySurface sx={{ width: "100%", maxWidth: "lg", mx: 4, pb: 4 }}>
-        <Typography variant="h4" sx={{ my: 2, fontWeight: 500,  }}>
+      <GlassySurface animatedBorder={false}
+                sx={{
+                    maxWidth: "lg",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    borderRadius: 0
+                }}>
+        <Typography variant="h4" sx={{ mb: 5, fontWeight: 500, justifyContent: "center", display: "flex" }}>
             Le matériel
         </Typography>
         <StudioHardwareAccordion items={HARDWARE} />

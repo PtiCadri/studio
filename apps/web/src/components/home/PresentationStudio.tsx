@@ -4,7 +4,7 @@ export default function PresentationStudio() {
 
     return (
        <>
-            <Typography variant="h4" sx={{ my: 2, fontWeight: 500,  }}>
+            <Typography variant="h4" sx={{ mb: 5, fontWeight: 500, justifyContent: "center", display: "flex" }}>
                 Le studio
             </Typography>
 

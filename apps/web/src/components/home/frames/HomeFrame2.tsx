@@ -6,12 +6,22 @@ export default function HomeFrame2() {
 
     return(
         <Box sx={{
+            position: "relative",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
             height: "100%",
         }}>
-            <GlassySurface sx={{ maxWidth: "lg" }}>
+            <GlassySurface
+                animatedBorder={false}
+                sx={{
+                    maxWidth: "lg",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    borderRadius: 0
+                }}
+            >
                 <PresentationStudio />
             </GlassySurface>
         </Box>
