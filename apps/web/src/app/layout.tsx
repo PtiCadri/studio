@@ -30,9 +30,10 @@ export default function RootLayout({
 
                     <Box
                         sx={{
-                            pt: `${NAVBAR_HEIGHT}px`,
+                            pt: `${NAVBAR_HEIGHT + 20}px`,
                             height: "100vh",
                             overflowX: "hidden",
+                            overflowY: "scroll",
                         }}
                     >
                         {children}

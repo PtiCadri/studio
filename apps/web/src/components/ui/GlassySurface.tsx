@@ -6,7 +6,7 @@ type GlassySurfaceProps = PaperProps & {
 };
 
 export default function GlassySurface({
-  animatedBorder = true,
+  animatedBorder = false,
   sx,
   elevation = 0,
   ...props

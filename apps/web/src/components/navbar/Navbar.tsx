@@ -15,10 +15,10 @@ export default function Navbar() {
 
             <Stack direction="row" sx={stackSx}>
                 <NavbarButton
-                    label="Prestations"
-                    href="/prestations"
-                    ariaLabel="Vers la page Prestations"
-                    isActive={pathname === "/prestations"}
+                    label="Matériel"
+                    href="/meteriel"
+                    ariaLabel="Vers la page Matériel"
+                    isActive={pathname === "/materiel"}
                 />
                 <NavbarButton
                     label="Références"

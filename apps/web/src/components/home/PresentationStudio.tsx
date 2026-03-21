@@ -1,11 +1,21 @@
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
+import GlassySurface from "@/components/ui/GlassySurface";
 
 export default function PresentationStudio() {
 
     return (
-       <>
-            <Typography variant="h4" sx={{ mb: 5, fontWeight: 500, justifyContent: "center", display: "flex" }}>
-                Le studio
+       <GlassySurface sx={{ width: "100%", maxWidth: 'xl', pt: 2, mb: "50px"}}>
+            <Typography
+                variant="h2"
+                sx={{
+                    mb: 5,
+                    fontWeight: 500,
+                    // borderLeft: "6px solid",
+                    // borderColor: "primary.main",
+                    pl: 2
+                }}
+            >
+                LE STUDIO
             </Typography>
 
             <Typography sx={bodySx} variant="body1" gutterBottom>
@@ -26,14 +36,13 @@ export default function PresentationStudio() {
                 propose <strong>un cadre de travail sérieux et soigné</strong>, pensé pour permettre aux
                 artistes de <strong>développer leur identité sonore dans des conditions professionnelles</strong>.
             </Typography>
-       </>
+       </GlassySurface>
     );
 }
 
 const bodySx = {
     color: "text.secondary",
-    lineHeight: 1.8,
-    fontSize: "1.2rem",
-    pl: "15px",
-    mb: "15px",
+    lineHeight: 1.5,
+    fontSize: "1.7rem",
+    mb: "25px",
 };

@@ -10,7 +10,6 @@ export const glassSx = (): SxProps<Theme> => ({
 
 export const animatedBorderSx = (): SxProps<Theme> => ({
   position: "relative",
-  borderRadius: 2,
 
   "&::before": {
     content: '""',
