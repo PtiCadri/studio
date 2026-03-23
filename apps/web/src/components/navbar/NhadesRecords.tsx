@@ -3,95 +3,107 @@
 import Link from "next/link";
 import { Box, ButtonBase } from "@mui/material";
 import { NAVBAR_HEIGHT } from "@/constants/layout";
-import { montserrat } from "@/theme/fonts";
+import { Height } from "@mui/icons-material";
 
-export default function NhadesRecords({ isActive = false }: { isActive?: boolean }) {
-  return (
-    <ButtonBase
-        component={Link}
-        href="/"
-        aria-label="Vers la page d'Accueil de Nhadès Records"
-        disableTouchRipple
-        sx={btnSx}
-    >
-        <Box sx={labelSx(isActive)}>
-            <Box
-                component="span"
-                className={montserrat.variable}
-                sx={nhadesSx(isActive)}
-            >
-                Nhadès
+export default function NhaDesRecords({ isActive = false }: { isActive?: boolean }) {
+    return (
+        <ButtonBase
+            component={Link}
+            href="/"
+            aria-label="Vers la page d'Accueil de Nhadès Records"
+            disableTouchRipple
+            sx={btnSx}
+        >
+            <Box sx={boxSx}>
+                <Box sx={wrapperSx(isActive, "right")}>
+                    <Box
+                        component="img"
+                        src="/nha.svg"
+                        alt="Nom du studio"
+                        sx={nhaSx}
+                    />
+                </Box>
+                <Box sx={{...wrapperSx(isActive, "left"), ml: "15px"}}>
+                    <Box
+                        component="img"
+                        src="/des.svg"
+                        alt="Nom du studio"
+                        sx={desSx}
+                    />
+                </Box>
             </Box>
-            <Box
-                component="span"
-                className={montserrat.variable}
-                sx={recordsSx(isActive)}
-            >
-                Records
+            <Box sx={wrapperSx(isActive, "center")}>
+                <Box
+                    component="img"
+                    src="/records.svg"
+                    alt="Nom du studio"
+                    sx={recordsSx}
+                />
             </Box>
-        </Box>
-    </ButtonBase>
-  );
+        </ButtonBase>
+    );
 }
-
-const nhadesSx = (isActive: boolean) => ({
-    mr: "28px",
-    ...wordSx,
-    ...afterSx(isActive)
-});
-
-const recordsSx = (isActive: boolean) => ({
-    ml: "20px",
-    my: "6px",
-    fontWeight: 300 ,
-    ...wordSx,
-    ...afterSx(isActive)
-});
 
 const btnSx = {
     height: NAVBAR_HEIGHT,
+    maxWidth: "175px",
+    width: "175px",
     pl: "20px",
-};
-
-const labelSx = (isActive: boolean) => ({
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "left",
-    justifyContent: "center",
-    fontSize: "22px",
-    fontWeight: 500,
-    color: isActive ? "text.primary" : "text.secondary",
-    "&:hover": {
-        color: "text.primary",
-    },
-});
-
-const wordSx = {
-    position: "relative",
-    height: "26px",
 
     display: "flex",
     flexDirection: "column",
-    alignItems: "left",
+    alignItems: "center",
     justifyContent: "center",
 };
 
-const afterSx = (isActive: boolean) => ({
-    "&::after": {
-        content: '""',
-        position: "absolute",
-        left: 0,
-        right: 0,
-        bottom: -2,
-        height: "1px",
-        backgroundColor: "text.secondary",
-        transform: isActive ? "scaleX(1)" : "scaleX(0)",
-        transformOrigin: "center",
-        transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
-    },
+const boxSx = {
+    width: "175px",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "center",
+};
 
-    ".MuiButtonBase-root:hover &::after, .MuiButtonBase-root:focus-visible &::after": {
-        transform: "scaleX(1)",
+const nhaSx = {
+    display: "block",
+    height: "12px",
+    width: "auto",
+    mb: "5px",
+};
+
+const desSx = {
+    display: "block",
+    height: "15px",
+    width: "auto",
+    mb: "5px",
+};
+
+const recordsSx = {
+    display: "block",
+    width: "105px",
+    height: "auto",
+    mb: "5px",
+    mt: "10px",
+};
+
+const wrapperSx = (isActive: boolean, transformOrigin: string) => ({
+  position: "relative",
+
+  "&::after": {
+    content: '""',
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: -2,
+    height: "1px",
+    backgroundColor: "text.secondary",
+    transform: isActive ? "scaleX(1)" : "scaleX(0)",
+    transformOrigin: transformOrigin,
+    transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
+  },
+
+  ".MuiButtonBase-root:hover &::after, .MuiButtonBase-root:focus-visible &::after":
+    {
+      transform: "scaleX(1)",
     },
 });

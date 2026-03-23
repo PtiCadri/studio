@@ -1,17 +1,13 @@
 "use client";
 
-import StudioPic from "@/components/home/StudioPic";
 import { Box } from "@mui/material";
-import PresentationStudio from "@/components/home/PresentationStudio";
-import Materiel from "@/components/home/materiel/Materiel";
+import { PrestationCard } from "@/components/home/prestations";
 
 export default function HomePage() {
 
   return (
     <Box sx={containerSx}>
-      <StudioPic />
-      <PresentationStudio />
-      <Materiel />
+      <PrestationCard />
     </Box>
   );
 }
