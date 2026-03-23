@@ -4,18 +4,15 @@ import GlassySurface from "@/components/ui/GlassySurface";
 export default function PresentationStudio() {
 
     return (
-       <GlassySurface sx={{ width: "100%", maxWidth: 'xl', pt: 2, mb: "50px"}}>
+       <GlassySurface sx={{ width: "100%", maxWidth: '1150px', mb: "50px"}}>
             <Typography
-                variant="h2"
+                variant="h4"
                 sx={{
-                    mb: 5,
-                    fontWeight: 500,
-                    // borderLeft: "6px solid",
-                    // borderColor: "primary.main",
-                    pl: 2
+                    mb: "20px",
+                    fontWeight: "bold",
                 }}
             >
-                LE STUDIO
+                Le Studio
             </Typography>
 
             <Typography sx={bodySx} variant="body1" gutterBottom>
@@ -30,12 +27,6 @@ export default function PresentationStudio() {
                 diffusion. Il accueille les artistes pour l’<strong>enregistrement</strong>, le <strong>mixage</strong> et le
                 <strong> mastering</strong>, ainsi que pour la <strong>préparation de projets et de performances live</strong>.
             </Typography>
-
-            <Typography sx={bodySx} variant="body1" gutterBottom>
-                Fort de plusieurs années d’expérience en production musicale, Nha Dès Records
-                propose <strong>un cadre de travail sérieux et soigné</strong>, pensé pour permettre aux
-                artistes de <strong>développer leur identité sonore dans des conditions professionnelles</strong>.
-            </Typography>
        </GlassySurface>
     );
 }
@@ -43,6 +34,7 @@ export default function PresentationStudio() {
 const bodySx = {
     color: "text.secondary",
     lineHeight: 1.5,
-    fontSize: "1.7rem",
-    mb: "25px",
-};
+    fontSize: "1.1rem",
+    pl: "5px",
+    mb: "10px"
+}

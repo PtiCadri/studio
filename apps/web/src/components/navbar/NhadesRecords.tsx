@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { Box, ButtonBase } from "@mui/material";
 import { NAVBAR_HEIGHT } from "@/constants/layout";
-import { Height } from "@mui/icons-material";
 
-export default function NhaDesRecords({ isActive = false }: { isActive?: boolean }) {
+export default function NhaDesRecords() {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <ButtonBase
             component={Link}
@@ -15,27 +17,39 @@ export default function NhaDesRecords({ isActive = false }: { isActive?: boolean
             sx={btnSx}
         >
             <Box sx={boxSx}>
-                <Box sx={wrapperSx(isActive, "right")}>
+                <Box
+                    sx={wrapperSx(isHovered, "right")}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     <Box
                         component="img"
-                        src="/nha.svg"
+                        src="/nhades/nha.svg"
                         alt="Nom du studio"
                         sx={nhaSx}
                     />
                 </Box>
-                <Box sx={{...wrapperSx(isActive, "left"), ml: "15px"}}>
+                <Box
+                    sx={{...wrapperSx(isHovered, "left"), ml: "10px"}}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     <Box
                         component="img"
-                        src="/des.svg"
+                        src="/nhades/des.svg"
                         alt="Nom du studio"
                         sx={desSx}
                     />
                 </Box>
             </Box>
-            <Box sx={wrapperSx(isActive, "center")}>
+            <Box
+                sx={wrapperSx(isHovered, "center")}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
                 <Box
                     component="img"
-                    src="/records.svg"
+                    src="/nhades/records.svg"
                     alt="Nom du studio"
                     sx={recordsSx}
                 />
@@ -66,27 +80,28 @@ const boxSx = {
 
 const nhaSx = {
     display: "block",
-    height: "12px",
+    height: "10px",
     width: "auto",
     mb: "5px",
 };
 
 const desSx = {
     display: "block",
-    height: "15px",
+    height: "13px",
     width: "auto",
     mb: "5px",
 };
 
 const recordsSx = {
     display: "block",
-    width: "105px",
-    height: "auto",
+    width: "auto",
+    height: "10px",
     mb: "5px",
+    ml: "2px",
     mt: "10px",
 };
 
-const wrapperSx = (isActive: boolean, transformOrigin: string) => ({
+const wrapperSx = (isHovered: boolean, transformOrigin: string) => ({
   position: "relative",
 
   "&::after": {
@@ -97,7 +112,7 @@ const wrapperSx = (isActive: boolean, transformOrigin: string) => ({
     bottom: -2,
     height: "1px",
     backgroundColor: "text.secondary",
-    transform: isActive ? "scaleX(1)" : "scaleX(0)",
+    transform: isHovered ? "scaleX(1)" : "scaleX(0)",
     transformOrigin: transformOrigin,
     transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
   },

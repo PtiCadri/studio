@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Stack } from '@mui/material';
-import NhaDesRecords from './NhadesRecords';
+import NhaDesRecords from './NhaDesRecords';
 import NavbarButton from './NavbarButton';
 import { NAVBAR_HEIGHT } from '@/constants/layout';
 import { usePathname } from 'next/navigation';
@@ -11,7 +11,7 @@ export default function Navbar() {
 
     return (
         <Box sx={navSx}>
-            <NhaDesRecords isActive={pathname === "/"} />
+            <NhaDesRecords />
 
             <Stack direction="row" sx={stackSx}>
                 <NavbarButton
@@ -31,6 +31,12 @@ export default function Navbar() {
                     href='/shop'
                     ariaLabel="Vers la page Shop"
                     isActive={pathname === "/shop"}
+                />
+                <NavbarButton
+                    label="Tarifs"
+                    href='/tarifs'
+                    ariaLabel="Vers la page Tarifs"
+                    isActive={pathname === "/tarifs"}
                 />
                 <NavbarButton
                     label="Contact"
