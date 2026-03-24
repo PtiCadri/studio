@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import SocialIcons from "./socialIcons";
+import SocialIcons from "./SocialIcons";
 
 export default function SocialLinks() {
 
