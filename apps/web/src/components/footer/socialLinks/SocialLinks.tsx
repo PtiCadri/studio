@@ -27,7 +27,7 @@ const leftPartSx = {
 
 const logoSx = {
     width: "auto",
-    height: "230px",
+    height: "180px",
 };
 
 
