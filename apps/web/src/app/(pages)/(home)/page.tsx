@@ -3,7 +3,7 @@
 import { Box } from "@mui/material";
 import { Prestations } from "@/components/home/prestations";
 import PresentationStudio from "@/components/home/PresentationStudio";
-import Carousel from "@/components/home/Carousel";
+import Carousel from "@/components/ui/Carousel";
 
 
 export default function HomePage() {

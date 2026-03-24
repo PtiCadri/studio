@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import ThemeRegistry from '@/theme/ThemeRegistry';
 
 import Navbar from '@/components/navbar/Navbar';
+import Footer from '@/components/footer/Footer';
 import Starfield from '@/components/background/Starfield';
 import { Box } from '@mui/material';
 import { NAVBAR_HEIGHT } from '@/constants/layout';
@@ -37,6 +38,7 @@ export default function RootLayout({
                         }}
                     >
                         {children}
+                        <Footer />
                     </Box>
                 </ThemeRegistry>
             </body>

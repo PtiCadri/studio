@@ -10,11 +10,31 @@ import Image from "next/image";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-const slides = [
-    "studio.png",
-    "Slide 2",
-    "Slide 3",
-    "Slide 4",
+const slidesObj = [
+    {
+        src: "studio.png",
+        alt: "photo du Studio",
+        width: 1900,
+        height: 778,
+    },
+    {
+        src: "studio2.jpg",
+        alt: "photo du Studio",
+        width: 780,
+        height: 383,
+    },
+    {
+        src: "studio3.png",
+        alt: "photo du Studio",
+        width: 1824,
+        height: 594,
+    },
+    {
+        src: "studio4.webp",
+        alt: "photo du Studio",
+        width: 1208,
+        height: 642,
+    },
 ];
 
 export default function Carousel() {
@@ -74,15 +94,15 @@ export default function Carousel() {
             <Box sx={viewportWrapperSx}>
                 <Box ref={emblaRef} sx={viewportSx}>
                     <Box sx={containerSx}>
-                        {slides.map((slide) => (
-                            <Box key={slide} sx={slideSx}>
+                        {slidesObj.map((slide) => (
+                            <Box key={slide.src} sx={slideSx}>
                                 <Box sx={slideInnerSx}>
                                     <Image
-                                        src={`/studio/${slide}`}
-                                        alt={slide}
-                                        width={1900}
-                                        height={778}
-                                        style={{ maxWidth: "100%", height: "auto" }}
+                                        src={`/studio/${slide.src}`}
+                                        alt={slide.alt}
+                                        width={slide.width}
+                                        height={slide.height}
+                                        style={{ width: "100%", height: "auto" }}
                                     />
                                 </Box>
                             </Box>
@@ -144,6 +164,7 @@ const viewportWrapperSx = {
 const viewportSx = {
     overflow: "hidden",
     width: "100%",
+    borderRadius: "4px",
 };
 
 const containerSx = {
@@ -156,12 +177,12 @@ const slideSx = {
 };
 
 const slideInnerSx = {
-    height: 300,
+    height: 500,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: "4px",
-    border: "1px solid rgba(255,255,255,0.12)",
+    backgroundColor: "rgba(255,255,255,0.3)",
+    // border: "1px solid rgba(255,255,255,0.12)",
 };
 
 const controlsRowSx = {
