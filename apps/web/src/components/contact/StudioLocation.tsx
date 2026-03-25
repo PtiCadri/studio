@@ -28,10 +28,9 @@ export default function StudioLocation() {
 }
 
 const wrapperSx = {
-    position: "absolute",
-    top: "500px",
-    width: "250px",
-    height: 450,
+    mt: 2,
+    width: "235px",
+    height: 350,
     borderRadius: "4px",
     overflow: "hidden",
 };
