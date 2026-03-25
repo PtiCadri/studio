@@ -42,6 +42,7 @@ const surfaceSx = {
     mt: "50px",
     pt: "110px",
     pb: "30px",
+    mb: "30px",
 };
 
 const logoSx = {
