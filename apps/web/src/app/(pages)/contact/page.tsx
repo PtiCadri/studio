@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import GlassySurface from "@/components/ui/GlassySurface";
 import Form from "@/components/contact/Form";
 import Infos from "@/components/contact/Infos";
+import StudioLocation from "@/components/contact/StudioLocation";
 
 export const metadata: Metadata = {
     title: "Contact",
@@ -20,6 +21,7 @@ export default function Contact() {
                     sx={logoSx}
                 />
                 <Infos />
+                <StudioLocation />
                 <Typography
                     variant="h4"
                     gutterBottom

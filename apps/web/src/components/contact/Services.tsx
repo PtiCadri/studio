@@ -14,6 +14,7 @@ import {
 } from "@/lib/contact/contact.types";
 
 import { Prestations } from "@/constants/prestations/prestations";
+import { pre } from "motion/react-client";
 
 
 interface ServicesProps {
@@ -40,6 +41,7 @@ export default function Services({
                         <FormControlLabel
                             control={
                                 <Checkbox
+                                    key={prestation.id}
                                     checked={form.services.includes(prestation.id)}
                                     onChange={() => {handleServiceToggle(prestation.id);}}
                                     sx={{ display: "none" }}
