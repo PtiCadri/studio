@@ -48,7 +48,7 @@ const surfaceSx = {
 const logoSx = {
     position: "absolute",
     top: "55px",
-    left: "55px",
+    left: "65px",
     width: "auto",
     height: "160px",
     userSelect: "none",
