@@ -1,5 +1,5 @@
 import { Stack, IconButton } from "@mui/material";
-import CustomIcon from "@/components/CustomIcon";
+import CustomIcon from "@/components/ui/CustomIcon";
 import { customIcons } from "@/constants/iconPaths";
 
 export default function SocialIcons() {

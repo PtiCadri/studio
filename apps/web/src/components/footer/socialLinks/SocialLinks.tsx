@@ -4,7 +4,7 @@ import SocialIcons from "./SocialIcons";
 export default function SocialLinks() {
 
     return (
-        <Box sx={leftPartSx}>
+        <Box sx={containerSx}>
             <Box
                 component="img"
                 src="/logo2.svg"
@@ -16,7 +16,7 @@ export default function SocialLinks() {
     );
 }
 
-const leftPartSx = {
+const containerSx = {
     height: "100%",
     display: "flex",
     flexDirection: "column",
