@@ -7,6 +7,7 @@ export default function SocialIcons() {
         <Stack direction="row" spacing={0} marginTop={3}>
             {Object.entries(customIcons).map(([key, value]) => (
                 <IconButton
+                    key={key}
                     component="a"
                     href={value.link}
                     target="_blank"
