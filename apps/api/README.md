@@ -147,3 +147,12 @@ make enter-db
 - Database access must go through the storage layer
 - Keep files reasonably small and readable
 - Favor clarity over abstraction
+
+________________________________________________________________________________________
+outils: interface admin
+
+upcomming Events
+    -clear oldEvents
+    -display events
+    -check dates
+    

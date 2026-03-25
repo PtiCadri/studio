@@ -5,7 +5,7 @@ CREATE TABLE events (
     name TEXT NOT NULL,
     description TEXT,
     location TEXT NOT NULL,
-    start_date TIMESTAMP WITH TIME ZONE,
+    start_date TIMESTAMP WITH TIME ZONE NOT NULL,
     end_date TIMESTAMP WITH TIME ZONE,
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );

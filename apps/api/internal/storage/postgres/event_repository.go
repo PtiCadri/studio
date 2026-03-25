@@ -127,3 +127,13 @@ func (r *EventRepository) DeleteEvent(ctx context.Context, id uuid.UUID) error {
 	fmt.Printf("Deleting event with ID: %s\n", id)
 	return r.db.QueryRowContext(ctx, query, id).Err()
 }
+
+// DeleteFinishedEvents deletes all events that have already finished (admin side).
+func (r *EventRepository) DeleteFinishedEvents(ctx context.Context) error {
+	query := `
+	DELETE FROM events
+	WHERE end_date < CURRENT_DATE
+	`
+	_, err := r.db.ExecContext(ctx, query)
+	return err
+}

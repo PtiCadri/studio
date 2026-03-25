@@ -30,6 +30,8 @@ func (h *ArtistHandler) CreateArtist(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Printf("Artist received: %+v/n", artist)
+
 	if err := h.repo.CreateArtist(r.Context(), &artist); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -37,17 +39,6 @@ func (h *ArtistHandler) CreateArtist(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(artist)
-}
-
-// GetAllArtists handles the retrieval of all artists (public side).
-func (h *ArtistHandler) GetAllArtists(w http.ResponseWriter, r *http.Request) {
-	artists, err := h.repo.GetAllArtists(r.Context())
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	json.NewEncoder(w).Encode(artists)
 }
 
 // UpdateArtist handles the update of an existing artist (admin side).
@@ -92,3 +83,19 @@ func (h *ArtistHandler) DeleteArtist(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusNoContent)
 }
+
+// GetAllArtists handles the retrieval of all artists (public side).
+func (h *ArtistHandler) GetAllArtists(w http.ResponseWriter, r *http.Request) {
+	artists, err := h.repo.GetAllArtists(r.Context())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(artists)
+}
+
+// // GetArtistByID handles the retrieval of an artist by ID (public side).
+// func (h *ArtistHandler) GetArtistByID(w http.ResponseWriter, r *http.Request) {
+
+// }

@@ -42,7 +42,7 @@ func (r *ArtistRepository) GetAllArtists(ctx context.Context) ([]domain.Artist, 
 	query := `
 	SELECT id, name, image_url, extract_url, media_url, created_at
 	FROM artists
-	ORDER BY created_at DESC
+	ORDER BY created_at ASC
 	`
 	rows, err := r.db.QueryContext(ctx, query)
 	if err != nil {

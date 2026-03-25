@@ -91,3 +91,12 @@ func (h *EventHandler) DeleteEvent(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusNoContent)
 }
+
+// DeleteFinishedEvents handles the deletion of all finished events (admin side).
+func (h *EventHandler) DeleteFinishedEvents(w http.ResponseWriter, r *http.Request) {
+	if err := h.eventRepo.DeleteFinishedEvents(r.Context()); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
