@@ -1,53 +1,81 @@
 "use client";
 
-import { Stack, Typography, FormControl } from "@mui/material";
-import UserDataField from "./UserDataField";
+import {
+    Alert,
+    Box,
+    Button,
+    FormControl,
+    FormControlLabel,
+    FormLabel,
+    Stack,
+    TextField,
+    FormGroup,
+    Checkbox,
+} from "@mui/material";
+import { useContactForm } from "@/hooks/contact/useContactForm";
+import UserAbout from "./UserAbout";
+import Services from "./Services";
+import Message from "./Message";
+import SendButton from "./SendButton";
 
-export default function Form() {
+export default function ContactForm() {
+    const {
+        form,
+        isSubmitting,
+        successMessage,
+        errorMessage,
+        handleChange,
+        handleServiceToggle,
+        handleSubmit,
+    } = useContactForm();
+
     return (
-        <FormControl>
-            <Stack
-                direction="column"
-                alignItems="flex-start"
-                sx={formSx}
-            >
-                <Typography variant="h5" gutterBottom>
-                    À propos de vous :
-                </Typography>
-                <UserDataField
-                    label="Nom"
-                    type="text"
-                    required
-                    name="name"
+        <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={formSx}
+        >
+            <Stack spacing={2.5}>
+                {successMessage && (
+                    <Alert severity="success">
+                        {successMessage}
+                    </Alert>
+                )}
+
+                {errorMessage && (
+                    <Alert severity="error">
+                        {errorMessage}
+                    </Alert>
+                )}
+
+                <UserAbout
+                    form={form}
+                    handleChange={handleChange}
+                />
+                
+                <Services
+                    form={form}
+                    handleServiceToggle={handleServiceToggle}
                 />
 
-                <UserDataField
-                    label="Email"
-                    type="email"
-                    required
-                    name="email"
+                <Message
+                    form={form}
+                    handleChange={handleChange}
                 />
 
-                <UserDataField
-                    label="Telephone"
-                    type="tel"
-                    name="tel"
-                />
-
-                <Typography variant="h5" gutterBottom>
-                    Quel(s) service(s) vous intéresse ?
-                </Typography>
-
-                <Stack
-                >
-
-                </Stack>
+                <SendButton isSubmitting={isSubmitting} />
             </Stack>
-        </FormControl>
+        </Box>
     );
 }
 
 const formSx = {
-    width: "650px",
-    ml: "425px",
+    width: "100%",
+    maxWidth: "850px",
+    ml: "auto",
+    px: 3,
+    py: "5px",
+    mb: 4,
+    borderLeft: "1px solid",
+    borderColor: "divider",
 };

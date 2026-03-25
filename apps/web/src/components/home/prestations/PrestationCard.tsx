@@ -1,6 +1,6 @@
 import GlassySurface from "@/components/ui/GlassySurface";
 import { Box, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface PrestationCardProps {
     title: string;

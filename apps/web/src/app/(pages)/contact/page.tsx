@@ -1,7 +1,8 @@
 import { Metadata } from "next";
-import { Box,Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import GlassySurface from "@/components/ui/GlassySurface";
 import Form from "@/components/contact/Form";
+import Infos from "@/components/contact/Infos";
 
 export const metadata: Metadata = {
     title: "Contact",
@@ -18,10 +19,11 @@ export default function Contact() {
                     alt="Logo du studio"
                     sx={logoSx}
                 />
+                <Infos />
                 <Typography
-                    variant="h3"
+                    variant="h4"
                     gutterBottom
-                    sx={{  textAlign: "center", fontSize: "2.5rem", mb: "70px" }}
+                    sx={{  textAlign: "center", mb: "70px" }}
                 >
                     Contactez le Studio
                 </Typography>
@@ -43,9 +45,9 @@ const surfaceSx = {
 
 const logoSx = {
     position: "absolute",
-    top: "20px",
-    left: "20px",
+    top: "55px",
+    left: "55px",
     width: "auto",
-    height: "120px",
+    height: "160px",
     userSelect: "none",
 };
