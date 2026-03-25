@@ -37,7 +37,9 @@ export default function RootLayout({
                             overflowY: "scroll",
                         }}
                     >
-                        {children}
+                        <Box sx={containerSx}>
+                            {children}
+                        </Box>
                         <Footer />
                     </Box>
                 </ThemeRegistry>
@@ -45,3 +47,12 @@ export default function RootLayout({
         </html>
     );
 }
+
+const containerSx = {
+  height: "auto",
+  minHeight: "100%",
+  width: "100%",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};

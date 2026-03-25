@@ -9,25 +9,19 @@ import Carousel from "@/components/ui/Carousel";
 export default function HomePage() {
 
   return (
-    <Box sx={containerSx}>
+    <>
       <Box
         component="img"
         src="/logo2.svg"
         alt="Logo"
-        sx={{ width: "auto", height: "400px", mb: "50px" }}
+        sx={{ width: "auto", height: "400px", mb: "50px", userSelect: "none" }}
       />
 
       <Prestations />
       <Carousel />
       <PresentationStudio />
-    </Box>
+    </>
   );
 }
 
-const containerSx = {
-  height: "auto",
-  width: "100%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-};
+

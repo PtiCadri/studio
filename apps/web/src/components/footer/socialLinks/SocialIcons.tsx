@@ -27,4 +27,8 @@ const iconSx = {
     height: "25px",
     width: "25px",
     color: "text.secondary",
+
+    "&:hover": {
+        color: "primary.main",
+    },
 };
