@@ -11,25 +11,23 @@ export const metadata: Metadata = {
 
 export default function Contact() {
     return (
-        <>
-            <GlassySurface sx={surfaceSx}>
-                <Box
-                    component="img"
-                    src="/logo2.svg"
-                    alt="Logo du studio"
-                    sx={logoSx}
-                />
-                <Infos />
-                <Typography
-                    variant="h4"
-                    gutterBottom
-                    sx={{  textAlign: "center", mb: "70px", ml: "260px" }}
-                >
-                    Contactez le Studio
-                </Typography>
-                <Form />
-            </GlassySurface>
-        </>
+        <GlassySurface sx={surfaceSx}>
+            <Box
+                component="img"
+                src="/logo2.svg"
+                alt="Logo du studio"
+                sx={logoSx}
+            />
+            <Infos />
+            <Typography
+                variant="h4"
+                gutterBottom
+                sx={{  textAlign: "center", mb: "70px", ml: "260px" }}
+            >
+                Contactez le Studio
+            </Typography>
+            <Form />
+        </GlassySurface>
     );
 }
 
@@ -48,7 +46,7 @@ const surfaceSx = {
 const logoSx = {
     position: "absolute",
     top: "55px",
-    left: "65px",
+    left: "55px",
     width: "auto",
     height: "160px",
     userSelect: "none",
