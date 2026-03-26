@@ -21,7 +21,7 @@ export default function Formules() {
                 sx={{ mt: "50px", color: "text.secondary" }}
                 gutterBottom
             >
-                Pour tout autre prestation ou demande particulière, 
+                Pour toute autre prestation ou demande particulière, 
                 faites-le savoir dans votre 
                 <Box
                     component={Link}

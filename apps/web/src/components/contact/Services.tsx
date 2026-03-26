@@ -73,6 +73,7 @@ const prestationsSx = {
     justifyContent: "center",
     alignItems: "center",
     my: 2,
+    userSelect: "none",
 };
 
 const optionBoxSx = (isSelected: boolean) => ({

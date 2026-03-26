@@ -39,7 +39,7 @@ const stars1Sx = {
   height: "1px",
   background: "transparent",
   borderRadius: "50%",
-  animation: "animStar 50s linear infinite",
+  animation: "animStar 120s linear infinite",
   boxShadow: STARS_1,
   "&::after": {
     content: '""',
@@ -63,7 +63,7 @@ const stars2Sx = {
   height: "2px",
   background: "transparent",
   borderRadius: "50%",
-  animation: "animStar 100s linear infinite",
+  animation: "animStar 160s linear infinite",
   boxShadow: STARS_2,
   "&::after": {
     content: '""',
@@ -87,7 +87,7 @@ const stars3Sx = {
   height: "3px",
   background: "transparent",
   borderRadius: "50%",
-  animation: "animStar 150s linear infinite",
+  animation: "animStar 200s linear infinite",
   boxShadow: STARS_3,
   "&::after": {
     content: '""',
