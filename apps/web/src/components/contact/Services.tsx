@@ -31,7 +31,7 @@ export default function Services({
         <>
             <FormControl required>
                 <Typography variant="h5" sx={{ pl: "5px", mt: 3, mb: 2 }}>
-                    Quel(s) service(s) vous intéresse ?
+                    Quels services vous intéressent ?
                 </Typography>
                 <FormLabel>
                     Services
@@ -39,9 +39,9 @@ export default function Services({
                     <FormGroup sx={prestationsSx}>
                     {Prestations.map((prestation) => (
                         <FormControlLabel
+                            key={prestation.id}
                             control={
                                 <Checkbox
-                                    key={prestation.id}
                                     checked={form.services.includes(prestation.id)}
                                     onChange={() => {handleServiceToggle(prestation.id);}}
                                     sx={{ display: "none" }}

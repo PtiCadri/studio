@@ -23,7 +23,7 @@ export default function Contact() {
                 <Typography
                     variant="h4"
                     gutterBottom
-                    sx={{  textAlign: "center", mb: "70px" }}
+                    sx={{  textAlign: "center", mb: "70px", ml: "260px" }}
                 >
                     Contactez le Studio
                 </Typography>
