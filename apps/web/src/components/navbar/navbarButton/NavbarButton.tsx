@@ -1,68 +1,30 @@
 import { Box, Button } from "@mui/material";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { type NavbarLink } from "@/components/navbar/navbar.types";
+import { type NavbarLink } from "@/components/navbar/navbarButton/navbarButton.types";
 
-export default function NavbarButton({
-  key,
-  label,
-  href,
-  ariaLabel,
-  isActive = false,
-}: NavbarLink) {
+import {
+  btnSx,
+  labelSx,
+} from "@/components/navbar/navbarButton/navbarButton.styles";
+
+export default function NavbarButton({ link }: { link: NavbarLink }) {
+  const pathname = usePathname();
+
   return (
     <Button
-      key={key}
       component={Link}
-      href={href}
-      aria-label={ariaLabel}
+      href={link.href}
+      aria-label={link.ariaLabel}
       variant="text"
       disableRipple
       disableElevation
-      sx={btnSx(isActive)}
+      sx={btnSx(pathname === link.href)}
     >
-      <Box component="span" sx={labelSx(isActive)}>
-        {label}
+      <Box component="span" sx={labelSx(pathname === link.href)}>
+        {link.label}
       </Box>
     </Button>
   );
 }
-
-const btnSx = (isActive: boolean) => ({
-  zIndex: 1,
-  fontSize: "18px",
-  fontWeight: 400,
-  color: isActive ? "text.primary" : "text.secondary",
-
-  position: "relative",
-  px: 0,
-  py: 0,
-  backgroundColor: "transparent",
-
-  "&:hover": {
-    backgroundColor: "transparent",
-    color: "text.primary",
-  },
-});
-
-const labelSx = (isActive: boolean) => ({
-  position: "relative",
-  display: "inline-block",
-
-  "&::after": {
-    content: '""',
-    position: "absolute",
-    left: 0,
-    right: 0,
-    bottom: -2,
-    height: "1px",
-    backgroundColor: "text.secondary",
-    transform: isActive ? "scaleX(1)" : "scaleX(0)",
-    transformOrigin: "center",
-    transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
-  },
-
-  ".MuiButton-root:hover &::after, .MuiButton-root:focus-visible &::after": {
-    transform: "scaleX(1)",
-  },
-});
