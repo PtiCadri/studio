@@ -3,12 +3,19 @@
 import { Box, ButtonBase } from "@mui/material";
 import Link from "next/link";
 
-import { nhaDesIcons, recordsIcon } from "./studioName.constants";
-import { nhadesWrapperSx, studioNameBtnSx } from "./studioName.styles";
+import {
+  nhaDesIcons,
+  recordsIcon,
+} from "@/components/navbar/studioName/studioName.constants";
+
+import {
+  nhadesWrapperSx,
+  studioNameBtnSx,
+} from "@/components/navbar/studioName/studioName.styles";
 
 import StudioNamePart from "./StudioNamePart";
 
-export default function NhaDesRecords() {
+export default function StudioName() {
   return (
     <ButtonBase
       component={Link}

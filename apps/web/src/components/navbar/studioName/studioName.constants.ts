@@ -1,5 +1,10 @@
-import { desIconSx, nhaIconSx, recordsIconSx } from "./studioName.styles";
-import { type StudioNameIcon } from "./studioName.types";
+import {
+    desIconSx,
+    nhaIconSx,
+    recordsIconSx,
+} from "@/components/navbar/studioName/studioName.styles";
+
+import { type StudioNameIcon } from "@/components/navbar/studioName/studioName.types";
 
 const nhaDesIcons: StudioNameIcon[] = [
     {

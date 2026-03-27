@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import { useState } from "react";
 
-import { studioNameWrapperSx } from "./studioName.styles";
-import { type StudioNameIcon } from "./studioName.types";
+import { studioNameWrapperSx } from "@/components/navbar/studioName/studioName.styles";
+import { type StudioNameIcon } from "@/components/navbar/studioName/studioName.types";
 
 export default function StudioNamePart({ icon }: { icon: StudioNameIcon }) {
   const [isHovered, setIsHovered] = useState(false);

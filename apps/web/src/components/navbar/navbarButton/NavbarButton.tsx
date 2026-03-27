@@ -1,6 +1,7 @@
-import { type NavbarLink } from "@/components/navbar/navbar.types";
 import { Box, Button } from "@mui/material";
 import Link from "next/link";
+
+import { type NavbarLink } from "@/components/navbar/navbar.types";
 
 export default function NavbarButton({
   key,

@@ -1,18 +1,18 @@
 "use client";
 
 import { navbarLinks } from "@/components/navbar/navbar.constants";
+import NavbarButton from "@/components/navbar/navbarButton/NavbarButton";
+import StudioName from "@/components/navbar/studioName/StudioName";
 import { NAVBAR_HEIGHT } from "@/constants/layout";
 import { Box, Stack } from "@mui/material";
 import { usePathname } from "next/navigation";
-import NavbarButton from "./NavbarButton";
-import NhaDesRecords from "./studioName/StudioName";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   return (
     <Box sx={navSx}>
-      <NhaDesRecords />
+      <StudioName />
 
       <Stack direction="row" sx={stackSx}>
         {navbarLinks.map((link) => (

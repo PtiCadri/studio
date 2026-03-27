@@ -1,4 +1,4 @@
-import { type NavbarLink } from "./navbar.types";
+import { type NavbarLink } from "@/components/navbar/navbar.types";
 
 const navbarLinks: NavbarLink[] = [
     {
