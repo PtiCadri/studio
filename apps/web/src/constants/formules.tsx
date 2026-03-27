@@ -10,13 +10,13 @@ export type Formule = {
 
 export const formules: Formule[] = [
     {
-        titre: "Formule 1 Titre",
+        titre: "FORMULE 1 TITRE",
         color: "divider",
         description: <>Enregistrement SANS LIMTE DE TEMPS<br/>Mixage<br/>Mastering</>,
         tarif: {prix: "100 €"},
     },
     {
-        titre: "Formule Projet",
+        titre: "FORMULE PROJET",
         color: "text.secondary",
         description: "À partir de 4 titres ( EP / Mixtape )",
         tarif: {
@@ -25,7 +25,7 @@ export const formules: Formule[] = [
         },
     },
     {
-        titre: "Formule Album",
+        titre: "FORMULE ALBUM",
         color: "text.primary",
         description: "À partir de 8 titres",
         tarif: {
