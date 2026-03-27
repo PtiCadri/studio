@@ -13,7 +13,7 @@ import {
   studioNameBtnSx,
 } from "@/components/navbar/studioName/studioName.styles";
 
-import StudioNamePart from "./StudioNamePart";
+import StudioNamePart from "@/components/navbar/studioName/StudioNamePart";
 
 export default function StudioName() {
   return (
