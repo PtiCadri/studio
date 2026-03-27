@@ -19,7 +19,7 @@ const nhaDesIcons: StudioNameIcon[] = [
 
 const recordsIcon: StudioNameIcon = {
     key: "records",
-    transformOrigin: "left",
+    transformOrigin: "center",
     icon: "records.svg",
     sx: recordsIconSx,
 };
