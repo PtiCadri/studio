@@ -1,31 +1,37 @@
-import { Box, Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import GlassySurface from "@/components/ui/GlassySurface";
-import { type Formule as formule } from "@/constants/formules";
+import { type Prestation as prestation } from "@/constants/tarifs";
 
-export default function Formule({
-    formule
-}: { formule: formule }) {
+export default function Prestation({
+    prestation
+}: { prestation: prestation }) {
     return (
         <GlassySurface sx={surfaceSx}>
             <Box>
-                <Box sx={iconSx(formule.color)}/>
+                <Box
+                    component="img"
+                    src={prestation.iconPath}
+                    alt="Logo du studio"
+                    sx={{ height: "35px", width: "35px" }}
+                />
 
-                <Typography sx={formuleSx} gutterBottom>
-                    {formule.titre}
+                <Typography sx={prestationSx} gutterBottom>
+                    {prestation.titre}
                 </Typography>
             </Box>
 
             <Box sx={tarifSx}>
                 <Typography variant="body1" sx={prixSx}>
-                    {formule.tarif.prix}
+                    {prestation.tarif.prix}
                 </Typography>
-                 {formule.tarif.unit && <Typography variant="body1" sx={unitSx}>
-                    {formule.tarif.unit}
-                </Typography>}          
+
+                {prestation.tarif.unit && <Typography variant="body1" sx={unitSx}>
+                    {prestation.tarif.unit}
+                </Typography>}
             </Box>
 
             <Typography variant="body1" sx={descSx}>
-                {formule.description}
+                {prestation.description}
             </Typography>
         </GlassySurface>
     );
@@ -38,18 +44,11 @@ const surfaceSx = {
     mt: "50px",
     display: "flex",
     flexDirection: "column",
-    mx: 3,
+    mx: 5,
     px: 3,
 };
 
-const iconSx = (color: string) => ({
-    width: "25px",
-    height: "25px",
-    backgroundColor: color,
-    borderRadius: "50%",
-});
-
-const formuleSx = {
+const prestationSx = {
     fontSize: ".9rem",
     lineHeight: 1.2,
     fontWeight: 400,
@@ -86,4 +85,3 @@ const unitSx = {
     ml: "8px",
     pb: "8px",
 };
-

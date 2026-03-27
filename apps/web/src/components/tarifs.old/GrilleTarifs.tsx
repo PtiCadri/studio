@@ -8,7 +8,7 @@ import {
     Paper,
 } from "@mui/material";
 
-import { rows } from "@/constants/tarifs";
+import { prestations } from "@/constants/tarifs";
 
 export default function GrilleTarifs() {
     return (
@@ -29,14 +29,14 @@ export default function GrilleTarifs() {
                 </TableHead>
 
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.prestation}>
+                    {prestations.map((row) => (
+                        <TableRow key={row.key}>
                             <TableCell sx={prestationCellSx}>
-                                {row.prestation}
+                                {row.titre}
                             </TableCell>
 
                             <TableCell sx={bodyCellSx}>
-                                {row.tarif}
+                                {row.tarif.prix}
                             </TableCell>
 
                             <TableCell sx={descriptionCellSx}>

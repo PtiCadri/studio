@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import { Box, Typography } from "@mui/material";
-import GlassySurface from "@/components/ui/GlassySurface";
-import GrilleTarifs from "@/components/tarifs/GrilleTarifs";
+import { Box } from "@mui/material";
+import Prestations from "@/components/tarifs/Prestations";
 import Formules from "@/components/tarifs/Formules";
 
 export const metadata: Metadata = {
@@ -11,46 +10,31 @@ export const metadata: Metadata = {
 
 export default function Tarifs() {
     return (
-        <GlassySurface sx={surfaceSx}>
+        <Box sx={containerSx}>
             <Box
                 component="img"
                 src="/logo2.svg"
-                alt="Logo du studio"
-                sx={logoSx}
+                alt="Logo"
+                sx={{ width: "auto", height: "300px", userSelect: "none" }}
             />
-            <Typography
-                variant="h4"
-                gutterBottom
-                sx={{  textAlign: "center", mb: "70px" }}
-            >
-                Les Tarifs
-            </Typography>
-            <GrilleTarifs />
+            <Prestations />
+            <Box sx={dividerSx}/>
             <Formules />
-        </GlassySurface>
+        </Box>
     );
 }
 
-const surfaceSx = {
+const containerSx = {
     width: "100%",
     maxWidth: "1150px",
-    height: "auto",
-    mt: "50px",
-    pt: "110px",
-    pb: "30px",
-    mb: "30px",
-
+    mb: "50px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
 };
 
-const logoSx = {
-    position: "absolute",
-    top: "55px",
-    left: "55px",
-    width: "auto",
-    height: "160px",
-    userSelect: "none",
+const dividerSx = {
+    width: "1080px",
+    height: "1px",
+    backgroundColor: "divider",
 };

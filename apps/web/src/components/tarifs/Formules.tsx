@@ -1,49 +1,22 @@
-"use client";
-
-import Link from "next/link";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
+import Formule from "./Formule";
 import { formules } from "@/constants/formules";
-import Formule from "@/components/tarifs/Formule";
 
 export default function Formules() {
     return (
-        <Box sx={containerSx}>
-            <Typography variant="h4" sx={{ mb: "30px" }} gutterBottom>
-                Formules disponibles :
-            </Typography>
-
+        <Box sx={boxSx}>
             {formules.map((formule) => (
-                <Formule key={formule.titre} formule={formule} />
+                <Formule
+                    key={formule.titre}
+                    formule={formule}
+                />
             ))}
-
-            <Typography
-                variant="h6"
-                sx={{ mt: "50px", color: "text.secondary" }}
-                gutterBottom
-            >
-                Pour toute autre prestation ou demande particulière, 
-                faites-le savoir dans votre 
-                <Box
-                    component={Link}
-                    href="/contact"
-                    sx={{
-                            textDecoration: "underline",
-                            color: "text.secondary",
-                            pl: "5px",
-                            "&:hover": {
-                                color: "text.primary",
-                            },
-                        }}
-                >
-                    message de contact
-                </Box>
-            </Typography>
         </Box>
     );
 }
 
-const containerSx = {
-    width: "950px",
-    mb: "50px",
+const boxSx = {
+    display : "flex",
+    flexDirection: "row",
+    width: "100%",
 };
-

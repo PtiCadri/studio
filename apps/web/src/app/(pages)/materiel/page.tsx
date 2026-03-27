@@ -1,6 +1,12 @@
-import { Box, Typography } from "@mui/material";
+import { Metadata } from "next";
+import { Box } from "@mui/material";
 import { hardwareObj } from "@/constants/matos/hardwareObj";
 import HardwareCard from "@/components/matos/HardwareCard";
+
+export const metadata: Metadata = {
+    title: "Matériel",
+    description: "Découvrez le matériel du studio Nhadès Records.",
+};
 
 export default function Materiel() {
     const hardwareItems = Object.values(hardwareObj);
