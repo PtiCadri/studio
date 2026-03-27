@@ -5,7 +5,7 @@ import { NAVBAR_HEIGHT } from "@/constants/layout";
 import { Box, Stack } from "@mui/material";
 import { usePathname } from "next/navigation";
 import NavbarButton from "./NavbarButton";
-import NhaDesRecords from "./NhaDesRecords";
+import NhaDesRecords from "./studioName/StudioName";
 
 export default function Navbar() {
   const pathname = usePathname();

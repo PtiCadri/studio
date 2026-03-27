@@ -1,12 +1,6 @@
-export type NavbarLink = {
-    key?: string;
-    label: string;
-    href: string;
-    ariaLabel: string;
-    isActive?: boolean;
-};
+import { type NavbarLink } from "./navbar.types";
 
-export const navbarLinks: NavbarLink[] = [
+const navbarLinks: NavbarLink[] = [
     {
         key: "materiel",
         label: "Matériel",
@@ -38,3 +32,5 @@ export const navbarLinks: NavbarLink[] = [
         ariaLabel: "Vers la page Contact",
     },
 ];
+
+export { navbarLinks };

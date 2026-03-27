@@ -1,4 +1,4 @@
-import { type NavbarLink } from "@/components/navbar/navbar.constants";
+import { type NavbarLink } from "@/components/navbar/navbar.types";
 import { Box, Button } from "@mui/material";
 import Link from "next/link";
 
