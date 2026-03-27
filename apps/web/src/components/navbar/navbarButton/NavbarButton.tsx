@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Button } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
