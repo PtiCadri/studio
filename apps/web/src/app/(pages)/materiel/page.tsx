@@ -14,6 +14,12 @@ export default function Materiel() {
     return (
         <Box sx={containerSx}>
             <Box sx={listSx}>
+                <Box
+                    component="img"
+                    src="/logo2.svg"
+                    alt="Logo"
+                    sx={{ width: "auto", height: "300px", userSelect: "none" }}
+                />
                 {hardwareItems.map((item, index) => (
                     <HardwareCard
                         key={item.title}
@@ -33,7 +39,7 @@ const containerSx = {
     flexDirection: "column",
     alignItems: "center",
     px: 3,
-    py: 6,
+    pb: 6,
 };
 
 const listSx = {

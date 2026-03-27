@@ -15,7 +15,7 @@ export default function HomePage() {
         component="img"
         src="/logo2.svg"
         alt="Logo"
-        sx={{ width: "auto", height: "400px", mb: "50px", userSelect: "none" }}
+        sx={{ width: "auto", height: "300px", mb: "50px", userSelect: "none" }}
       />
 
       <Prestations />
