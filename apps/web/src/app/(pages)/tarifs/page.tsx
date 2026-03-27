@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { Box } from "@mui/material";
+import { Box, Typography, Link } from "@mui/material";
 import Prestations from "@/components/tarifs/Prestations";
 import Formules from "@/components/tarifs/Formules";
 
@@ -20,6 +20,28 @@ export default function Tarifs() {
             <Prestations />
             <Box sx={dividerSx}/>
             <Formules />
+            <Typography
+                variant="h6"
+                sx={{ mt: "20px", color: "text.secondary" }}
+                gutterBottom
+            >
+                Pour toute autre prestation ou demande particulière, 
+                faites-le savoir dans votre 
+                <Box
+                    component={Link}
+                    href="/contact"
+                    sx={{
+                            textDecoration: "underline",
+                            color: "text.secondary",
+                            pl: "5px",
+                            "&:hover": {
+                                color: "text.primary",
+                            },
+                        }}
+                >
+                    message de contact
+                </Box>
+            </Typography>
         </Box>
     );
 }
