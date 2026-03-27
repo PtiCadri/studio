@@ -1,10 +1,6 @@
 import { Resend } from "resend";
 
-type ServiceId =
-    | "recording"
-    | "mixing"
-    | "mastering"
-    | "live";
+type ServiceId = "recording" | "mixing" | "mastering" | "live";
 
 type ContactPayload = {
     name: string;
@@ -28,13 +24,11 @@ function isValidEmail(email: string): boolean {
 }
 
 function buildEmailHtml(payload: ContactPayload): string {
-    const phoneLine = payload.phone?.trim()
-        ? payload.phone
-        : "Not provided";
+    const phoneLine = payload.phone?.trim() ? payload.phone : "Not provided";
 
     const servicesLine = payload.services
         .map((service) => serviceLabels[service])
-        .join(", ");    
+        .join(", ");
 
     return `
         <div style="font-family: Arial, sans-serif;">
@@ -59,9 +53,7 @@ export async function POST(request: Request) {
         const name = body.name?.trim() || "";
         const email = body.email?.trim() || "";
         const phone = body.phone?.trim() || "";
-        const services = Array.isArray(body.services)
-            ? body.services
-            : [];
+        const services = Array.isArray(body.services) ? body.services : [];
         const message = body.message?.trim() || "";
 
         console.log("Env check:", {
@@ -144,9 +136,10 @@ export async function POST(request: Request) {
 
         return Response.json(
             {
-                error: error instanceof Error
-                    ? error.message
-                    : "Unknown server error",
+                error:
+                    error instanceof Error
+                        ? error.message
+                        : "Unknown server error",
             },
             { status: 500 }
         );

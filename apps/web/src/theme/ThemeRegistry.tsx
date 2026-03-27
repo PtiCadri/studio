@@ -1,10 +1,10 @@
 "use client";
 
-import * as React from "react";
 import { CacheProvider } from "@emotion/react";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useServerInsertedHTML } from "next/navigation";
+import * as React from "react";
 import createEmotionCache from "./createEmotionCache";
-import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "./theme";
 
 export default function ThemeRegistry({

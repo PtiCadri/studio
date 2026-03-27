@@ -1,42 +1,42 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
-  typography: {
-    fontFamily: `var(--font-ibm-plex), sans-serif`,
-    h1: { fontWeight: 700, letterSpacing: "-0.02em" },
-    h2: { fontWeight: 600, letterSpacing: "-0.01em" },
-    h3: { fontWeight: 600 },
-    button: { textTransform: "none", fontWeight: 600 },
-  },
-
-  palette: {
-    mode: "dark",
-
-    background: {
-      default: "#000000",
-      paper: "#0D0D0D",
+    typography: {
+        fontFamily: `var(--font-ibm-plex), sans-serif`,
+        h1: { fontWeight: 700, letterSpacing: "-0.02em" },
+        h2: { fontWeight: 600, letterSpacing: "-0.01em" },
+        h3: { fontWeight: 600 },
+        button: { textTransform: "none", fontWeight: 600 },
     },
 
-    primary: {
-      main: "#FFFFFF",
-    },
+    palette: {
+        mode: "dark",
 
-    secondary: {
-      main: "#BDBDBD",
-    },
+        background: {
+            default: "#000000",
+            paper: "#0D0D0D",
+        },
 
-    action: {
-      hover: "rgba(255,255,255,0.06)",
-      selected: "rgba(255,255,255,0.10)",
-      disabled: "rgba(255,255,255,0.30)",
-      disabledBackground: "rgba(255,255,255,0.12)",
-    },
+        primary: {
+            main: "#FFFFFF",
+        },
 
-    text: {
-      primary: "#FFFFFF",
-      secondary: "#BDBDBD",
-    },
+        secondary: {
+            main: "#BDBDBD",
+        },
 
-    divider: "#666666",
-  },
+        action: {
+            hover: "rgba(255,255,255,0.06)",
+            selected: "rgba(255,255,255,0.10)",
+            disabled: "rgba(255,255,255,0.30)",
+            disabledBackground: "rgba(255,255,255,0.12)",
+        },
+
+        text: {
+            primary: "#FFFFFF",
+            secondary: "#BDBDBD",
+        },
+
+        divider: "#666666",
+    },
 });

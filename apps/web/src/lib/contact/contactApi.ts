@@ -1,8 +1,6 @@
 import { ContactFormData } from "./contact.types";
 
-export async function sendContactForm(
-    form: ContactFormData
-) {
+export async function sendContactForm(form: ContactFormData) {
     const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -14,9 +12,7 @@ export async function sendContactForm(
     const data = await response.json();
 
     if (!response.ok) {
-        throw new Error(
-            data.error || "Echec de l'envoi."
-        );
+        throw new Error(data.error || "Echec de l'envoi.");
     }
 
     return data;

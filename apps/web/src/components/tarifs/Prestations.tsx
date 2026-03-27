@@ -1,22 +1,19 @@
-import { Box } from "@mui/material";
 import Prestation from "@/components/tarifs/Prestation";
 import { prestations } from "@/constants/tarifs";
+import { Box } from "@mui/material";
 
 export default function Prestations() {
-    return (
-        <Box sx={boxSx}>
-            {prestations.map((prestation) => (
-                <Prestation
-                    key={prestation.key}
-                    prestation={prestation}
-                />
-            ))}
-        </Box>
-    );
+  return (
+    <Box sx={boxSx}>
+      {prestations.map((prestation) => (
+        <Prestation key={prestation.key} prestation={prestation} />
+      ))}
+    </Box>
+  );
 }
 
 const boxSx = {
-    display : "flex",
-    flexDirection: "row",
-    width: "100%",
+  display: "flex",
+  flexDirection: "row",
+  width: "100%",
 };

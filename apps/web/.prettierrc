@@ -1,0 +1,20 @@
+{
+  "printWidth": 80,
+  "semi": true,
+  "trailingComma": "es5",
+
+  "overrides": [
+    {
+      "files": "*.ts",
+      "options": {
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": "*.tsx",
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}

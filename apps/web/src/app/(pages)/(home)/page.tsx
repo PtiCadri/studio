@@ -1,14 +1,12 @@
 "use client";
 
-import Link from "next/link";
-import { Box, Button } from "@mui/material";
-import { Prestations } from "@/components/home/prestations";
 import PresentationStudio from "@/components/home/PresentationStudio";
+import { Prestations } from "@/components/home/prestations";
 import Carousel from "@/components/ui/Carousel";
-
+import { Box, Button } from "@mui/material";
+import Link from "next/link";
 
 export default function HomePage() {
-
   return (
     <>
       <Box

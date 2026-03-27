@@ -1,11 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import {
-    ContactFormData,
-    ServiceId,
-} from "@/lib/contact/contact.types";
+import { ContactFormData, ServiceId } from "@/lib/contact/contact.types";
 import { sendContactForm } from "@/lib/contact/contactApi";
+import { useState } from "react";
 
 const initialForm: ContactFormData = {
     name: "",
@@ -16,22 +13,15 @@ const initialForm: ContactFormData = {
 };
 
 export function useContactForm() {
-    const [form, setForm] =
-        useState<ContactFormData>(initialForm);
+    const [form, setForm] = useState<ContactFormData>(initialForm);
 
-    const [isSubmitting, setIsSubmitting] =
-        useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [successMessage, setSuccessMessage] =
-        useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
-    const [errorMessage, setErrorMessage] =
-        useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleChange = (
-        field: keyof ContactFormData,
-        value: string
-    ) => {
+    const handleChange = (field: keyof ContactFormData, value: string) => {
         setForm((current) => ({
             ...current,
             [field]: value,
@@ -39,29 +29,26 @@ export function useContactForm() {
     };
 
     const handleServiceToggle = (service: ServiceId) => {
-    setForm((current) => {
-        const isSelected =
-            current.services.includes(service);
+        setForm((current) => {
+            const isSelected = current.services.includes(service);
 
-        if (isSelected) {
+            if (isSelected) {
+                return {
+                    ...current,
+                    services: current.services.filter(
+                        (item) => item !== service
+                    ),
+                };
+            }
+
             return {
                 ...current,
-                services: current.services.filter(
-                    (item) => item !== service
-                ),
+                services: [...current.services, service],
             };
-        }
+        });
+    };
 
-        return {
-            ...current,
-            services: [...current.services, service],
-        };
-    });
-};
-
-    const handleSubmit = async (
-        event: React.SubmitEvent<HTMLFormElement>
-    ) => {
+    const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         setSuccessMessage("");
@@ -74,7 +61,7 @@ export function useContactForm() {
 
         setIsSubmitting(true);
 
-        try {  
+        try {
             await sendContactForm(form);
 
             setSuccessMessage("Votre message a bien été envoyé.");

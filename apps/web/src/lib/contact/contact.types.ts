@@ -1,8 +1,4 @@
-export type ServiceId =
-    | "recording"
-    | "mixing"
-    | "mastering"
-    | "live";
+export type ServiceId = "recording" | "mixing" | "mastering" | "live";
 
 export type ContactFormData = {
     name: string;
