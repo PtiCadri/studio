@@ -1,4 +1,6 @@
-const btnSx = (isActive: boolean) => ({
+import { SxProps, Theme } from "@mui/material";
+
+const btnSx = (isActive: boolean): SxProps<Theme> => ({
     zIndex: 1,
     fontSize: "18px",
     fontWeight: 400,
@@ -15,7 +17,7 @@ const btnSx = (isActive: boolean) => ({
     },
 });
 
-const labelSx = (isActive: boolean) => ({
+const labelSx = (isActive: boolean): SxProps<Theme> => ({
     position: "relative",
     display: "inline-block",
 

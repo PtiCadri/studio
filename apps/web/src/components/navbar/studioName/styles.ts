@@ -44,7 +44,7 @@ const nhadesWrapperSx: SxProps<Theme> = {
     justifyContent: "center",
 };
 
-const studioNameWrapperSx = (transformOrigin: string) => ({
+const studioNameWrapperSx = (transformOrigin: string): SxProps<Theme> => ({
     position: "relative",
 
     "&::after": {
