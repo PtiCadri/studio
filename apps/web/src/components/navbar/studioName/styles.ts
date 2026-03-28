@@ -1,20 +1,21 @@
 import { NAVBAR_HEIGHT } from "@/constants/layout";
+import { type SxProps, type Theme } from "@mui/material";
 
-const nhaIconSx = {
+const nhaIconSx: SxProps<Theme> = {
     display: "block",
     height: "10px",
     width: "auto",
     mb: "5px",
 };
 
-const desIconSx = {
+const desIconSx: SxProps<Theme> = {
     display: "block",
     height: "13px",
     width: "auto",
     mb: "5px",
 };
 
-const recordsIconSx = {
+const recordsIconSx: SxProps<Theme> = {
     display: "block",
     width: "auto",
     height: "10px",
@@ -23,7 +24,7 @@ const recordsIconSx = {
     mt: "10px",
 };
 
-const studioNameBtnSx = {
+const studioNameBtnSx: SxProps<Theme> = {
     height: NAVBAR_HEIGHT,
     maxWidth: "175px",
     width: "175px",
@@ -35,7 +36,7 @@ const studioNameBtnSx = {
     justifyContent: "center",
 };
 
-const nhadesWrapperSx = {
+const nhadesWrapperSx: SxProps<Theme> = {
     width: "175px",
     display: "flex",
     flexDirection: "row",
@@ -43,7 +44,7 @@ const nhadesWrapperSx = {
     justifyContent: "center",
 };
 
-const studioNameWrapperSx = (isHovered: boolean, transformOrigin: string) => ({
+const studioNameWrapperSx = (transformOrigin: string) => ({
     position: "relative",
 
     "&::after": {
@@ -54,7 +55,7 @@ const studioNameWrapperSx = (isHovered: boolean, transformOrigin: string) => ({
         bottom: -2,
         height: "1px",
         backgroundColor: "text.secondary",
-        transform: isHovered ? "scaleX(1)" : "scaleX(0)",
+        transform: "scaleX(0)",
         transformOrigin: transformOrigin,
         transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
     },

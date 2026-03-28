@@ -5,4 +5,8 @@ type NavbarLink = {
     ariaLabel: string;
 };
 
-export type { NavbarLink };
+type NavbarButtonProps = {
+    link: NavbarLink;
+};
+
+export type { NavbarButtonProps, NavbarLink };

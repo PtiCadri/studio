@@ -1,9 +1,11 @@
 "use client";
 
-import { NavbarButton, StudioName } from "@/components/navbar";
-import { navbarLinks } from "@/components/navbar/navbar.constants";
-import { navSx, stackSx } from "@/components/navbar/navbar.styles";
 import { Box, Stack } from "@mui/material";
+
+import { navbarLinks } from "./constants";
+import { NavbarButton } from "./navbarButton";
+import { StudioName } from "./studioName";
+import { logoSx, navSx, stackSx } from "./styles";
 
 export default function Navbar() {
   return (
@@ -16,12 +18,7 @@ export default function Navbar() {
         ))}
       </Stack>
 
-      <Box
-        component="img"
-        src="/logo.svg"
-        alt="Logo du studio"
-        sx={{ height: "70px", mr: "15px", zIndex: 1 }}
-      />
+      <Box component="img" src="/logo.svg" alt="Logo du studio" sx={logoSx} />
     </Box>
   );
 }

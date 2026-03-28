@@ -4,15 +4,13 @@ import { Box, Button } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { type NavbarLink } from "@/components/navbar/navbarButton/navbarButton.types";
+import { type NavbarButtonProps } from "./types";
 
-import {
-  btnSx,
-  labelSx,
-} from "@/components/navbar/navbarButton/navbarButton.styles";
+import { btnSx, labelSx } from "./styles";
 
-export default function NavbarButton({ link }: { link: NavbarLink }) {
+export default function NavbarButton({ link }: NavbarButtonProps) {
   const pathname = usePathname();
+  const isActive = pathname.startsWith(link.href);
 
   return (
     <Button
@@ -22,9 +20,9 @@ export default function NavbarButton({ link }: { link: NavbarLink }) {
       variant="text"
       disableRipple
       disableElevation
-      sx={btnSx(pathname === link.href)}
+      sx={btnSx(isActive)}
     >
-      <Box component="span" sx={labelSx(pathname === link.href)}>
+      <Box component="span" sx={labelSx(isActive)}>
         {link.label}
       </Box>
     </Button>

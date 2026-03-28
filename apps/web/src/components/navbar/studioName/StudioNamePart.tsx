@@ -1,27 +1,22 @@
 import { Box } from "@mui/material";
-import { useState } from "react";
 
-import { studioNameWrapperSx } from "@/components/navbar/studioName/studioName.styles";
-import { type StudioNameIcon } from "@/components/navbar/studioName/studioName.types";
+import { studioNameWrapperSx } from "@/components/navbar/studioName/styles";
+import { type StudioNamePartProps } from "@/components/navbar/studioName/types";
 
-export default function StudioNamePart({ icon }: { icon: StudioNameIcon }) {
-  const [isHovered, setIsHovered] = useState(false);
-
+export default function StudioNamePart({ icon }: StudioNamePartProps) {
   return (
     <Box
-      key={icon.key}
       sx={{
-        ...studioNameWrapperSx(isHovered, icon.transformOrigin),
-        ...icon.margin,
+        ...studioNameWrapperSx,
+        ...(icon.margin && icon.margin),
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <Box
         component="img"
         src={`/nhades/${icon.icon}`}
-        alt="Nom du studio"
-        sx={icon.sx}
+        alt=""
+        aria-hidden="true"
+        sx={icon.style}
       />
     </Box>
   );

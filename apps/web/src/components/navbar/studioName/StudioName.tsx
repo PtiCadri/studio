@@ -1,17 +1,15 @@
-"use client";
-
 import { Box, ButtonBase } from "@mui/material";
 import Link from "next/link";
 
 import {
   nhaDesIcons,
   recordsIcon,
-} from "@/components/navbar/studioName/studioName.constants";
+} from "@/components/navbar/studioName/constants";
 
 import {
   nhadesWrapperSx,
   studioNameBtnSx,
-} from "@/components/navbar/studioName/studioName.styles";
+} from "@/components/navbar/studioName/styles";
 
 import StudioNamePart from "@/components/navbar/studioName/StudioNamePart";
 

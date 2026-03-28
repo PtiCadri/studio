@@ -1,12 +1,14 @@
+import { type SxProps, type Theme } from "@mui/material/styles";
+
 import { NAVBAR_HEIGHT } from "@/constants/layout";
 
-const navSx = {
+const navSx: SxProps<Theme> = {
     position: "fixed",
     top: 0,
     left: 0,
     right: 0,
     height: NAVBAR_HEIGHT,
-    zIndex: (theme: any) => theme.zIndex.appBar,
+    zIndex: (theme) => theme.zIndex.appBar,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
@@ -48,7 +50,7 @@ const navSx = {
     },
 };
 
-const stackSx = {
+const stackSx: SxProps<Theme> = {
     height: "80px",
     width: "100%",
     maxWidth: "700px",
@@ -58,4 +60,10 @@ const stackSx = {
     alignItems: "center",
 };
 
-export { navSx, stackSx };
+const logoSx: SxProps<Theme> = {
+    height: "70px",
+    mr: "15px",
+    zIndex: 1,
+};
+
+export { logoSx, navSx, stackSx };
