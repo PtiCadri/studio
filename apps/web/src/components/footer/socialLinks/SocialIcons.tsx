@@ -1,6 +1,7 @@
 import CustomIcon from "@/components/ui/CustomIcon";
 import { customIcons } from "@/constants/iconPaths";
 import { IconButton, Stack } from "@mui/material";
+import { iconSx } from "./styles";
 
 export default function SocialIcons() {
   return (
@@ -20,13 +21,3 @@ export default function SocialIcons() {
     </Stack>
   );
 }
-
-const iconSx = {
-  height: "25px",
-  width: "25px",
-  color: "text.secondary",
-
-  "&:hover": {
-    color: "primary.main",
-  },
-};

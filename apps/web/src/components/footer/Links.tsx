@@ -1,5 +1,6 @@
 import { Button, Stack, Typography } from "@mui/material";
 import Link from "next/link";
+import { buttonSx, stackSx } from "./styles";
 
 export default function Links() {
   return (
@@ -57,30 +58,3 @@ export default function Links() {
     </Stack>
   );
 }
-
-const buttonSx = {
-  fontSize: "0.875rem",
-  fontWeight: 400,
-  lineHeight: 1.43,
-  margin: "0px",
-  padding: "0px",
-  marginBottom: "0.35em",
-  boxSizing: "inherit",
-  color: "text.secondary",
-  display: "flex",
-  justifyContent: "left",
-
-  "&:hover": {
-    backgroundColor: "transparent",
-    color: "text.primary",
-  },
-};
-
-const stackSx = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  alignContent: "flex-start",
-  justifyContent: "flex-start",
-  gap: "0px",
-};

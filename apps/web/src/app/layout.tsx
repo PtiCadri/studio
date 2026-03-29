@@ -33,14 +33,15 @@ export default function RootLayout({
           <Box
             sx={{
               pt: `${NAVBAR_HEIGHT + 20}px`,
-              height: "100vh",
               overflowX: "hidden",
-              overflowY: "scroll",
+              px: { xs: "20px", lg: "0px" },
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <Box sx={containerSx}>{children}</Box>
-            <Footer />
           </Box>
+          <Footer />
         </ThemeRegistry>
       </body>
     </html>
@@ -48,10 +49,11 @@ export default function RootLayout({
 }
 
 const containerSx = {
-  height: "auto",
-  minHeight: "100%",
   width: "100%",
+  maxWidth: "1150px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  justifyContent: "center",
+  overflowX: "hidden",
 };

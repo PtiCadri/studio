@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import SocialIcons from "./SocialIcons";
+import { containerSx, logoSx } from "./styles";
 
 export default function SocialLinks() {
   return (
@@ -9,17 +10,3 @@ export default function SocialLinks() {
     </Box>
   );
 }
-
-const containerSx = {
-  height: "100%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  userSelect: "none",
-};
-
-const logoSx = {
-  width: "auto",
-  height: "180px",
-};
