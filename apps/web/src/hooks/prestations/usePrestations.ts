@@ -5,8 +5,8 @@ import { useState } from "react";
 import {
     Prestations,
     PrestationsDescriptions,
-    type PrestationId,
-} from "@/constants/prestations/prestations";
+} from "@/components/home/prestations/constants";
+import type { PrestationId } from "@/components/home/prestations/types";
 
 export default function usePrestations() {
     const [activeCard, setActiveCard] = useState<PrestationId | null>(null);

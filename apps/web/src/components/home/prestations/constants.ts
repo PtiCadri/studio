@@ -1,10 +1,12 @@
-export type PrestationId =
-    | "recording"
-    | "mixing"
-    | "mastering"
-    | "live";
+import {
+    liveDesc,
+    masteringDesc,
+    mixingDesc,
+    recordingDesc,
+} from "@/components/home/prestations/PrestationsDescriptions";
+import type { Prestation } from "@/components/home/prestations/types";
 
-export const Prestations = [
+const Prestations: Prestation[] = [
     {
         id: "recording",
         title: "Enregistrement",
@@ -25,16 +27,9 @@ export const Prestations = [
         title: "Accompagnement Live",
         icon: "live",
     },
-] as const;
+];
 
-import {
-    recordingDesc,
-    mixingDesc,
-    masteringDesc,
-    liveDesc
-} from "@/constants/prestations/PrestationsDescriptions";
-
-export const PrestationsDescriptions = [
+const PrestationsDescriptions = [
     {
         id: "recording",
         desc: recordingDesc,
@@ -52,3 +47,5 @@ export const PrestationsDescriptions = [
         desc: liveDesc,
     },
 ];
+
+export { Prestations, PrestationsDescriptions };

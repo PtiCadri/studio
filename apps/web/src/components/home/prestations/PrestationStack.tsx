@@ -1,12 +1,13 @@
-import { PrestationCard } from "@/components/home/prestations";
-import { PrestationId, Prestations } from "@/constants/prestations/prestations";
 import { Stack } from "@mui/material";
+import { Prestations } from "./constants";
+import PrestationCard from "./PrestationCard";
 import { stackSx } from "./styles";
+import { PrestationId } from "./types";
 
-interface PrestationStackProps {
+type PrestationStackProps = {
   activeCard: PrestationId | null;
   onCardClick: (id: PrestationId) => void;
-}
+};
 
 export default function PrestationStack({
   activeCard,
