@@ -1,17 +1,11 @@
 import { Box, ButtonBase } from "@mui/material";
 import Link from "next/link";
 
-import {
-  nhaDesIcons,
-  recordsIcon,
-} from "@/components/navbar/studioName/constants";
+import { nhaDesIcons, recordsIcon } from "./constants";
 
-import {
-  nhadesWrapperSx,
-  studioNameBtnSx,
-} from "@/components/navbar/studioName/styles";
+import { nhadesWrapperSx, studioNameBtnSx } from "./styles";
 
-import StudioNamePart from "@/components/navbar/studioName/StudioNamePart";
+import StudioNamePart from "./StudioNamePart";
 
 export default function StudioName() {
   return (

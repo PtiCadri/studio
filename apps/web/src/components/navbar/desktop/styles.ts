@@ -10,10 +10,4 @@ const stackSx: SxProps<Theme> = {
     alignItems: "center",
 };
 
-const logoSx: SxProps<Theme> = {
-    height: "70px",
-    mr: "15px",
-    zIndex: 1,
-};
-
-export { logoSx, stackSx };
+export { stackSx };

@@ -50,4 +50,10 @@ const navSx: SxProps<Theme> = {
     },
 };
 
-export { navSx };
+const logoSx: SxProps<Theme> = {
+    height: "70px",
+    mr: { sm: "10px", lg: "25px" },
+    zIndex: 1,
+};
+
+export { logoSx, navSx };

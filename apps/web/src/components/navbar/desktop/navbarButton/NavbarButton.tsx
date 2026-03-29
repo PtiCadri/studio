@@ -4,7 +4,7 @@ import { Box, Button } from "@mui/material";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { type NavbarButtonProps } from "./types";
+import { type NavbarButtonProps } from "../../types";
 
 import { btnSx, underlinedWrapperSx } from "./styles";
 

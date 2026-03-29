@@ -1,4 +1,4 @@
-import { type NavbarLink } from "@/components/navbar/desktop/navbarButton/types";
+import { type NavbarLink } from "@/components/navbar/types";
 
 const navbarLinks: NavbarLink[] = [
     {
@@ -33,4 +33,11 @@ const navbarLinks: NavbarLink[] = [
     },
 ];
 
-export { navbarLinks };
+const homePage: NavbarLink = {
+    key: "accueil",
+    label: "Accueil",
+    href: "/",
+    ariaLabel: "Vers la page d'accueil",
+};
+
+export { homePage, navbarLinks };

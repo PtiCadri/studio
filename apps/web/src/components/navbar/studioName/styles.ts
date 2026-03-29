@@ -28,8 +28,8 @@ const recordsIconSx: SxProps<Theme> = {
 const studioNameBtnSx: SxProps<Theme> = {
     height: NAVBAR_HEIGHT,
     maxWidth: "175px",
-    width: "175px",
-    pl: "20px",
+    width: "125px",
+    ml: { xs: "10px", lg: "20px" },
 
     display: "flex",
     flexDirection: "column",
