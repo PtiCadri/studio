@@ -3,9 +3,9 @@
 import { Box, Stack } from "@mui/material";
 
 import { navbarLinks } from "../constants";
-import { StudioName } from "../studioName";
+import StudioName from "../studioName/StudioName";
 import { logoSx, navSx } from "../styles";
-import { NavbarButton } from "./navbarButton";
+import NavbarButton from "./NavbarButton";
 import { stackSx } from "./styles";
 
 export default function NavbarDesktop() {

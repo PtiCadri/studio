@@ -10,4 +10,21 @@ const stackSx: SxProps<Theme> = {
     alignItems: "center",
 };
 
-export { stackSx };
+const btnSx = (isActive: boolean): SxProps<Theme> => ({
+    zIndex: 1,
+    fontSize: "18px",
+    fontWeight: 400,
+    color: isActive ? "text.primary" : "text.secondary",
+
+    position: "relative",
+    px: 0,
+    py: 0,
+    backgroundColor: "transparent",
+
+    "&:hover": {
+        backgroundColor: "transparent",
+        color: "text.primary",
+    },
+});
+
+export { btnSx, stackSx };

@@ -1,4 +1,5 @@
-import { type SxProps, type Theme } from "@mui/material/styles";
+import type { SxProps, Theme } from "@mui/material/styles";
+import { SystemStyleObject } from "@mui/system";
 
 import { NAVBAR_HEIGHT } from "@/constants/layout";
 
@@ -56,4 +57,29 @@ const logoSx: SxProps<Theme> = {
     zIndex: 1,
 };
 
-export { logoSx, navSx };
+const underlinedWrapperSx = (
+    transformOrigin: string,
+    isActive?: boolean
+): SystemStyleObject<Theme> => ({
+    position: "relative",
+
+    "&::after": {
+        content: '""',
+        position: "absolute",
+        left: 0,
+        right: 0,
+        bottom: -2,
+        height: "1px",
+        backgroundColor: "text.secondary",
+        transform: isActive ? "scaleX(1)" : "scaleX(0)",
+        transformOrigin: transformOrigin,
+        transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
+    },
+
+    ".MuiButtonBase-root:hover &::after, .MuiButtonBase-root:focus-visible &::after":
+        {
+            transform: "scaleX(1)",
+        },
+});
+
+export { logoSx, navSx, underlinedWrapperSx };

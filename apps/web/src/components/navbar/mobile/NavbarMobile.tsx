@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import useMobileNavbar from "@/hooks/navbar/useMobileNavbar";
-import { StudioName } from "../studioName";
+import StudioName from "../studioName/StudioName";
 import { logoSx, navSx } from "../styles";
 import NavLink from "./NavLink";
 import NavMenu from "./NavMenu";
