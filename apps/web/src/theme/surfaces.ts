@@ -30,7 +30,7 @@ export const animatedBorderSx = (): SxProps<Theme> => ({
             "#141414 100%)",
 
         backgroundSize: "300% 100%",
-        opacity: 0.95,
+        opacity: 0.9,
         animation: "borderGlow 6s linear infinite",
 
         WebkitMask:

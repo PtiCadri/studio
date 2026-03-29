@@ -1,24 +1,13 @@
 "use client";
 
-import { Box, Stack } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-import { navbarLinks } from "./constants";
-import { NavbarButton } from "./navbarButton";
-import { StudioName } from "./studioName";
-import { logoSx, navSx, stackSx } from "./styles";
+import { NavbarDesktop } from "./";
 
 export default function Navbar() {
-  return (
-    <Box sx={navSx}>
-      <StudioName />
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
-      <Stack direction="row" sx={stackSx}>
-        {navbarLinks.map((link) => (
-          <NavbarButton key={link.key} link={link} />
-        ))}
-      </Stack>
-
-      <Box component="img" src="/logo.svg" alt="Logo du studio" sx={logoSx} />
-    </Box>
-  );
+  return isDesktop ? <NavbarDesktop /> : <></>;
 }

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
 import { type StudioNamePartProps } from "@/components/navbar/studioName/types";
-import { underlinedWrapperSx } from "../navbarButton/styles";
+import { underlinedWrapperSx } from "../desktop/navbarButton/styles";
 
 export default function StudioNamePart({ icon }: StudioNamePartProps) {
   return (

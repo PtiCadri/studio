@@ -1,1 +1,2 @@
-export { default as Navbar } from "@/components/navbar/Navbar";
+export { default as NavbarDesktop } from "./desktop/NavbarDesktop";
+export { default as Navbar } from "./Navbar";
