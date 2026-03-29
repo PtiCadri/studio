@@ -5,6 +5,7 @@ const mainBtnSx: SxProps<Theme> = {
     textTransform: "none",
     minWidth: "auto",
     px: 1,
+    mr: 3,
 };
 
 const pageNameSx: SxProps<Theme> = {

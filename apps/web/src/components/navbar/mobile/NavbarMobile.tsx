@@ -23,14 +23,14 @@ export default function NavbarMobile() {
 
       <NavLink page={currentLink.label} onClick={handleOpen} isOpen={isOpen} />
 
-      <Box component="img" src="/logo.svg" alt="Logo du studio" sx={logoSx} />
-
       <NavMenu
         anchorEl={anchorEl}
         isOpen={isOpen}
         pathname={pathname}
         handleClose={handleClose}
       />
+
+      <Box component="img" src="/logo.svg" alt="Logo du studio" sx={logoSx} />
     </Box>
   );
 }

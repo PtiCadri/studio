@@ -12,7 +12,7 @@ type NavMenuProps = {
   handleClose: () => void;
 };
 
-export default function NavLinks({
+export default function NavMenu({
   anchorEl,
   isOpen,
   pathname,
