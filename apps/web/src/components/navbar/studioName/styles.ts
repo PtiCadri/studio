@@ -1,5 +1,6 @@
 import { NAVBAR_HEIGHT } from "@/constants/layout";
 import { type SxProps, type Theme } from "@mui/material";
+import { type SystemStyleObject } from "@mui/system";
 
 const nhaIconSx: SxProps<Theme> = {
     display: "block",
@@ -44,7 +45,9 @@ const nhadesWrapperSx: SxProps<Theme> = {
     justifyContent: "center",
 };
 
-const studioNameWrapperSx = (transformOrigin: string): SxProps<Theme> => ({
+const studioNameWrapperSx = (
+    transformOrigin: string
+): SystemStyleObject<Theme> => ({
     position: "relative",
 
     "&::after": {

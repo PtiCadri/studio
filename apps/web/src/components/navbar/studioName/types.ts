@@ -1,11 +1,14 @@
-import { type SxProps, type Theme } from "@mui/material";
+import { type Theme } from "@mui/material";
+import { type SystemStyleObject } from "@mui/system";
+
+type TransformOrigin = "left" | "center" | "right";
 
 type StudioNameIcon = {
     key: string;
-    transformOrigin: string;
+    transformOrigin: TransformOrigin;
     icon: string;
-    style: SxProps<Theme>;
-    margin?: SxProps<Theme>;
+    style: SystemStyleObject<Theme>;
+    margin?: SystemStyleObject<Theme>;
 };
 
 type StudioNamePartProps = {

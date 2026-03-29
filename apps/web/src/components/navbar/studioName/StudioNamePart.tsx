@@ -7,7 +7,7 @@ export default function StudioNamePart({ icon }: StudioNamePartProps) {
   return (
     <Box
       sx={{
-        ...studioNameWrapperSx,
+        ...studioNameWrapperSx(icon.transformOrigin),
         ...(icon.margin && icon.margin),
       }}
     >
