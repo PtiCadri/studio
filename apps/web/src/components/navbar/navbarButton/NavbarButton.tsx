@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import { type NavbarButtonProps } from "./types";
 
-import { btnSx, labelSx } from "./styles";
+import { btnSx, underlinedWrapperSx } from "./styles";
 
 export default function NavbarButton({ link }: NavbarButtonProps) {
   const pathname = usePathname();
@@ -22,7 +22,7 @@ export default function NavbarButton({ link }: NavbarButtonProps) {
       disableElevation
       sx={btnSx(isActive)}
     >
-      <Box component="span" sx={labelSx(isActive)}>
+      <Box component="span" sx={underlinedWrapperSx("center", isActive)}>
         {link.label}
       </Box>
     </Button>

@@ -1,13 +1,13 @@
 import { Box } from "@mui/material";
 
-import { studioNameWrapperSx } from "@/components/navbar/studioName/styles";
 import { type StudioNamePartProps } from "@/components/navbar/studioName/types";
+import { underlinedWrapperSx } from "../navbarButton/styles";
 
 export default function StudioNamePart({ icon }: StudioNamePartProps) {
   return (
     <Box
       sx={{
-        ...studioNameWrapperSx(icon.transformOrigin),
+        ...underlinedWrapperSx(icon.transformOrigin),
         ...(icon.margin && icon.margin),
       }}
     >

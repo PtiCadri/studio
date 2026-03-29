@@ -1,4 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
+import { SystemStyleObject } from "@mui/system";
 
 const btnSx = (isActive: boolean): SxProps<Theme> => ({
     zIndex: 1,
@@ -17,9 +18,11 @@ const btnSx = (isActive: boolean): SxProps<Theme> => ({
     },
 });
 
-const labelSx = (isActive: boolean): SxProps<Theme> => ({
+const underlinedWrapperSx = (
+    transformOrigin: string,
+    isActive?: boolean
+): SystemStyleObject<Theme> => ({
     position: "relative",
-    display: "inline-block",
 
     "&::after": {
         content: '""',
@@ -30,13 +33,14 @@ const labelSx = (isActive: boolean): SxProps<Theme> => ({
         height: "1px",
         backgroundColor: "text.secondary",
         transform: isActive ? "scaleX(1)" : "scaleX(0)",
-        transformOrigin: "center",
+        transformOrigin: transformOrigin,
         transition: "transform 250ms cubic-bezier(.4,0,.2,1)",
     },
 
-    ".MuiButton-root:hover &::after, .MuiButton-root:focus-visible &::after": {
-        transform: "scaleX(1)",
-    },
+    ".MuiButtonBase-root:hover &::after, .MuiButtonBase-root:focus-visible &::after":
+        {
+            transform: "scaleX(1)",
+        },
 });
 
-export { btnSx, labelSx };
+export { btnSx, underlinedWrapperSx };
