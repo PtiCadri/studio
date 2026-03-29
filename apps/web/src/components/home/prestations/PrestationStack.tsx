@@ -1,6 +1,7 @@
 import { PrestationCard } from "@/components/home/prestations";
 import { PrestationId, Prestations } from "@/constants/prestations/prestations";
 import { Stack } from "@mui/material";
+import { stackSx } from "./styles";
 
 interface PrestationStackProps {
   activeCard: PrestationId | null;
@@ -25,9 +26,3 @@ export default function PrestationStack({
     </Stack>
   );
 }
-
-const stackSx = {
-  display: "flex",
-  flexDirection: "row",
-  gap: "50px",
-};

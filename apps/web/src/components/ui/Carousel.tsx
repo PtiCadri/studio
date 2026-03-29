@@ -6,6 +6,7 @@ import { Box, IconButton } from "@mui/material";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
+import GlassySurface from "./GlassySurface";
 
 const slidesObj = [
   {
@@ -87,7 +88,7 @@ export default function Carousel() {
   );
 
   return (
-    <Box sx={rootSx}>
+    <GlassySurface sx={rootSx}>
       <Box sx={viewportWrapperSx}>
         <Box ref={emblaRef} sx={viewportSx}>
           <Box sx={containerSx}>
@@ -141,14 +142,14 @@ export default function Carousel() {
           <ChevronRightIcon />
         </IconButton>
       </Box>
-    </Box>
+    </GlassySurface>
   );
 }
 
 const rootSx = {
   width: "100%",
-  maxWidth: "1150px",
   mb: "40px",
+  userSelect: "none",
 };
 
 const viewportWrapperSx = {
@@ -158,11 +159,13 @@ const viewportWrapperSx = {
 const viewportSx = {
   overflow: "hidden",
   width: "100%",
+  backgroundColor: "rgba(255,255,255,0.05)",
   borderRadius: "4px",
 };
 
 const containerSx = {
   display: "flex",
+  alignItems: "center",
 };
 
 const slideSx = {
@@ -171,12 +174,10 @@ const slideSx = {
 };
 
 const slideInnerSx = {
-  height: 500,
+  height: "max-content",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "rgba(255,255,255,0.3)",
-  // border: "1px solid rgba(255,255,255,0.12)",
 };
 
 const controlsRowSx = {

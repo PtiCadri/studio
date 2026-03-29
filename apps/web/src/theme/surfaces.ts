@@ -1,4 +1,5 @@
 import type { SxProps, Theme } from "@mui/material/styles";
+import { SystemStyleObject } from "@mui/system";
 
 export const glassSx = (): SxProps<Theme> => ({
     backgroundColor: "rgba(255,255,255,0.05)",
@@ -8,7 +9,7 @@ export const glassSx = (): SxProps<Theme> => ({
         "0 8px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
 });
 
-export const animatedBorderSx = (): SxProps<Theme> => ({
+export const animatedBorderSx = (): SystemStyleObject<Theme> => ({
     position: "relative",
 
     "&::before": {
@@ -20,7 +21,7 @@ export const animatedBorderSx = (): SxProps<Theme> => ({
         pointerEvents: "none",
 
         background:
-            "linear-gradient(90deg," +
+            "linear-gradient(-45deg," +
             "#141414 0%," +
             "#2a2a2a 12%," +
             "#6f6f6f 32%," +
