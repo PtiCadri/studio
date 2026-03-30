@@ -1,11 +1,11 @@
-type StudioPicInfos = {
+type StudioSlide = {
     src: string;
     alt: string;
     width: number;
     height: number;
 };
 
-const studioPicsInfos: StudioPicInfos[] = [
+const studioSlides: StudioSlide[] = [
     {
         src: "studio.png",
         alt: "photo du Studio",
@@ -32,5 +32,5 @@ const studioPicsInfos: StudioPicInfos[] = [
     },
 ];
 
-export { studioPicsInfos };
-export type { StudioPicInfos };
+export { studioSlides };
+export type { StudioSlide };

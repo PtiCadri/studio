@@ -1,24 +1,32 @@
-import { Box } from "@mui/material";
+import { Box, ButtonBase } from "@mui/material";
 import Image from "next/image";
-import type { StudioPicInfos } from "./constants";
-import { slideInnerSx, slideSx } from "./styles";
+
+import type { StudioSlide } from "./constants";
+import { slideButtonSx, slideInnerSx, slideSx } from "./styles";
 
 type SlideProps = {
-  slide: StudioPicInfos;
+  slide: StudioSlide;
+  onClick: () => void;
 };
 
-export default function Slide({ slide }: SlideProps) {
+export default function Slide({ slide, onClick }: SlideProps) {
   return (
     <Box sx={slideSx}>
-      <Box sx={slideInnerSx}>
-        <Image
-          src={`/studio/${slide.src}`}
-          alt={slide.alt}
-          width={slide.width}
-          height={slide.height}
-          style={{ width: "100%", height: "auto" }}
-        />
-      </Box>
+      <ButtonBase
+        onClick={onClick}
+        aria-label={`Open image in fullscreen: ${slide.alt}`}
+        sx={slideButtonSx}
+      >
+        <Box sx={slideInnerSx}>
+          <Image
+            src={`/studio/${slide.src}`}
+            alt={slide.alt}
+            width={slide.width}
+            height={slide.height}
+            style={{ width: "100%", height: "auto" }}
+          />
+        </Box>
+      </ButtonBase>
     </Box>
   );
 }
