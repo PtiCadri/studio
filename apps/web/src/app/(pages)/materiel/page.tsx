@@ -1,4 +1,5 @@
-import CardStack from "@/components/matos/CardStack";
+import CardStack from "@/components/materiel/CardStack";
+import { containerSx, listSx } from "@/components/materiel/styles";
 import { MainLogo } from "@/components/ui";
 import { Box } from "@mui/material";
 import { Metadata } from "next";
@@ -18,21 +19,3 @@ export default function Materiel() {
     </Box>
   );
 }
-
-const containerSx = {
-  width: "100%",
-  minHeight: "100vh",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  px: 3,
-  pb: 6,
-};
-
-const listSx = {
-  width: "100%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: 4,
-};
