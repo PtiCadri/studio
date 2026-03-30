@@ -53,51 +53,6 @@ const slideButtonSx: SxProps<Theme> = {
     cursor: "zoom-in",
 };
 
-const lightboxPaperSx: SxProps<Theme> = {
-    width: "100%",
-    height: "100dvh",
-    maxWidth: "100%",
-    maxHeight: "100dvh",
-    margin: 0,
-    borderRadius: 0,
-    backgroundColor: "rgba(0, 0, 0, 0.96)",
-    backgroundImage: "none",
-    boxShadow: "none",
-};
-
-const lightboxContentSx: SxProps<Theme> = {
-    position: "relative",
-    width: "100%",
-    height: "100dvh",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    p: 0,
-};
-
-const lightboxImageWrapperSx: SxProps<Theme> = {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-};
-
-const lightboxCloseButtonSx: SxProps<Theme> = {
-    position: "absolute",
-    top: 12,
-    right: 12,
-    zIndex: 2,
-};
-
-const lightboxImageSx = {
-    width: "100%",
-    height: "100%",
-    maxWidth: "100%",
-    maxHeight: "100dvh",
-    objectFit: "contain" as const,
-};
-
 const dotSx = (isActive: boolean): SxProps<Theme> => ({
     width: 10,
     height: 10,
@@ -115,11 +70,6 @@ export {
     controlsRowSx,
     dotsSx,
     dotSx,
-    lightboxCloseButtonSx,
-    lightboxContentSx,
-    lightboxImageSx,
-    lightboxImageWrapperSx,
-    lightboxPaperSx,
     rootSx,
     slideButtonSx,
     slideInnerSx,

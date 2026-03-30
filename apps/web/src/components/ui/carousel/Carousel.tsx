@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-
+import ImageLightbox from "@/components/ui/imageLightbox/ImageLightbox";
 import useCarousel from "@/hooks/carousel/useCarousel";
+import useImageLightbox from "@/hooks/imageLightbox/useImageLightbox";
+
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Box, IconButton } from "@mui/material";
@@ -11,7 +12,6 @@ import GlassySurface from "../GlassySurface";
 import { studioSlides, type StudioSlide } from "./constants";
 import Dot from "./Dot";
 import Slide from "./Slide";
-import SlideLightbox from "./SlideLightbox";
 import {
   containerSx,
   controlsRowSx,
@@ -33,16 +33,15 @@ export default function Carousel() {
     scrollTo,
   } = useCarousel();
 
-  const [fullscreenSlide, setFullscreenSlide] = useState<StudioSlide | null>(
-    null
-  );
+  const { image, isOpen, openImage, closeImage } = useImageLightbox();
 
-  const handleOpenLightbox = (slide: StudioSlide) => {
-    setFullscreenSlide(slide);
-  };
-
-  const handleCloseLightbox = () => {
-    setFullscreenSlide(null);
+  const handleSlideClick = (slide: StudioSlide) => {
+    openImage({
+      src: `/studio/${slide.src}`,
+      alt: slide.alt,
+      width: slide.width,
+      height: slide.height,
+    });
   };
 
   return (
@@ -55,7 +54,7 @@ export default function Carousel() {
                 <Slide
                   key={slide.src}
                   slide={slide}
-                  onClick={() => handleOpenLightbox(slide)}
+                  onClick={() => handleSlideClick(slide)}
                 />
               ))}
             </Box>
@@ -92,7 +91,7 @@ export default function Carousel() {
         </Box>
       </GlassySurface>
 
-      <SlideLightbox slide={fullscreenSlide} onClose={handleCloseLightbox} />
+      <ImageLightbox image={image} open={isOpen} onClose={closeImage} />
     </>
   );
 }

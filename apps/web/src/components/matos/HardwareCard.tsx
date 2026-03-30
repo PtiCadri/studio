@@ -1,5 +1,5 @@
 import GlassySurface from "@/components/ui/GlassySurface";
-import { Box, Typography } from "@mui/material";
+import { Box, ButtonBase, Typography } from "@mui/material";
 import Image from "next/image";
 
 type HardwareItem = {
@@ -14,20 +14,31 @@ type HardwareItem = {
 type Props = {
   item: HardwareItem;
   reverse?: boolean;
+  onImageClick: () => void;
 };
 
-export default function HardwareCard({ item, reverse = false }: Props) {
+export default function HardwareCard({
+  item,
+  reverse = false,
+  onImageClick,
+}: Props) {
   return (
     <GlassySurface sx={surfaceSx(reverse)}>
-      <Box sx={imageWrapperSx}>
-        <Image
-          src={item.imageSrc}
-          alt={item.title}
-          width={item.width}
-          height={item.height}
-          style={imageSx}
-        />
-      </Box>
+      <ButtonBase
+        onClick={onImageClick}
+        aria-label={`Open image in fullscreen: ${item.title}`}
+        sx={imageButtonSx}
+      >
+        <Box sx={imageWrapperSx}>
+          <Image
+            src={item.imageSrc}
+            alt={item.title}
+            width={item.width}
+            height={item.height}
+            style={imageSx}
+          />
+        </Box>
+      </ButtonBase>
 
       <Box sx={textAreaSx}>
         <Box sx={textBoxSx}>
@@ -43,7 +54,6 @@ export default function HardwareCard({ item, reverse = false }: Props) {
     </GlassySurface>
   );
 }
-
 const surfaceSx = (reverse: boolean) => ({
   width: "100%",
   maxWidth: "1150px",
@@ -113,4 +123,12 @@ const descSx = {
   fontSize: "1.02rem",
   lineHeight: 1.8,
   color: "text.secondary",
+};
+
+const imageButtonSx = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "zoom-in",
+  borderRadius: "8px",
 };
