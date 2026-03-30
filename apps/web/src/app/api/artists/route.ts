@@ -1,6 +1,6 @@
 export async function GET() {
   try {
-    const res = await fetch("/api/artists")
+    const res = await fetch("http://localhost:8080/artists")
 
     if (!res.ok) {
       return new Response("API backend error", { status: 500 })

@@ -54,19 +54,10 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 	   ======================= */
 
 	// POST /admin/artists
-	mux.Handle("/admin/artists", adminMw(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	mux.Handle("/admin/artists/", adminMw(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodPost:
 			artistHandler.CreateArtist(w, r)
-		default:
-			w.WriteHeader(http.StatusMethodNotAllowed)
-		}
-	})))
-
-	// PUT /admin/artists/{id}
-	// DELETE /admin/artists/{id}
-	mux.Handle("/admin/artists/", adminMw(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
 		case http.MethodPut:
 			artistHandler.UpdateArtist(w, r)
 		case http.MethodDelete:
@@ -77,19 +68,10 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 	})))
 
 	// POST /admin/events
-	mux.Handle("/admin/events", adminMw(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	mux.Handle("/admin/events/", adminMw(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodPost:
 			eventHandler.CreateEvent(w, r)
-		default:
-			w.WriteHeader(http.StatusMethodNotAllowed)
-		}
-	})))
-
-	// PUT /admin/events/{id}
-	// DELETE /admin/events/{id}
-	mux.Handle("/admin/events/", adminMw(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
 		case http.MethodPut:
 			eventHandler.UpdateEvent(w, r)
 		case http.MethodDelete:

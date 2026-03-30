@@ -16,7 +16,7 @@ export default function ArtistsPage() {
 
   const fetchArtists = async () => {
   try {
-    const res = await fetch("/api/artists")
+   const res = await fetch("admin/artists")
 
     console.log("STATUS:", res.status)
 
@@ -34,7 +34,7 @@ export default function ArtistsPage() {
 
   const createArtist = async () => {
     
-    await fetch("/api/artists", {
+    await fetch("/admin/artists", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
