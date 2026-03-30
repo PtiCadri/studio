@@ -10,7 +10,7 @@ import {
 
 import { ContactFormData, ServiceId } from "@/lib/contact/contact.types";
 
-import { Prestations } from "@/components/home/prestations/prestations";
+import { Prestations } from "@/components/home/prestations/constants";
 
 interface ServicesProps {
   form: ContactFormData;

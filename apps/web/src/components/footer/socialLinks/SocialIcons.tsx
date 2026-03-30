@@ -1,6 +1,6 @@
 import CustomIcon from "@/components/ui/CustomIcon";
-import { customIcons } from "@/constants/iconPaths";
 import { IconButton, Stack } from "@mui/material";
+import { customIcons } from "./constants";
 import { iconSx } from "./styles";
 
 export default function SocialIcons() {
