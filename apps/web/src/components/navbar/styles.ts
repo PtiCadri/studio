@@ -78,8 +78,12 @@ const underlinedWrapperSx = (
 
     ".MuiButtonBase-root:hover &::after, .MuiButtonBase-root:focus-visible &::after":
         {
-            transform: "scaleX(1)",
+            transform: { lg: "scaleX(1)" },
         },
+
+    ".MuiButtonBase-root:active &::after": {
+        transform: "scaleX(1)",
+    },
 });
 
 export { logoSx, navSx, underlinedWrapperSx };
