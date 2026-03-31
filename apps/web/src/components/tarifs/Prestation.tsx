@@ -1,18 +1,11 @@
 import GlassySurface from "@/components/ui/GlassySurface";
 import { Box, Typography } from "@mui/material";
-import {
-  descSx,
-  prestationSx,
-  prixSx,
-  surfacePrestationSx,
-  tarifSx,
-  unitSx,
-} from "./styles";
+import { descSx, prixSx, surfaceSx, tarifSx, titreSx, unitSx } from "./styles";
 import { type Prestation as prestation } from "./types";
 
 export default function Prestation({ prestation }: { prestation: prestation }) {
   return (
-    <GlassySurface sx={surfacePrestationSx}>
+    <GlassySurface sx={surfaceSx}>
       <Box>
         <Box
           component="img"
@@ -21,7 +14,7 @@ export default function Prestation({ prestation }: { prestation: prestation }) {
           sx={{ height: "35px", width: "35px" }}
         />
 
-        <Typography sx={prestationSx} gutterBottom>
+        <Typography sx={titreSx} gutterBottom>
           {prestation.titre}
         </Typography>
       </Box>

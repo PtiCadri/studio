@@ -1,14 +1,25 @@
 import { SxProps, Theme } from "@mui/material";
 
-// FORMULES
-const surfaceFormuleSx: SxProps<Theme> = {
+const gridSx: SxProps<Theme> = {
+    display: "grid",
     width: "100%",
-    height: "250px",
-    mb: "50px",
-    mt: "50px",
+    height: "auto",
+    my: "50px",
+    gap: 3,
+    justifyItems: "stretch",
+    alignItems: "center",
+    gridTemplateColumns: {
+        xs: "repeat(1, 1fr)",
+        md: "repeat(3, 1fr)",
+    },
+};
+
+const surfaceSx: SxProps<Theme> = {
+    width: "100%",
+    height: "100%",
+    maxHeight: "270px",
     display: "flex",
     flexDirection: "column",
-    mx: 3,
     px: 3,
 };
 
@@ -19,7 +30,7 @@ const iconSx: (color: string) => SxProps<Theme> = (color) => ({
     borderRadius: "50%",
 });
 
-const formuleSx: SxProps<Theme> = {
+const titreSx: SxProps<Theme> = {
     fontSize: ".9rem",
     lineHeight: 1.2,
     fontWeight: 400,
@@ -27,27 +38,6 @@ const formuleSx: SxProps<Theme> = {
     mt: "10px",
 };
 
-// PRESTATIONS
-const surfacePrestationSx = {
-    width: "100%",
-    height: "250px",
-    mb: "50px",
-    mt: "50px",
-    display: "flex",
-    flexDirection: "column",
-    mx: 5,
-    px: 3,
-};
-
-const prestationSx = {
-    fontSize: ".9rem",
-    lineHeight: 1.2,
-    fontWeight: 400,
-    color: "text.secondary",
-    mt: "10px",
-};
-
-// GENERAL
 const descSx: SxProps<Theme> = {
     textJustify: "center",
     fontSize: "1rem",
@@ -78,14 +68,4 @@ const unitSx: SxProps<Theme> = {
     pb: "8px",
 };
 
-export {
-    descSx,
-    formuleSx,
-    iconSx,
-    prestationSx,
-    prixSx,
-    surfaceFormuleSx,
-    surfacePrestationSx,
-    tarifSx,
-    unitSx,
-};
+export { descSx, gridSx, iconSx, prixSx, surfaceSx, tarifSx, titreSx, unitSx };

@@ -2,22 +2,22 @@ import GlassySurface from "@/components/ui/GlassySurface";
 import { Box, Typography } from "@mui/material";
 import {
   descSx,
-  formuleSx,
   iconSx,
   prixSx,
-  surfaceFormuleSx,
+  surfaceSx,
   tarifSx,
+  titreSx,
   unitSx,
 } from "./styles";
 import { type Formule as formule } from "./types";
 
 export default function Formule({ formule }: { formule: formule }) {
   return (
-    <GlassySurface sx={surfaceFormuleSx}>
+    <GlassySurface sx={surfaceSx}>
       <Box>
         <Box sx={iconSx(formule.color)} />
 
-        <Typography sx={formuleSx} gutterBottom>
+        <Typography sx={titreSx} gutterBottom>
           {formule.titre}
         </Typography>
       </Box>

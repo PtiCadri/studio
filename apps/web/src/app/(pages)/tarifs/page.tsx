@@ -18,7 +18,10 @@ export default function Tarifs() {
       <Formules />
       <Typography
         variant="h6"
-        sx={{ mt: "20px", color: "text.secondary" }}
+        sx={{
+          color: "text.secondary",
+          fontSize: { xs: ".8rem", md: "1rem" },
+        }}
         gutterBottom
       >
         Pour toute autre prestation ou demande particulière, faites-le savoir
