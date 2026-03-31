@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import {
   STARS_1,
   STARS_2,
@@ -5,8 +6,7 @@ import {
   STARS_AFTER_1,
   STARS_AFTER_2,
   STARS_AFTER_3,
-} from "@/constants/stars";
-import { Box } from "@mui/material";
+} from "./stars";
 
 export default function Starfield() {
   return (

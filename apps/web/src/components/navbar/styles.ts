@@ -1,7 +1,7 @@
 import type { SxProps, Theme } from "@mui/material/styles";
 import { SystemStyleObject } from "@mui/system";
 
-import { NAVBAR_HEIGHT } from "@/constants/layout";
+import { NAVBAR_HEIGHT } from "@/components/ui/constants";
 
 const navSx: SxProps<Theme> = {
     position: "fixed",

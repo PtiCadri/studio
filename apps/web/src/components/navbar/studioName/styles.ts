@@ -1,4 +1,4 @@
-import { NAVBAR_HEIGHT } from "@/constants/layout";
+import { NAVBAR_HEIGHT } from "@/components/ui/constants";
 import { type SxProps, type Theme } from "@mui/material";
 import { type SystemStyleObject } from "@mui/system";
 

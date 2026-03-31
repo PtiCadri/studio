@@ -5,7 +5,7 @@ import React from "react";
 import Starfield from "@/components/background/Starfield";
 import Footer from "@/components/footer/Footer";
 import { Navbar } from "@/components/navbar";
-import { NAVBAR_HEIGHT } from "@/constants/layout";
+import { NAVBAR_HEIGHT } from "@/components/ui/constants";
 import { ibmPlexSans } from "@/theme/fonts";
 import { Box } from "@mui/material";
 
