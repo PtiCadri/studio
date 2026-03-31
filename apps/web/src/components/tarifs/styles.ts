@@ -28,6 +28,7 @@ const iconSx: (color: string) => SxProps<Theme> = (color) => ({
     height: "25px",
     backgroundColor: color,
     borderRadius: "50%",
+    mb: "20px",
 });
 
 const titreSx: SxProps<Theme> = {

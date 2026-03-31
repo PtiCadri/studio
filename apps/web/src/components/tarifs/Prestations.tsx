@@ -1,6 +1,6 @@
 import Prestation from "@/components/tarifs/Prestation";
-import { prestations } from "@/constants/tarifs";
 import { Box } from "@mui/material";
+import { prestations } from "./constants";
 import { gridSx } from "./styles";
 
 export default function Prestations() {

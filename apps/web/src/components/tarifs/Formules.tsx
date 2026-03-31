@@ -1,5 +1,5 @@
-import { formules } from "@/constants/formules";
 import { Box } from "@mui/material";
+import { formules } from "./constants";
 import Formule from "./Formule";
 import { gridSx } from "./styles";
 
