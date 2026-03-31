@@ -3,8 +3,8 @@ import { SxProps, Theme } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
 
 const surfaceSx = (isActive: boolean): SystemStyleObject<Theme> => ({
-    height: { xs: "100px", sm: "150px" },
-    width: { xs: "150px", sm: "250px" },
+    height: { xs: "100px", md: "150px" },
+    width: "100%",
 
     display: "flex",
     flexDirection: "column",
@@ -18,28 +18,26 @@ const surfaceSx = (isActive: boolean): SystemStyleObject<Theme> => ({
 });
 
 const iconSx: SxProps<Theme> = {
-    width: { xs: "25px", sm: "40px" },
-    height: { xs: "25px", sm: "40px" },
+    width: { xs: "25px", md: "40px" },
+    height: { xs: "25px", md: "40px" },
 };
 
 const prestationCardSx: SxProps<Theme> = {
-    fontSize: { xs: "1rem", sm: "1.2rem" },
+    fontSize: { xs: "1rem", md: "1.2rem" },
     textAlign: "center",
 };
 
 const stackSx: SxProps<Theme> = {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: { xs: "30px", lg: "50px" },
-};
-
-const detailsCardSx: SxProps<Theme> = {
-    mt: "40px",
+    display: "grid",
     width: "100%",
-    maxWidth: "1150px",
+    gridTemplateColumns: {
+        xs: "repeat(2, 1fr)",
+        md: "repeat(4, 1fr)",
+    },
+    gap: 2,
+    justifyItems: "stretch",
+    alignItems: "center",
+    mb: 3,
 };
 
-export { detailsCardSx, iconSx, prestationCardSx, stackSx, surfaceSx };
+export { iconSx, prestationCardSx, stackSx, surfaceSx };

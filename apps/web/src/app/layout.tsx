@@ -33,6 +33,7 @@ export default function RootLayout({
           <Box
             sx={{
               pt: `${NAVBAR_HEIGHT + 20}px`,
+              width: "100%",
               overflowX: "hidden",
               px: { xs: "20px", lg: "0px" },
               display: "flex",

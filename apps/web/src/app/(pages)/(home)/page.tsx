@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <>
-      <MainLogo />
+      <MainLogo marginBottom={5} />
 
       <Prestations />
       <Carousel />

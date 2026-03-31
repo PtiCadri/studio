@@ -13,7 +13,7 @@ export default function Materiel() {
   return (
     <Box sx={containerSx}>
       <Box sx={listSx}>
-        <MainLogo />
+        <MainLogo marginBottom={1} />
         <CardStack />
       </Box>
     </Box>
