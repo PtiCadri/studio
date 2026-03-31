@@ -1,6 +1,6 @@
 import Formules from "@/components/tarifs/Formules";
 import Prestations from "@/components/tarifs/Prestations";
-import { MainLogo } from "@/components/ui";
+import { Divider, MainLogo } from "@/components/ui";
 import { Box, Link, Typography } from "@mui/material";
 import { Metadata } from "next";
 
@@ -14,7 +14,7 @@ export default function Tarifs() {
     <>
       <MainLogo />
       <Prestations />
-      <Box sx={dividerSx} />
+      <Divider />
       <Formules />
       <Typography
         variant="h6"
@@ -41,10 +41,4 @@ const contactLinkSx = {
   "&:hover": {
     color: "text.primary",
   },
-};
-
-const dividerSx = {
-  width: "1080px",
-  height: "1px",
-  backgroundColor: "divider",
 };
