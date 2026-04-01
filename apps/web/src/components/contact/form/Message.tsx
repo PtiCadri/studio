@@ -1,15 +1,17 @@
-import { ContactFormData } from "@/lib/contact/contact.types";
+import { GlassySurface } from "@/components/ui";
+import { ContactFormData } from "@/hooks/contact/useContactForm";
 import { TextField, Typography } from "@mui/material";
+import { surfaceSx, titleSx } from "./styles";
 
-interface MessageProps {
+type MessageProps = {
   form: ContactFormData;
   handleChange: (field: keyof ContactFormData, value: string) => void;
-}
+};
 
 export default function Message({ form, handleChange }: MessageProps) {
   return (
-    <>
-      <Typography variant="h5" sx={{ pl: "5px", mt: 3, mb: 2 }}>
+    <GlassySurface sx={surfaceSx}>
+      <Typography variant="h5" sx={titleSx}>
         Rédigez votre message :
       </Typography>
       <TextField
@@ -23,6 +25,6 @@ export default function Message({ form, handleChange }: MessageProps) {
         multiline
         minRows={6}
       />
-    </>
+    </GlassySurface>
   );
 }

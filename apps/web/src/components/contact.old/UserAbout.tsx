@@ -1,4 +1,4 @@
-import { ContactFormData } from "@/lib/contact/contact.types";
+import { ContactFormData } from "@/hooks/contact/useContactForm";
 import { TextField, Typography } from "@mui/material";
 
 interface UserAboutProps {
@@ -9,7 +9,7 @@ interface UserAboutProps {
 export default function UserAbout({ form, handleChange }: UserAboutProps) {
   return (
     <>
-      <Typography variant="h5" sx={{ pl: "5px" }}>
+      <Typography variant="h5" sx={{ pl: "5px", mb: 2 }}>
         À propos de vous :
       </Typography>
 

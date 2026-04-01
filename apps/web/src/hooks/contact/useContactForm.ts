@@ -1,8 +1,16 @@
 "use client";
 
-import { ContactFormData, ServiceId } from "@/lib/contact/contact.types";
-import { sendContactForm } from "@/lib/contact/contactApi";
 import { useState } from "react";
+
+export type ServiceId = "recording" | "mixing" | "mastering" | "live";
+
+export type ContactFormData = {
+    name: string;
+    email: string;
+    phone: string;
+    services: ServiceId[];
+    message: string;
+};
 
 const initialForm: ContactFormData = {
     name: "",
@@ -11,6 +19,24 @@ const initialForm: ContactFormData = {
     services: [],
     message: "",
 };
+
+async function sendContactForm(form: ContactFormData) {
+    const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.error || "Echec de l'envoi.");
+    }
+
+    return data;
+}
 
 export function useContactForm() {
     const [form, setForm] = useState<ContactFormData>(initialForm);

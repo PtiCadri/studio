@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { ContactFormData, ServiceId } from "@/lib/contact/contact.types";
+import { ContactFormData, ServiceId } from "@/hooks/contact/useContactForm";
 
 import { Prestations } from "@/components/home/prestations/constants";
 
