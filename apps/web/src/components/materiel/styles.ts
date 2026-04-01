@@ -39,8 +39,8 @@ const imageWrapperSx: SxProps<Theme> = {
 };
 
 const imageSx = {
-    width: "auto",
-    height: "280px",
+    width: "280px",
+    height: "auto",
     borderRadius: "8px",
     display: "block",
 };
@@ -49,6 +49,7 @@ const textAreaSx: SxProps<Theme> = {
     flex: 1,
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     minWidth: 0,
 };
 
