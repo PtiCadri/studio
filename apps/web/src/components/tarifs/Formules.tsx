@@ -7,7 +7,7 @@ export default function Formules() {
   return (
     <Box sx={{ ...gridSx, mt: { xs: "30px", md: "50px" } }}>
       {formules.map((formule) => (
-        <Formule key={formule.titre} formule={formule} />
+        <Formule key={formule.id} formule={formule} />
       ))}
     </Box>
   );

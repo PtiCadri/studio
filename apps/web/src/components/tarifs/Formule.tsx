@@ -1,6 +1,17 @@
+"use client";
+
 import GlassySurface from "@/components/ui/GlassySurface";
 import { Box, Typography } from "@mui/material";
-import { descSx, prixSx, surfaceSx, tarifSx, titreSx, unitSx } from "./styles";
+import Link from "next/link";
+import {
+  contactLinkSx,
+  descSx,
+  prixSx,
+  surfaceSx,
+  tarifSx,
+  titreSx,
+  unitSx,
+} from "./styles";
 import { type Formule as formule } from "./types";
 
 export default function Formule({ formule }: { formule: formule }) {
@@ -38,6 +49,13 @@ export default function Formule({ formule }: { formule: formule }) {
       <Typography variant="body1" sx={descSx}>
         {formule.description}
       </Typography>
+      <Box
+        component={Link}
+        href={`/contact?services=${formule.id}`}
+        sx={contactLinkSx}
+      >
+        Choisir
+      </Box>
     </GlassySurface>
   );
 }

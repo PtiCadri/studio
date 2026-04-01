@@ -1,4 +1,5 @@
 type Formule = {
+    id: string;
     titre: string;
     color: string;
     description: React.ReactNode;
@@ -9,6 +10,7 @@ type Formule = {
 };
 
 type Prestation = {
+    id: string;
     key: string;
     titre: React.ReactNode;
     description: string;

@@ -2,6 +2,7 @@ import type { Formule, Prestation } from "./types";
 
 const formules: Formule[] = [
   {
+    id: "single",
     titre: "FORMULE SINGLE",
     color: "divider",
     description: (
@@ -16,6 +17,7 @@ const formules: Formule[] = [
     tarif: { prix: "100 €" },
   },
   {
+    id: "project",
     titre: "FORMULE PROJET",
     color: "text.secondary",
     description: "À partir de 4 titres ( EP / Mixtape )",
@@ -25,6 +27,7 @@ const formules: Formule[] = [
     },
   },
   {
+    id: "album",
     titre: "FORMULE ALBUM",
     color: "text.primary",
     description: "À partir de 8 titres",
@@ -37,6 +40,7 @@ const formules: Formule[] = [
 
 const prestations: Prestation[] = [
   {
+    id: "recording",
     key: "enregistrement",
     titre: (
       <>
@@ -53,6 +57,7 @@ const prestations: Prestation[] = [
     iconPath: "/icons/enregistrement.svg",
   },
   {
+    id: "mixing",
     key: "mixage",
     titre: <>MIXAGE</>,
     description:
@@ -64,6 +69,7 @@ const prestations: Prestation[] = [
     iconPath: "/icons/mixage.svg",
   },
   {
+    id: "mastering",
     key: "mastering",
     titre: <>MASTERING</>,
     description: "Mastering final du titre",

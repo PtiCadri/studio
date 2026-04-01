@@ -1,6 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import {
+    ReadonlyURLSearchParams,
+    usePathname,
+    useRouter,
+    useSearchParams,
+} from "next/navigation";
+import { useEffect, useState } from "react";
 
 export type ServiceId =
     | "recording"
@@ -19,6 +25,16 @@ export type ContactFormData = {
     message: string;
 };
 
+const validServices: ServiceId[] = [
+    "recording",
+    "mixing",
+    "mastering",
+    "live",
+    "single",
+    "project",
+    "album",
+];
+
 const initialForm: ContactFormData = {
     name: "",
     email: "",
@@ -26,6 +42,28 @@ const initialForm: ContactFormData = {
     services: [],
     message: "",
 };
+
+function parseServicesFromSearchParams(
+    searchParams: ReadonlyURLSearchParams
+): ServiceId[] {
+    const rawServices = searchParams.get("services");
+
+    if (!rawServices) {
+        return [];
+    }
+
+    return rawServices.split(",").filter((service): service is ServiceId => {
+        return validServices.includes(service as ServiceId);
+    });
+}
+
+function areServicesEqual(a: ServiceId[], b: ServiceId[]) {
+    if (a.length !== b.length) {
+        return false;
+    }
+
+    return a.every((service, index) => service === b[index]);
+}
 
 async function sendContactForm(form: ContactFormData) {
     const response = await fetch("/api/contact", {
@@ -46,13 +84,48 @@ async function sendContactForm(form: ContactFormData) {
 }
 
 export function useContactForm() {
-    const [form, setForm] = useState<ContactFormData>(initialForm);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    const [form, setForm] = useState<ContactFormData>({
+        ...initialForm,
+        services: parseServicesFromSearchParams(searchParams),
+    });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const [successMessage, setSuccessMessage] = useState("");
-
     const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(() => {
+        const urlServices = parseServicesFromSearchParams(searchParams);
+
+        setForm((current) => {
+            if (areServicesEqual(current.services, urlServices)) {
+                return current;
+            }
+
+            return {
+                ...current,
+                services: urlServices,
+            };
+        });
+    }, [searchParams]);
+
+    const updateServicesInUrl = (services: ServiceId[]) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (services.length === 0) {
+            params.delete("services");
+        } else {
+            params.set("services", services.join(","));
+        }
+
+        const query = params.toString();
+        const nextUrl = query ? `${pathname}?${query}` : pathname;
+
+        router.replace(nextUrl, { scroll: false });
+    };
 
     const handleChange = (field: keyof ContactFormData, value: string) => {
         setForm((current) => ({
@@ -62,33 +135,30 @@ export function useContactForm() {
     };
 
     const handleServiceToggle = (service: ServiceId) => {
-        setForm((current) => {
-            const isSelected = current.services.includes(service);
+        const isSelected = form.services.includes(service);
 
-            if (isSelected) {
-                return {
-                    ...current,
-                    services: current.services.filter(
-                        (item) => item !== service
-                    ),
-                };
-            }
+        const nextServices = isSelected
+            ? form.services.filter((item) => item !== service)
+            : [...form.services, service];
 
-            return {
-                ...current,
-                services: [...current.services, service],
-            };
-        });
+        setForm((current) => ({
+            ...current,
+            services: nextServices,
+        }));
+
+        updateServicesInUrl(nextServices);
     };
 
-    const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         setSuccessMessage("");
         setErrorMessage("");
 
         if (form.services.length === 0) {
-            setErrorMessage("Veuillez choisir au moins un service.");
+            setErrorMessage(
+                "Veuillez choisir au moins un service ou une formule."
+            );
             return;
         }
 
@@ -99,6 +169,7 @@ export function useContactForm() {
 
             setSuccessMessage("Votre message a bien été envoyé.");
             setForm(initialForm);
+            router.replace(pathname, { scroll: false });
         } catch (error) {
             const message =
                 error instanceof Error

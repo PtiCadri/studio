@@ -1,6 +1,17 @@
+"use client";
+
 import GlassySurface from "@/components/ui/GlassySurface";
 import { Box, Typography } from "@mui/material";
-import { descSx, prixSx, surfaceSx, tarifSx, titreSx, unitSx } from "./styles";
+import Link from "next/link";
+import {
+  contactLinkSx,
+  descSx,
+  prixSx,
+  surfaceSx,
+  tarifSx,
+  titreSx,
+  unitSx,
+} from "./styles";
 import { type Prestation as prestation } from "./types";
 
 export default function Prestation({ prestation }: { prestation: prestation }) {
@@ -34,6 +45,14 @@ export default function Prestation({ prestation }: { prestation: prestation }) {
       <Typography variant="body1" sx={descSx}>
         {prestation.description}
       </Typography>
+
+      <Box
+        component={Link}
+        href={`/contact?services=${prestation.id}`}
+        sx={contactLinkSx}
+      >
+        Choisir
+      </Box>
     </GlassySurface>
   );
 }

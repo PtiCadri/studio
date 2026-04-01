@@ -1,11 +1,23 @@
+"use client";
+
 import { GlassySurface } from "@/components/ui";
 import { Box, Typography } from "@mui/material";
-import { descSx, prixSx, tarifSx, titreSx, unitSx } from "./styles";
+import {
+  contactLinkSx,
+  descSx,
+  prixSx,
+  surfaceSx,
+  tarifSx,
+  titreSx,
+  unitSx,
+} from "./styles";
+
+import Link from "next/link";
 
 export default function Live() {
   return (
     <Box sx={liveGridSx}>
-      <GlassySurface>
+      <GlassySurface sx={surfaceSx}>
         <Box>
           <Box
             component="img"
@@ -32,9 +44,12 @@ export default function Live() {
         <Typography variant="body1" sx={descSx}>
           Répétition + Préparation de set
         </Typography>
+        <Box component={Link} href="/contact?services=live" sx={contactLinkSx}>
+          Choisir
+        </Box>
       </GlassySurface>
 
-      <GlassySurface>
+      <GlassySurface sx={surfaceSx}>
         <Box>
           <Box
             component="img"
@@ -61,6 +76,9 @@ export default function Live() {
         <Typography variant="body1" sx={descSx}>
           Concert
         </Typography>
+        <Box component={Link} href="/contact?services=live" sx={contactLinkSx}>
+          Choisir
+        </Box>
       </GlassySurface>
     </Box>
   );
@@ -69,7 +87,7 @@ export default function Live() {
 const liveGridSx = {
   display: "grid",
   width: "100%",
-  height: "auto",
+  height: "fit-content",
   mt: { xs: "30px", md: "50px" },
   gap: 3,
   justifyItems: "stretch",

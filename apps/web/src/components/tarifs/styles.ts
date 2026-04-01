@@ -3,7 +3,7 @@ import { SxProps, Theme } from "@mui/material";
 const gridSx: SxProps<Theme> = {
     display: "grid",
     width: "100%",
-    height: "auto",
+    height: "fit-content",
     gap: 3,
     justifyItems: "stretch",
     alignItems: "center",
@@ -16,7 +16,6 @@ const gridSx: SxProps<Theme> = {
 const surfaceSx: SxProps<Theme> = {
     width: "100%",
     height: "100%",
-    maxHeight: "270px",
     display: "flex",
     flexDirection: "column",
     px: 3,
@@ -43,6 +42,7 @@ const descSx: SxProps<Theme> = {
     fontSize: "1rem",
     lineHeight: 1.5,
     color: "text.secondary",
+    mb: 2,
 };
 
 const tarifSx: SxProps<Theme> = {
@@ -68,4 +68,27 @@ const unitSx: SxProps<Theme> = {
     pb: "8px",
 };
 
-export { descSx, gridSx, iconSx, prixSx, surfaceSx, tarifSx, titreSx, unitSx };
+const contactLinkSx: SxProps<Theme> = {
+    width: "fit-content",
+    mt: "auto",
+    ml: "auto",
+    textDecoration: "underline",
+    textAlign: "right",
+    color: "text.secondary",
+    pl: "5px",
+    "&:hover": {
+        color: "text.primary",
+    },
+};
+
+export {
+    contactLinkSx,
+    descSx,
+    gridSx,
+    iconSx,
+    prixSx,
+    surfaceSx,
+    tarifSx,
+    titreSx,
+    unitSx,
+};
