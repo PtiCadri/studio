@@ -15,7 +15,7 @@ export default function Live() {
           />
 
           <Typography sx={titreSx} gutterBottom>
-            SETUP
+            SETUP LIVE
           </Typography>
         </Box>
 
