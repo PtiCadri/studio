@@ -39,4 +39,30 @@ export const theme = createTheme({
 
         divider: "#666666",
     },
+
+    components: {
+        MuiCssBaseline: {
+            styleOverrides: {
+                body: {
+                    overflowY: "auto",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "rgba(255,255,255,0.6) transparent",
+                },
+                "::-webkit-scrollbar": {
+                    width: "6px",
+                },
+                "::-webkit-scrollbar-track": {
+                    background: "transparent",
+                },
+                "::-webkit-scrollbar-thumb": {
+                    background:
+                        "linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.3))",
+                    borderRadius: "10px",
+                },
+                "::-webkit-scrollbar-thumb:hover": {
+                    background: "rgba(255,255,255,0.4)",
+                },
+            },
+        },
+    },
 });
