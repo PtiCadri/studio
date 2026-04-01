@@ -1,4 +1,5 @@
 import Formules from "@/components/tarifs/Formules";
+import Live from "@/components/tarifs/Live";
 import Prestations from "@/components/tarifs/Prestations";
 import { Divider, MainLogo } from "@/components/ui";
 import { Box, Link, Typography } from "@mui/material";
@@ -15,12 +16,32 @@ export default function Tarifs() {
       <MainLogo />
       <Prestations />
       <Divider />
+      <Live />
+      <Typography
+        variant="h6"
+        sx={{
+          color: "text.secondary",
+          fontSize: { xs: ".8rem", md: "1rem" },
+          px: 2,
+          mt: 3,
+          mb: "30px",
+        }}
+        gutterBottom
+      >
+        Les tarifs indiqués sont donnés à titre indicatif et peuvent évoluer en
+        fonction des spécificités du projet (configuration technique, quantité
+        de matériel, durée de prestation, déplacement, etc.).
+      </Typography>
+      <Divider />
       <Formules />
       <Typography
         variant="h6"
         sx={{
           color: "text.secondary",
           fontSize: { xs: ".8rem", md: "1rem" },
+          px: 2,
+          mt: 3,
+          mb: "30px",
         }}
         gutterBottom
       >

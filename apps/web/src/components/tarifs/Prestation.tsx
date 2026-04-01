@@ -10,7 +10,7 @@ export default function Prestation({ prestation }: { prestation: prestation }) {
         <Box
           component="img"
           src={prestation.iconPath}
-          alt="Logo du studio"
+          alt="Prestation Icon"
           sx={{ height: "35px", width: "35px" }}
         />
 

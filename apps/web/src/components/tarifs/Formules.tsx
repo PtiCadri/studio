@@ -5,7 +5,7 @@ import { gridSx } from "./styles";
 
 export default function Formules() {
   return (
-    <Box sx={gridSx}>
+    <Box sx={{ ...gridSx, mt: { xs: "30px", md: "50px" } }}>
       {formules.map((formule) => (
         <Formule key={formule.titre} formule={formule} />
       ))}

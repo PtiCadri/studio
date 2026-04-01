@@ -4,7 +4,6 @@ const gridSx: SxProps<Theme> = {
     display: "grid",
     width: "100%",
     height: "auto",
-    my: "50px",
     gap: 3,
     justifyItems: "stretch",
     alignItems: "center",

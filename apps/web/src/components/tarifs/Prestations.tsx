@@ -5,7 +5,7 @@ import { gridSx } from "./styles";
 
 export default function Prestations() {
   return (
-    <Box sx={gridSx}>
+    <Box sx={{ ...gridSx, my: { xs: "30px", md: "50px" } }}>
       {prestations.map((prestation) => (
         <Prestation key={prestation.key} prestation={prestation} />
       ))}

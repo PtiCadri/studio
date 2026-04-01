@@ -1,21 +1,23 @@
 import GlassySurface from "@/components/ui/GlassySurface";
 import { Box, Typography } from "@mui/material";
-import {
-  descSx,
-  iconSx,
-  prixSx,
-  surfaceSx,
-  tarifSx,
-  titreSx,
-  unitSx,
-} from "./styles";
+import { descSx, prixSx, surfaceSx, tarifSx, titreSx, unitSx } from "./styles";
 import { type Formule as formule } from "./types";
 
 export default function Formule({ formule }: { formule: formule }) {
   return (
     <GlassySurface sx={surfaceSx}>
       <Box>
-        <Box sx={iconSx(formule.color)} />
+        <Box
+          sx={{
+            height: "35px",
+            width: "35px",
+            backgroundColor: formule.color,
+            WebkitMask: "url(/icons/formule.svg) no-repeat center",
+            mask: "url(/icons/formule.svg) no-repeat center",
+            WebkitMaskSize: "contain",
+            maskSize: "contain",
+          }}
+        />
 
         <Typography sx={titreSx} gutterBottom>
           {formule.titre}
