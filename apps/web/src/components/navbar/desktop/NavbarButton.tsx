@@ -11,7 +11,8 @@ import { btnSx } from "./styles";
 
 export default function NavbarButton({ link }: NavbarButtonProps) {
   const pathname = usePathname();
-  const isActive = pathname.startsWith(link.href);
+  const isActive =
+    link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
   return (
     <Button

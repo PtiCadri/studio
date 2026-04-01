@@ -2,7 +2,7 @@
 
 import { Box, Stack } from "@mui/material";
 
-import { navbarLinks } from "../constants";
+import { homePage, navbarLinks } from "../constants";
 import StudioName from "../studioName/StudioName";
 import { logoSx, navSx } from "../styles";
 import NavbarButton from "./NavbarButton";
@@ -14,7 +14,7 @@ export default function NavbarDesktop() {
       <StudioName />
 
       <Stack direction="row" sx={stackSx}>
-        {navbarLinks.map((link) => (
+        {[homePage].concat(navbarLinks).map((link) => (
           <NavbarButton key={link.key} link={link} />
         ))}
       </Stack>
