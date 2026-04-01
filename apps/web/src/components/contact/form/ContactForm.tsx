@@ -3,8 +3,8 @@
 import { useContactForm } from "@/hooks/contact/useContactForm";
 import { Alert, Box } from "@mui/material";
 import Message from "./Message";
+import Prestations from "./Prestations";
 import SendButton from "./SendButton";
-import Services from "./Services";
 import { formSx } from "./styles";
 import UserAbout from "./UserAbout";
 
@@ -34,7 +34,7 @@ export default function ContactForm() {
 
       <UserAbout form={form} handleChange={handleChange} />
 
-      <Services form={form} handleServiceToggle={handleServiceToggle} />
+      <Prestations form={form} handleServiceToggle={handleServiceToggle} />
 
       <Message form={form} handleChange={handleChange} />
 

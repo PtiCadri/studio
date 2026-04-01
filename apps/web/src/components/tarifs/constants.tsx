@@ -2,7 +2,7 @@ import type { Formule, Prestation } from "./types";
 
 const formules: Formule[] = [
   {
-    titre: "FORMULE 1 TITRE",
+    titre: "FORMULE SINGLE",
     color: "divider",
     description: (
       <>

@@ -37,6 +37,8 @@ export default function Tarifs() {
       <Typography
         variant="h6"
         sx={{
+          width: "100%",
+          textAlign: "left",
           color: "text.secondary",
           fontSize: { xs: ".8rem", md: "1rem" },
           px: 2,

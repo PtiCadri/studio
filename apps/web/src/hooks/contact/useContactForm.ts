@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 
-export type ServiceId = "recording" | "mixing" | "mastering" | "live";
+export type ServiceId =
+    | "recording"
+    | "mixing"
+    | "mastering"
+    | "live"
+    | "single"
+    | "project"
+    | "album";
 
 export type ContactFormData = {
     name: string;

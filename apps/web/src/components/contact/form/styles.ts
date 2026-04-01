@@ -36,6 +36,15 @@ const prestationsSx: SxProps<Theme> = {
     },
     gap: 2,
     userSelect: "none",
+    mb: 3,
+};
+
+const formulesSx: SxProps<Theme> = {
+    width: "100%",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: 2,
+    userSelect: "none",
 };
 
 const prestationIconSx: SxProps<Theme> = {
@@ -74,6 +83,7 @@ const optionBoxSx: (isSelected: boolean) => SystemStyleObject<Theme> = (
 export {
     contentSx,
     formSx,
+    formulesSx,
     optionBoxSx,
     prestationIconSx,
     prestationsSx,

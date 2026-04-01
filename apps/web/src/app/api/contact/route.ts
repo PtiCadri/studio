@@ -1,6 +1,5 @@
+import { ServiceId } from "@/hooks/contact/useContactForm";
 import { Resend } from "resend";
-
-type ServiceId = "recording" | "mixing" | "mastering" | "live";
 
 type ContactPayload = {
     name: string;
@@ -17,6 +16,9 @@ const serviceLabels: Record<ServiceId, string> = {
     mixing: "Mix",
     mastering: "Mastering",
     live: "Accompagnement live",
+    single: "Formule Single",
+    project: "Formule Projet",
+    album: "Formule Album",
 };
 
 function isValidEmail(email: string): boolean {
@@ -24,19 +26,19 @@ function isValidEmail(email: string): boolean {
 }
 
 function buildEmailHtml(payload: ContactPayload): string {
-    const phoneLine = payload.phone?.trim() ? payload.phone : "Not provided";
+    const phoneLine = payload.phone?.trim() ? payload.phone : "Non renseigné";
 
     const servicesLine = payload.services
         .map((service) => serviceLabels[service])
-        .join(", ");
+        .join("<br />- ");
 
     return `
         <div style="font-family: Arial, sans-serif;">
-            <h2>New contact form submission</h2>
+            <h3>Nouveau message de contact.</h3>
             <p><strong>Nom:</strong> ${payload.name}</p>
             <p><strong>Email:</strong> ${payload.email}</p>
             <p><strong>Telephone:</strong> ${phoneLine}</p>
-            <p><strong>Service(s):</strong> ${servicesLine}</p>
+            <p><strong>Prestation(s):</strong><br />- ${servicesLine}</p>
             <h3>Message</h3>
             <p style="white-space: pre-wrap;">${payload.message}</p>
         </div>
@@ -64,14 +66,14 @@ export async function POST(request: Request) {
 
         if (!name || !email || services.length === 0 || !message) {
             return Response.json(
-                { error: "Missing required fields." },
+                { error: "Veuillez remplir tous les champs obligatoires." },
                 { status: 400 }
             );
         }
 
         if (!isValidEmail(email)) {
             return Response.json(
-                { error: "Invalid email address." },
+                { error: "Adresse email invalide." },
                 { status: 400 }
             );
         }
@@ -81,6 +83,9 @@ export async function POST(request: Request) {
             "mixing",
             "mastering",
             "live",
+            "single",
+            "project",
+            "album",
         ];
 
         const hasInvalidService = services.some((service) => {
@@ -89,7 +94,7 @@ export async function POST(request: Request) {
 
         if (hasInvalidService) {
             return Response.json(
-                { error: "Invalid service selection." },
+                { error: "Veuillez sélectionner au moins une prestation." },
                 { status: 400 }
             );
         }
@@ -109,7 +114,7 @@ export async function POST(request: Request) {
             from,
             to,
             replyTo: email,
-            subject: `New contact form: ${name}`,
+            subject: `Nouveau message de : ${name}`,
             html: buildEmailHtml({
                 name,
                 email,
