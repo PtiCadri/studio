@@ -16,7 +16,7 @@ export default function ArtistsPage() {
 
   const fetchArtists = async () => {
   try {
-   const res = await fetch("admin/artists")
+   const res = await fetch("/artists")
 
     console.log("STATUS:", res.status)
 
@@ -118,3 +118,50 @@ export default function ArtistsPage() {
 
   ) 
 }
+// "use client"
+
+// import { useEffect, useState } from "react"
+
+// export default function ArtistsPage() {
+
+//   const [artists, setArtists] = useState<any[]>([])
+
+//   // 👉 1. fetch des artistes
+//   const fetchArtists = async () => {
+//     try {
+//       const res = await fetch("/api/artists")
+
+//       if (!res.ok) {
+//         throw new Error("API error")
+//       }
+
+//       const data = await res.json()
+//       setArtists(data)
+
+//     } catch (err) {
+//       console.error("Fetch error:", err)
+//     }
+//   }
+
+//   // 👉 2. appel au chargement
+//   useEffect(() => {
+//     fetchArtists()
+//   }, [])
+
+//   // 👉 3. affichage
+//   return (
+//     <div style={{ padding: "20px" }}>
+//       <h1>Admin - Artists</h1>
+
+//       {artists.length === 0 ? (
+//         <p>Aucun artiste</p>
+//       ) : (
+//         artists.map((artist) => (
+//           <div key={artist.id}>
+//             <h3>{artist.name}</h3>
+//           </div>
+//         ))
+//       )}
+//     </div>
+//   )
+// }
