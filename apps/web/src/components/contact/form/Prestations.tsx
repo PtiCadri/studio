@@ -13,15 +13,15 @@ import Formule from "./Formule";
 import Service from "./Service";
 import { formulesSx, prestationsSx, surfaceSx, titleSx } from "./styles";
 
-import { ContactFormData, ServiceId } from "@/hooks/contact/useContactForm";
+import { ServiceId } from "@/hooks/contact/useContactForm";
 
 type PrestationsProps = {
-  form: ContactFormData;
+  services: ServiceId[];
   handleServiceToggle: (service: ServiceId) => void;
 };
 
 export default function Prestations({
-  form,
+  services,
   handleServiceToggle,
 }: PrestationsProps) {
   return (
@@ -36,7 +36,7 @@ export default function Prestations({
           {pres.map((prestation) => (
             <Service
               key={prestation.id}
-              form={form}
+              services={services}
               handleServiceToggle={handleServiceToggle}
               prestation={prestation}
             />
@@ -48,13 +48,14 @@ export default function Prestations({
           {formules.map((formule) => (
             <Formule
               key={formule.title}
-              form={form}
+              services={services}
               handleServiceToggle={handleServiceToggle}
               formule={formule}
             />
           ))}
         </FormGroup>
       </FormControl>
+
       <Box component={Link} href="/tarifs" sx={contactLinkSx}>
         Consulter les tarifs
       </Box>

@@ -1,6 +1,6 @@
-import { ContactFormData, ServiceId } from "@/hooks/contact/useContactForm";
-import { Box, Checkbox, FormControlLabel } from "@mui/material";
-import { contentSx, optionBoxSx, prestationIconSx } from "./styles";
+import { ServiceId } from "@/hooks/contact/useContactForm";
+import { Box, ButtonBase } from "@mui/material";
+import { buttonSx, contentSx, optionBoxSx, prestationIconSx } from "./styles";
 
 type formuleId = "single" | "project" | "album";
 
@@ -11,53 +11,45 @@ export type formule = {
 };
 
 type FormuleProps = {
-  form: ContactFormData;
+  services: ServiceId[];
   handleServiceToggle: (service: ServiceId) => void;
   formule: formule;
 };
 
 export default function Formule({
-  form,
+  services,
   handleServiceToggle,
   formule,
 }: FormuleProps) {
+  const isSelected = services.includes(formule.id);
+
   return (
-    <FormControlLabel
-      key={formule.id}
-      sx={{
-        width: "100%",
-        display: "block",
-        m: 0,
+    <ButtonBase
+      onClick={() => {
+        handleServiceToggle(formule.id);
       }}
-      control={
-        <Checkbox
-          checked={form.services.includes(formule.id)}
-          onChange={() => {
-            handleServiceToggle(formule.id);
-          }}
-          sx={{ display: "none" }}
-        />
-      }
-      label={
+      aria-pressed={isSelected}
+      aria-label={formule.title}
+      sx={buttonSx}
+    >
+      <Box
+        sx={{
+          ...optionBoxSx(isSelected),
+          ...contentSx,
+        }}
+      >
         <Box
           sx={{
-            ...optionBoxSx(form.services.includes(formule.id)),
-            ...contentSx,
+            backgroundColor: formule.color,
+            WebkitMask: "url(/icons/formule.svg) no-repeat center",
+            mask: "url(/icons/formule.svg) no-repeat center",
+            WebkitMaskSize: "contain",
+            maskSize: "contain",
+            ...prestationIconSx,
           }}
-        >
-          <Box
-            sx={{
-              backgroundColor: formule.color,
-              WebkitMask: "url(/icons/formule.svg) no-repeat center",
-              mask: "url(/icons/formule.svg) no-repeat center",
-              WebkitMaskSize: "contain",
-              maskSize: "contain",
-              ...prestationIconSx,
-            }}
-          />
-          {formule.title}
-        </Box>
-      }
-    />
+        />
+        {formule.title}
+      </Box>
+    </ButtonBase>
   );
 }

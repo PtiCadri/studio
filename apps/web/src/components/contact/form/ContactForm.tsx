@@ -12,6 +12,7 @@ import UserAbout from "./UserAbout";
 export default function ContactForm() {
   const {
     form,
+    services,
     isSubmitting,
     successMessage,
     errorMessage,
@@ -49,7 +50,10 @@ export default function ContactForm() {
 
       <UserAbout form={form} handleChange={handleChange} />
 
-      <Prestations form={form} handleServiceToggle={handleServiceToggle} />
+      <Prestations
+        services={services}
+        handleServiceToggle={handleServiceToggle}
+      />
 
       <Message form={form} handleChange={handleChange} />
 

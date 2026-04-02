@@ -1,51 +1,43 @@
 import { Prestation } from "@/components/home/prestations/types";
-import { ContactFormData, ServiceId } from "@/hooks/contact/useContactForm";
-import { Box, Checkbox, FormControlLabel } from "@mui/material";
-import { contentSx, optionBoxSx, prestationIconSx } from "./styles";
+import { ServiceId } from "@/hooks/contact/useContactForm";
+import { Box, ButtonBase } from "@mui/material";
+import { buttonSx, contentSx, optionBoxSx, prestationIconSx } from "./styles";
 
 type ServiceProps = {
-  form: ContactFormData;
+  services: ServiceId[];
   handleServiceToggle: (service: ServiceId) => void;
   prestation: Prestation;
 };
 
 export default function Service({
-  form,
+  services,
   handleServiceToggle,
   prestation,
 }: ServiceProps) {
+  const isSelected = services.includes(prestation.id);
+
   return (
-    <FormControlLabel
-      key={prestation.id}
-      sx={{
-        width: "100%",
-        display: "block",
-        m: 0,
+    <ButtonBase
+      onClick={() => {
+        handleServiceToggle(prestation.id);
       }}
-      control={
-        <Checkbox
-          checked={form.services.includes(prestation.id)}
-          onChange={() => {
-            handleServiceToggle(prestation.id);
-          }}
-          sx={{ display: "none" }}
-        />
-      }
-      label={
+      aria-pressed={isSelected}
+      aria-label={prestation.title}
+      sx={buttonSx}
+    >
+      <Box
+        sx={{
+          ...optionBoxSx(isSelected),
+          ...contentSx,
+        }}
+      >
         <Box
-          sx={{
-            ...optionBoxSx(form.services.includes(prestation.id)),
-            ...contentSx,
-          }}
-        >
-          <Box
-            component="img"
-            src={`/icons/${prestation.icon}.svg`}
-            sx={prestationIconSx}
-          />
-          {prestation.title}
-        </Box>
-      }
-    />
+          component="img"
+          src={`/icons/${prestation.icon}.svg`}
+          sx={prestationIconSx}
+        />
+        {prestation.title}
+      </Box>
+    </ButtonBase>
   );
 }

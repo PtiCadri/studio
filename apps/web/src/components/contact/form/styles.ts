@@ -52,6 +52,13 @@ const prestationIconSx: SxProps<Theme> = {
     height: { xs: "25px", md: "30px" },
 };
 
+const buttonSx: SxProps<Theme> = {
+    width: "100%",
+    display: "block",
+    textAlign: "left",
+    borderRadius: "inherit",
+};
+
 const optionBoxSx: (isSelected: boolean) => SystemStyleObject<Theme> = (
     isSelected
 ) => ({
@@ -75,12 +82,13 @@ const optionBoxSx: (isSelected: boolean) => SystemStyleObject<Theme> = (
     transition: "all 0.2s ease",
 
     "&:hover": {
-        border: "1px solid white",
-        color: "text.primary",
+        border: { md: "1px solid white" },
+        color: { md: "text.primary" },
     },
 });
 
 export {
+    buttonSx,
     contentSx,
     formSx,
     formulesSx,
