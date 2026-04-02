@@ -6,6 +6,5 @@ CREATE TABLE IF NOT EXISTS artist_links (
     soundcloud_url TEXT,
     youtube_url TEXT,
     instagram_url TEXT,
-    tiktok_url TEXT,
-    facebook_url TEXT
+    tiktok_url TEXT
 );

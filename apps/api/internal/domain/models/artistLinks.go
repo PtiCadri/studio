@@ -11,5 +11,4 @@ type ArtistLinks struct {
 	YoutubeURL    sql.NullString `json:"youtube_url" db:"youtube_url"`
 	InstagramURL  sql.NullString `json:"instagram_url" db:"instagram_url"`
 	TiktokURL     sql.NullString `json:"tiktok_url" db:"tiktok_url"`
-	FacebookURL   sql.NullString `json:"facebook_url" db:"facebook_url"`
 }
