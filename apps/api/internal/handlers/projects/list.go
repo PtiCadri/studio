@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/PtiCadri/studio/apps/api/internal/responses"
+	projectResponse "github.com/PtiCadri/studio/apps/api/internal/responses/projects"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
@@ -15,10 +15,10 @@ func (h Projects) List(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := make([]responses.ProjectResponse, 0, len(projects))
+	response := make([]projectResponse.ProjectResponse, 0, len(projects))
 
 	for _, project := range projects {
-		response = append(response, responses.ProjectResponse{
+		response = append(response, projectResponse.ProjectResponse{
 			ID:        project.ID,
 			Name:      project.Name,
 			ImageURL:  utils.NullStringToPointer(project.ImageURL),

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/PtiCadri/studio/apps/api/internal/responses"
+	projectResponse "github.com/PtiCadri/studio/apps/api/internal/responses/projects"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
@@ -38,7 +38,7 @@ func (h Projects) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := responses.ProjectResponse{
+	response := projectResponse.ProjectResponse{
 		ID:        project.ID,
 		Name:      project.Name,
 		ImageURL:  utils.NullStringToPointer(project.ImageURL),

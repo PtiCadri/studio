@@ -8,7 +8,8 @@ import (
 
 	"github.com/go-chi/chi/v5"
 
-	"github.com/PtiCadri/studio/apps/api/internal/responses"
+	artistResponse "github.com/PtiCadri/studio/apps/api/internal/responses/artists"
+	projectResponse "github.com/PtiCadri/studio/apps/api/internal/responses/projects"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
@@ -48,10 +49,10 @@ func (h Projects) GetByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	artistResponses := make([]responses.ArtistResponse, 0, len(artists))
+	artistResponses := make([]artistResponse.ArtistResponse, 0, len(artists))
 
 	for _, artist := range artists {
-		artistResponses = append(artistResponses, responses.ArtistResponse{
+		artistResponses = append(artistResponses, artistResponse.ArtistResponse{
 			ID:        artist.ID,
 			Name:      artist.Name,
 			ImageURL:  utils.NullStringToPointer(artist.ImageURL),
@@ -60,7 +61,7 @@ func (h Projects) GetByID(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
-	response := responses.ProjectDetailResponse{
+	response := projectResponse.ProjectDetailResponse{
 		ID:        project.ID,
 		Name:      project.Name,
 		ImageURL:  utils.NullStringToPointer(project.ImageURL),

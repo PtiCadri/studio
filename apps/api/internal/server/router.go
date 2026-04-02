@@ -30,6 +30,8 @@ func NewRouter(db *sql.DB) http.Handler {
 		r.Get("/", projectsHandler.List)
 		r.Post("/", projectsHandler.Create)
 		r.Get("/{id}", projectsHandler.GetByID)
+		r.Put("/{id}/links", projectsHandler.PutLinks)
+		r.Get("/{id}/links", projectsHandler.GetLinks)
 		r.Post("/{id}/artists", projectsHandler.AddArtist)
 		r.Delete("/{id}/artists/{artistId}", projectsHandler.RemoveArtist)
 	})
@@ -37,6 +39,10 @@ func NewRouter(db *sql.DB) http.Handler {
 	r.Route("/artists", func(r chi.Router) {
 		r.Get("/", artistsHandler.List)
 		r.Post("/", artistsHandler.Create)
+		r.Put("/{id}/links", artistsHandler.PutLinks)
+		r.Get("/{id}/links", artistsHandler.GetLinks)
+		r.Put("/{id}/integrations", artistsHandler.PutIntegrations)
+		r.Get("/{id}/integrations", artistsHandler.GetIntegrations)
 	})
 
 	return r

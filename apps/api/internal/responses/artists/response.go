@@ -1,4 +1,4 @@
-package responses
+package artistResponse
 
 import "time"
 

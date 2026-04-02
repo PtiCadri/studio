@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/PtiCadri/studio/apps/api/internal/responses"
+	artistResponse "github.com/PtiCadri/studio/apps/api/internal/responses/artists"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
@@ -15,10 +15,10 @@ func (h Artists) List(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := make([]responses.ArtistResponse, 0, len(artists))
+	response := make([]artistResponse.ArtistResponse, 0, len(artists))
 
 	for _, artist := range artists {
-		response = append(response, responses.ArtistResponse{
+		response = append(response, artistResponse.ArtistResponse{
 			ID:        artist.ID,
 			Name:      artist.Name,
 			ImageURL:  utils.NullStringToPointer(artist.ImageURL),

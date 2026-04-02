@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/PtiCadri/studio/apps/api/internal/responses"
+	artistResponse "github.com/PtiCadri/studio/apps/api/internal/responses/artists"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
@@ -38,7 +38,7 @@ func (h Artists) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := responses.ArtistResponse{
+	response := artistResponse.ArtistResponse{
 		ID:        artist.ID,
 		Name:      artist.Name,
 		ImageURL:  utils.NullStringToPointer(artist.ImageURL),
