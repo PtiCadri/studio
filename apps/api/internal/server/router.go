@@ -32,6 +32,8 @@ func NewRouter(db *sql.DB) http.Handler {
 		r.Get("/{id}", projectsHandler.GetByID)
 		r.Put("/{id}/links", projectsHandler.PutLinks)
 		r.Get("/{id}/links", projectsHandler.GetLinks)
+		r.Put("/{id}/integrations", projectsHandler.PutIntegrations)
+		r.Get("/{id}/integrations", projectsHandler.GetIntegrations)
 		r.Post("/{id}/artists", projectsHandler.AddArtist)
 		r.Delete("/{id}/artists/{artistId}", projectsHandler.RemoveArtist)
 	})
