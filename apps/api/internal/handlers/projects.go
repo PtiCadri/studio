@@ -11,10 +11,10 @@ import (
 )
 
 type Projects struct {
-	projectRepo repository.ProjectRepository
+	projectRepo *repository.ProjectRepository
 }
 
-func NewProjects(projectRepo repository.ProjectRepository) Projects {
+func NewProjects(projectRepo *repository.ProjectRepository) Projects {
 	return Projects{projectRepo: projectRepo}
 }
 
@@ -167,4 +167,42 @@ func (h Projects) GetByID(w http.ResponseWriter, r *http.Request) {
 			http.StatusInternalServerError,
 		)
 	}
+}
+
+func (h Projects) AddArtist(w http.ResponseWriter, r *http.Request) {
+	projectID, err := utils.GetIDFromPath(r.URL.Path, "/projects/")
+	if err != nil {
+		http.Error(w, "invalid project id", http.StatusBadRequest)
+		return
+	}
+
+	var request struct {
+		ArtistID int64 `json:"artist_id"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		http.Error(w, "invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	if request.ArtistID == 0 {
+		http.Error(w, "artist_id is required", http.StatusBadRequest)
+		return
+	}
+
+	err = h.projectRepo.AddArtist(
+		r.Context(),
+		projectID,
+		request.ArtistID,
+	)
+	if err != nil {
+		http.Error(
+			w,
+			"failed to link artist to project",
+			http.StatusInternalServerError,
+		)
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
 }

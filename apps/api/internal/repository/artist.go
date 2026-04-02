@@ -11,8 +11,8 @@ type ArtistRepository struct {
 	db *sql.DB
 }
 
-func NewArtist(db *sql.DB) ArtistRepository {
-	return ArtistRepository{db: db}
+func NewArtist(db *sql.DB) *ArtistRepository {
+	return &ArtistRepository{db: db}
 }
 
 func (r ArtistRepository) Create(

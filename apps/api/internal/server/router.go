@@ -3,6 +3,7 @@ package server
 import (
 	"database/sql"
 	"net/http"
+	"strings"
 
 	"github.com/PtiCadri/studio/apps/api/internal/handlers"
 	"github.com/PtiCadri/studio/apps/api/internal/repository"
@@ -10,10 +11,10 @@ import (
 
 func NewRouter(db *sql.DB) http.Handler {
 	mux := http.NewServeMux()
-	health := handlers.NewHealth(db)
 
+	health := handlers.NewHealth(db)
 	projectRepo := repository.NewProject(db)
-	projects := handlers.NewProjects(*projectRepo)
+	projects := handlers.NewProjects(projectRepo)
 
 	artistRepo := repository.NewArtist(db)
 	artists := handlers.NewArtists(artistRepo)
@@ -32,6 +33,16 @@ func NewRouter(db *sql.DB) http.Handler {
 	})
 
 	mux.HandleFunc("/projects/", func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasSuffix(r.URL.Path, "/artists") {
+			switch r.Method {
+			case http.MethodPost:
+				projects.AddArtist(w, r)
+			default:
+				http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+			}
+			return
+		}
+
 		switch r.Method {
 		case http.MethodGet:
 			projects.GetByID(w, r)

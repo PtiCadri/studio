@@ -10,10 +10,10 @@ import (
 )
 
 type Artists struct {
-	artistRepo repository.ArtistRepository
+	artistRepo *repository.ArtistRepository
 }
 
-func NewArtists(artistRepo repository.ArtistRepository) Artists {
+func NewArtists(artistRepo *repository.ArtistRepository) Artists {
 	return Artists{artistRepo: artistRepo}
 }
 
