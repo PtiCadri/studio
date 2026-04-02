@@ -31,6 +31,7 @@ func NewRouter(db *sql.DB) http.Handler {
 		r.Post("/", projectsHandler.Create)
 		r.Get("/{id}", projectsHandler.GetByID)
 		r.Post("/{id}/artists", projectsHandler.AddArtist)
+		r.Delete("/{id}/artists/{artistId}", projectsHandler.RemoveArtist)
 	})
 
 	r.Route("/artists", func(r chi.Router) {
