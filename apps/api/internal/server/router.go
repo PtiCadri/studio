@@ -3,62 +3,40 @@ package server
 import (
 	"database/sql"
 	"net/http"
-	"strings"
+
+	"github.com/go-chi/chi/v5"
 
 	"github.com/PtiCadri/studio/apps/api/internal/handlers"
-	"github.com/PtiCadri/studio/apps/api/internal/repository"
+	artistHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/artists"
+	projectHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/projects"
+	artistRepo "github.com/PtiCadri/studio/apps/api/internal/repository/artists"
+	projectRepo "github.com/PtiCadri/studio/apps/api/internal/repository/projects"
 )
 
 func NewRouter(db *sql.DB) http.Handler {
-	mux := http.NewServeMux()
+	r := chi.NewRouter()
 
 	health := handlers.NewHealth(db)
-	projectRepo := repository.NewProject(db)
-	projects := handlers.NewProjects(projectRepo)
 
-	artistRepo := repository.NewArtist(db)
-	artists := handlers.NewArtists(artistRepo)
+	projectsRepository := projectRepo.New(db)
+	projectsHandler := projectHandlers.New(projectsRepository)
 
-	mux.HandleFunc("/health", health.Get)
+	artistsRepository := artistRepo.New(db)
+	artistsHandler := artistHandlers.New(artistsRepository)
 
-	mux.HandleFunc("/projects", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case http.MethodGet:
-			projects.List(w, r)
-		case http.MethodPost:
-			projects.Create(w, r)
-		default:
-			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
-		}
+	r.Get("/health", health.Get)
+
+	r.Route("/projects", func(r chi.Router) {
+		r.Get("/", projectsHandler.List)
+		r.Post("/", projectsHandler.Create)
+		r.Get("/{id}", projectsHandler.GetByID)
+		r.Post("/{id}/artists", projectsHandler.AddArtist)
 	})
 
-	mux.HandleFunc("/projects/", func(w http.ResponseWriter, r *http.Request) {
-		if strings.HasSuffix(r.URL.Path, "/artists") {
-			switch r.Method {
-			case http.MethodPost:
-				projects.AddArtist(w, r)
-			default:
-				http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
-			}
-			return
-		}
-
-		switch r.Method {
-		case http.MethodGet:
-			projects.GetByID(w, r)
-		default:
-			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
-		}
+	r.Route("/artists", func(r chi.Router) {
+		// r.Get("/", artistsHandler.List)
+		r.Post("/", artistsHandler.Create)
 	})
 
-	mux.HandleFunc("/artists", func(w http.ResponseWriter, r *http.Request) {
-		switch r.Method {
-		case http.MethodPost:
-			artists.Create(w, r)
-		default:
-			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
-		}
-	})
-
-	return mux
+	return r
 }

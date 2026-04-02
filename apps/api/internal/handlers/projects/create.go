@@ -1,23 +1,14 @@
-package handlers
+package projectHandler
 
 import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/PtiCadri/studio/apps/api/internal/repository"
 	"github.com/PtiCadri/studio/apps/api/internal/responses"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-type Artists struct {
-	artistRepo *repository.ArtistRepository
-}
-
-func NewArtists(artistRepo *repository.ArtistRepository) Artists {
-	return Artists{artistRepo: artistRepo}
-}
-
-func (h Artists) Create(w http.ResponseWriter, r *http.Request) {
+func (h Projects) Create(w http.ResponseWriter, r *http.Request) {
 	var request struct {
 		Name     string  `json:"name"`
 		ImageURL *string `json:"image_url"`
@@ -33,7 +24,7 @@ func (h Artists) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	artist, err := h.artistRepo.Create(
+	project, err := h.projectRepo.Create(
 		r.Context(),
 		request.Name,
 		request.ImageURL,
@@ -41,18 +32,18 @@ func (h Artists) Create(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(
 			w,
-			"failed to create artist",
+			"failed to create project",
 			http.StatusInternalServerError,
 		)
 		return
 	}
 
-	response := responses.ArtistResponse{
-		ID:        artist.ID,
-		Name:      artist.Name,
-		ImageURL:  utils.NullStringToPointer(artist.ImageURL),
-		CreatedAt: artist.CreatedAt,
-		UpdatedAt: artist.UpdatedAt,
+	response := responses.ProjectResponse{
+		ID:        project.ID,
+		Name:      project.Name,
+		ImageURL:  utils.NullStringToPointer(project.ImageURL),
+		CreatedAt: project.CreatedAt,
+		UpdatedAt: project.UpdatedAt,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -61,7 +52,7 @@ func (h Artists) Create(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(response); err != nil {
 		http.Error(
 			w,
-			"failed to encode artist",
+			"failed to encode project",
 			http.StatusInternalServerError,
 		)
 	}

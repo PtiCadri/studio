@@ -1,19 +1,10 @@
-package repository
+package artistRepo
 
 import (
 	"context"
-	"database/sql"
 
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
-
-type ArtistRepository struct {
-	db *sql.DB
-}
-
-func NewArtist(db *sql.DB) *ArtistRepository {
-	return &ArtistRepository{db: db}
-}
 
 func (r ArtistRepository) Create(
 	ctx context.Context,
