@@ -10,10 +10,13 @@ import (
 
 func NewRouter(db *sql.DB) http.Handler {
 	mux := http.NewServeMux()
-
 	health := handlers.NewHealth(db)
+
 	projectRepo := repository.NewProject(db)
 	projects := handlers.NewProjects(*projectRepo)
+
+	artistRepo := repository.NewArtist(db)
+	artists := handlers.NewArtists(artistRepo)
 
 	mux.HandleFunc("/health", health.Get)
 
@@ -24,11 +27,25 @@ func NewRouter(db *sql.DB) http.Handler {
 		case http.MethodPost:
 			projects.Create(w, r)
 		default:
-			http.Error(
-				w,
-				"method not allowed",
-				http.StatusMethodNotAllowed,
-			)
+			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		}
+	})
+
+	mux.HandleFunc("/projects/", func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case http.MethodGet:
+			projects.GetByID(w, r)
+		default:
+			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		}
+	})
+
+	mux.HandleFunc("/artists", func(w http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case http.MethodPost:
+			artists.Create(w, r)
+		default:
+			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
 		}
 	})
 
