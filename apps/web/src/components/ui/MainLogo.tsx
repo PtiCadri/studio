@@ -14,6 +14,7 @@ export default function MainLogo({ marginBottom }: { marginBottom?: number }) {
 const logoSx = (marginBottom?: number): SxProps<Theme> => ({
   width: "auto",
   minHeight: { xs: "180px", lg: "280px" },
+  maxHeight: { xs: "180px", lg: "280px" },
   mb: marginBottom ?? "0px",
   userSelect: "none",
 });
