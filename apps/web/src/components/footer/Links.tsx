@@ -53,7 +53,7 @@ export default function Links() {
         Plan du site
       </Button>
       <Typography variant="body2" gutterBottom>
-        © 2026 Nha Dès Records
+        © 2022 Nha Dès Records
       </Typography>
     </Stack>
   );
