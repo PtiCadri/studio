@@ -40,8 +40,11 @@ export default function AdminPage() {
           Manage Events
         </button>
       </Link>
-
+      <Link href="/admin/projects">
+        <button style={{marginLeft: "20px"}}>
+          Manage Projects 
+        </button>
+      </Link>
     </div>
-
   )
 }

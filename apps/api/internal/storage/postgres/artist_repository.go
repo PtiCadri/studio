@@ -50,7 +50,7 @@ func (r *ArtistRepository) GetAllArtists(ctx context.Context) ([]domain.Artist, 
 	}
 	defer rows.Close()
 
-	var artists []domain.Artist
+	artists := []domain.Artist{}
 	for rows.Next() {
 		var artist domain.Artist
 		if err := rows.Scan(
