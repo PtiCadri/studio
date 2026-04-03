@@ -55,6 +55,8 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 
 			// Artists
 			r.Post("/artists", artistsHandler.Create)
+			r.Patch("/artists/{id}", artistsHandler.Patch)
+			r.Delete("/artists/{id}", artistsHandler.Delete)
 			r.Put("/artists/{id}/links", artistsHandler.PutLinks)
 			r.Put("/artists/{id}/integrations", artistsHandler.PutIntegrations)
 		})
@@ -70,6 +72,7 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 
 	r.Route("/artists", func(r chi.Router) {
 		r.Get("/", artistsHandler.List)
+		r.Get("/{id}", artistsHandler.GetByID)
 		r.Get("/{id}/links", artistsHandler.GetLinks)
 		r.Get("/{id}/integrations", artistsHandler.GetIntegrations)
 	})
