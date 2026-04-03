@@ -14,6 +14,8 @@ import (
 	adminRepo "github.com/PtiCadri/studio/apps/api/internal/repository/admins"
 	artistRepo "github.com/PtiCadri/studio/apps/api/internal/repository/artists"
 	projectRepo "github.com/PtiCadri/studio/apps/api/internal/repository/projects"
+
+	"github.com/PtiCadri/studio/apps/api/internal/middleware"
 )
 
 func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
@@ -37,26 +39,34 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 
 	r.Route("/admin", func(r chi.Router) {
 		r.Post("/login", adminsHandler.Login)
+
+		r.Group(func(r chi.Router) {
+			r.Use(middleware.AdminAuth(cfg.AuthSecret))
+
+			// Projects
+			r.Post("/projects", projectsHandler.Create)
+			r.Put("/projects/{id}/links", projectsHandler.PutLinks)
+			r.Put("/projects/{id}/integrations", projectsHandler.PutIntegrations)
+			r.Post("/projects/{id}/artists", projectsHandler.AddArtist)
+			r.Delete("/projects/{id}/artists/{artistId}", projectsHandler.RemoveArtist)
+
+			// Artists
+			r.Post("/artists", artistsHandler.Create)
+			r.Put("/artists/{id}/links", artistsHandler.PutLinks)
+			r.Put("/artists/{id}/integrations", artistsHandler.PutIntegrations)
+		})
 	})
 
 	r.Route("/projects", func(r chi.Router) {
 		r.Get("/", projectsHandler.List)
-		r.Post("/", projectsHandler.Create)
 		r.Get("/{id}", projectsHandler.GetByID)
-		r.Put("/{id}/links", projectsHandler.PutLinks)
 		r.Get("/{id}/links", projectsHandler.GetLinks)
-		r.Put("/{id}/integrations", projectsHandler.PutIntegrations)
 		r.Get("/{id}/integrations", projectsHandler.GetIntegrations)
-		r.Post("/{id}/artists", projectsHandler.AddArtist)
-		r.Delete("/{id}/artists/{artistId}", projectsHandler.RemoveArtist)
 	})
 
 	r.Route("/artists", func(r chi.Router) {
 		r.Get("/", artistsHandler.List)
-		r.Post("/", artistsHandler.Create)
-		r.Put("/{id}/links", artistsHandler.PutLinks)
 		r.Get("/{id}/links", artistsHandler.GetLinks)
-		r.Put("/{id}/integrations", artistsHandler.PutIntegrations)
 		r.Get("/{id}/integrations", artistsHandler.GetIntegrations)
 	})
 
