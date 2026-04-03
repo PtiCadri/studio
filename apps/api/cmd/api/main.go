@@ -11,13 +11,17 @@ import (
 func main() {
 	cfg := config.Load()
 
+	if cfg.AuthSecret == "" {
+		log.Fatal("AUTH_SECRET is required")
+	}
+
 	pg, err := storage.NewPostgres(cfg.DatabaseUrl)
 	if err != nil {
 		log.Fatalf("failed to connect to database: %v", err)
 	}
 	defer pg.DB.Close()
 
-	router := server.NewRouter(pg.DB)
+	router := server.NewRouter(pg.DB, cfg)
 	srv := server.New(":"+cfg.Port, router)
 
 	log.Fatal(srv.Start())

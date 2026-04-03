@@ -5,6 +5,7 @@ import "os"
 type Config struct {
 	Port        string
 	DatabaseUrl string
+	AuthSecret  string
 }
 
 func Load() Config {
@@ -16,5 +17,6 @@ func Load() Config {
 	return Config{
 		Port:        port,
 		DatabaseUrl: os.Getenv("DATABASE_URL"),
+		AuthSecret:  os.Getenv("AUTH_SECRET"),
 	}
 }

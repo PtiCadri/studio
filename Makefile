@@ -7,6 +7,10 @@ up-web:
 down:
 	docker compose down
 
+# migrate-up:
+# 	docker compose exec api sh -lc \
+# 	'migrate -path /app/migrations -database "$DATABASE_URL" up'
+
 logs:
 	docker compose logs -f
 
