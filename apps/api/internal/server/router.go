@@ -37,6 +37,7 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 
 	r.Get("/health", health.Get)
 
+	// Protected routes
 	r.Route("/admin", func(r chi.Router) {
 		r.Post("/login", adminsHandler.Login)
 
@@ -45,9 +46,11 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 
 			// Projects
 			r.Post("/projects", projectsHandler.Create)
+			r.Delete("/projects/{id}", projectsHandler.Delete)
 			r.Put("/projects/{id}/links", projectsHandler.PutLinks)
 			r.Put("/projects/{id}/integrations", projectsHandler.PutIntegrations)
 			r.Post("/projects/{id}/artists", projectsHandler.AddArtist)
+			r.Patch("/projects/{id}", projectsHandler.Patch)
 			r.Delete("/projects/{id}/artists/{artistId}", projectsHandler.RemoveArtist)
 
 			// Artists
@@ -57,6 +60,7 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 		})
 	})
 
+	// Public routes
 	r.Route("/projects", func(r chi.Router) {
 		r.Get("/", projectsHandler.List)
 		r.Get("/{id}", projectsHandler.GetByID)
