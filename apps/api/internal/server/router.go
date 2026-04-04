@@ -11,6 +11,8 @@ import (
 	adminHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/admins"
 	artistHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/artists"
 	projectHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/projects"
+	uploadHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/uploads"
+
 	adminRepo "github.com/PtiCadri/studio/apps/api/internal/repository/admins"
 	artistRepo "github.com/PtiCadri/studio/apps/api/internal/repository/artists"
 	projectRepo "github.com/PtiCadri/studio/apps/api/internal/repository/projects"
@@ -20,6 +22,10 @@ import (
 
 func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 	r := chi.NewRouter()
+
+	// =========================
+	// Dependencies
+	// =========================
 
 	health := handlers.NewHealth(db)
 
@@ -35,41 +41,79 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 		cfg.AuthSecret,
 	)
 
+	uploadsHandler := uploadHandlers.New()
+
+	// =========================
+	// Static file serving
+	// =========================
+
+	fileServer := http.FileServer(http.Dir("./uploads"))
+	r.Handle("/uploads/*", http.StripPrefix("/uploads/", fileServer))
+
+	// =========================
+	// Health
+	// =========================
+
 	r.Get("/health", health.Get)
 
-	// Protected routes
+	// =========================
+	// Admin (protected)
+	// =========================
+
 	r.Route("/admin", func(r chi.Router) {
+		// Public admin route
 		r.Post("/login", adminsHandler.Login)
 
+		// Protected routes
 		r.Group(func(r chi.Router) {
 			r.Use(middleware.AdminAuth(cfg.AuthSecret))
 
+			// Uploads
+			r.Post("/uploads", uploadsHandler.Create)
+
+			// =========================
 			// Projects
+			// =========================
+
 			r.Post("/projects", projectsHandler.Create)
 			r.Delete("/projects/{id}", projectsHandler.Delete)
+
+			r.Patch("/projects/{id}", projectsHandler.Patch)
+
 			r.Put("/projects/{id}/links", projectsHandler.PutLinks)
 			r.Patch("/projects/{id}/links", projectsHandler.PatchLinks)
+
 			r.Put("/projects/{id}/integrations", projectsHandler.PutIntegrations)
 			r.Patch("/projects/{id}/integrations", projectsHandler.PatchIntegrations)
+
 			r.Post("/projects/{id}/artists", projectsHandler.AddArtist)
-			r.Patch("/projects/{id}", projectsHandler.Patch)
 			r.Delete("/projects/{id}/artists/{artistId}", projectsHandler.RemoveArtist)
 
+			// =========================
 			// Artists
+			// =========================
+
 			r.Post("/artists", artistsHandler.Create)
-			r.Patch("/artists/{id}", artistsHandler.Patch)
 			r.Delete("/artists/{id}", artistsHandler.Delete)
+
+			r.Patch("/artists/{id}", artistsHandler.Patch)
+
 			r.Put("/artists/{id}/links", artistsHandler.PutLinks)
 			r.Patch("/artists/{id}/links", artistsHandler.PatchLinks)
+
 			r.Put("/artists/{id}/integrations", artistsHandler.PutIntegrations)
 			r.Patch("/artists/{id}/integrations", artistsHandler.PatchIntegrations)
 		})
 	})
 
+	// =========================
 	// Public routes
+	// =========================
+
 	r.Route("/projects", func(r chi.Router) {
 		r.Get("/", projectsHandler.List)
 		r.Get("/{id}", projectsHandler.GetByID)
+
 		r.Get("/{id}/links", projectsHandler.GetLinks)
 		r.Get("/{id}/integrations", projectsHandler.GetIntegrations)
 	})
@@ -77,6 +121,7 @@ func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 	r.Route("/artists", func(r chi.Router) {
 		r.Get("/", artistsHandler.List)
 		r.Get("/{id}", artistsHandler.GetByID)
+
 		r.Get("/{id}/links", artistsHandler.GetLinks)
 		r.Get("/{id}/integrations", artistsHandler.GetIntegrations)
 	})
