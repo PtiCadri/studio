@@ -1,10 +1,38 @@
-import { CustomIcon } from "@/components/ui";
 import { IconButton } from "@mui/material";
 
-export default function LinkIcon({ icon }: { icon: string }) {
+import { iconPaths } from "@/components/footer/socialLinks/constants";
+import CustomIcon from "@/components/ui/CustomIcon";
+
+type IconKey = "spotify" | "deezer" | "appleMusic" | "soundcloud" | "youtube";
+
+type LinkIconAction =
+  | {
+      type: "external_link";
+      href: string;
+    }
+  | {
+      type: "callback";
+      onClick: () => void;
+    };
+
+type LinkIconProps = {
+  icon: IconKey;
+  action: LinkIconAction;
+};
+
+export default function LinkIcon({ icon, action }: LinkIconProps) {
+  function handleClick(): void {
+    if (action.type === "external_link") {
+      window.open(action.href, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    action.onClick();
+  }
+
   return (
-    <IconButton>
-      <CustomIcon icon={icon} sx={iconSx} />
+    <IconButton onClick={handleClick}>
+      <CustomIcon icon={iconPaths[icon]} sx={iconSx} />
     </IconButton>
   );
 }

@@ -19,6 +19,7 @@ export default function Projects() {
       {projects.map((project) => (
         <Project
           key={project.id}
+          id={project.id}
           name={project.name}
           image_url={project.image_url}
         />
@@ -32,5 +33,5 @@ const containerSx = {
   display: "grid",
   gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
   gap: 3,
-  alignItems: "stretch",
+  alignItems: "start",
 };
