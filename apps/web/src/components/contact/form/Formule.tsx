@@ -2,7 +2,7 @@ import { ServiceId } from "@/hooks/contact/useContactForm";
 import { Box, ButtonBase } from "@mui/material";
 import { buttonSx, contentSx, optionBoxSx, prestationIconSx } from "./styles";
 
-type formuleId = "single" | "project" | "album";
+type formuleId = "single" | "ep" | "album";
 
 export type formule = {
   id: formuleId;

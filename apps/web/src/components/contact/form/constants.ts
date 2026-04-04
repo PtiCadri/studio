@@ -7,8 +7,8 @@ const formules: formule[] = [
         color: "divider",
     },
     {
-        id: "project",
-        title: "Formule Projet",
+        id: "ep",
+        title: "Formule EP",
         color: "text.secondary",
     },
     {

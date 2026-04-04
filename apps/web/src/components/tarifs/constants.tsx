@@ -17,8 +17,8 @@ const formules: Formule[] = [
     tarif: { prix: "100 €" },
   },
   {
-    id: "project",
-    titre: "FORMULE PROJET",
+    id: "ep",
+    titre: "FORMULE EP",
     color: "text.secondary",
     description: "À partir de 4 titres ( EP / Mixtape )",
     tarif: {

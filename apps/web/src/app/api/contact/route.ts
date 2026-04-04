@@ -17,7 +17,7 @@ const serviceLabels: Record<ServiceId, string> = {
     mastering: "Mastering",
     live: "Accompagnement live",
     single: "Formule Single",
-    project: "Formule Projet",
+    ep: "Formule EP",
     album: "Formule Album",
 };
 
@@ -84,7 +84,7 @@ export async function POST(request: Request) {
             "mastering",
             "live",
             "single",
-            "project",
+            "ep",
             "album",
         ];
 

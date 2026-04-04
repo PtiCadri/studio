@@ -14,7 +14,7 @@ export type ServiceId =
     | "mastering"
     | "live"
     | "single"
-    | "project"
+    | "ep"
     | "album";
 
 export type ContactFormData = {
@@ -30,7 +30,7 @@ const validServices: ServiceId[] = [
     "mastering",
     "live",
     "single",
-    "project",
+    "ep",
     "album",
 ];
 
