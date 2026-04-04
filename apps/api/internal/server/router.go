@@ -22,6 +22,7 @@ import (
 
 func NewRouter(db *sql.DB, cfg config.Config) http.Handler {
 	r := chi.NewRouter()
+	r.Use(middleware.CORS(cfg.FrontendUrl))
 
 	// =========================
 	// Dependencies

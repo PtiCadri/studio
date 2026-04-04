@@ -10,6 +10,6 @@ type CustomIconKey =
     | "deezer"
     | "youtube"
     | "tiktok"
-    | "facebook";
+    | "soundcloud";
 
 export type { CustomIconInfo, CustomIconKey };

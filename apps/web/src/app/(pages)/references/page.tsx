@@ -1,8 +1,16 @@
+import Projects from "@/components/references/projects/Projects";
+import { MainLogo } from "@/components/ui";
+
 export const metadata = {
   title: "Références",
   description: "Découvrez les références de Nhadès Records.",
 };
 
 export default function References() {
-  return <></>;
+  return (
+    <>
+      <MainLogo marginBottom={5} />
+      <Projects />
+    </>
+  );
 }
