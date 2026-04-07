@@ -3,6 +3,8 @@ import { useProjects } from "@/hooks/references/useProjects";
 import { Box } from "@mui/material";
 import Project from "./Project";
 
+import { containerSx } from "./styles";
+
 export default function Projects() {
   const { projects, isLoading, error } = useProjects();
 
@@ -27,14 +29,3 @@ export default function Projects() {
     </Box>
   );
 }
-
-const containerSx = {
-  width: "100%",
-  display: "grid",
-  gridTemplateColumns: {
-    xs: "repeat(1, minmax(0, 1fr))",
-    lg: "repeat(2, minmax(0, 1fr))",
-  },
-  gap: 3,
-  alignItems: "start",
-};

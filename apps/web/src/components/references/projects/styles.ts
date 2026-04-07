@@ -1,10 +1,109 @@
 import { SxProps, Theme } from "@mui/material";
 
-const iframeSx: SxProps<Theme> = {
-    border: "none",
-    borderRadius: "4px",
-    width: "100%",
-    height: 365,
+// LINK ICON
+const iconSx: SxProps<Theme> = {
+    height: "25px",
+    width: "25px",
+    color: "text.secondary",
+
+    "&:hover": {
+        color: { lg: "primary.main" },
+    },
 };
 
-export { iframeSx };
+export { iconSx };
+
+// PROJECTS
+const containerSx: SxProps<Theme> = {
+    width: "100%",
+    display: "grid",
+    gridTemplateColumns: {
+        xs: "repeat(1, minmax(0, 1fr))",
+        lg: "repeat(2, minmax(0, 1fr))",
+    },
+    gap: 3,
+    alignItems: "start",
+};
+
+export { containerSx };
+
+// PROJECT
+const surfaceSx: SxProps<Theme> = {
+    width: "100%",
+    height: "fit-content",
+    p: 3,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+};
+
+const iconsWrapperSx: SxProps<Theme> = {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 1,
+    mt: 4,
+    flexWrap: "wrap",
+};
+
+const projectNameSx: SxProps<Theme> = {
+    fontSize: "1.4rem",
+    fontWeight: "bold",
+};
+
+const nameLinksWrapperSx: SxProps<Theme> = {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    ml: 2,
+};
+
+const imageWrapperSx: SxProps<Theme> = {
+    flexShrink: 0,
+    overflow: "hidden",
+    borderRadius: "4px",
+    position: "relative",
+    height: "180px",
+    aspectRatio: "1 / 1",
+};
+
+const integrationWrapperSx: SxProps<Theme> = {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+};
+
+const integrationHeaderSx: SxProps<Theme> = {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 2,
+};
+
+const backButtonSx: SxProps<Theme> = {
+    background: "transparent",
+    border: "1px solid",
+    borderColor: "divider",
+    color: "text.secondary",
+    borderRadius: "4px",
+    px: 2,
+    py: 0.5,
+    cursor: "pointer",
+};
+
+export {
+    backButtonSx,
+    iconsWrapperSx,
+    imageWrapperSx,
+    integrationHeaderSx,
+    integrationWrapperSx,
+    nameLinksWrapperSx,
+    projectNameSx,
+    surfaceSx,
+};

@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
-import { iframeSx } from "../styles";
-import type { IntegrationProps } from "../types";
+import { iframeSx } from "./styles";
+import type { IntegrationProps } from "./types";
 
 export default function AppleMusicIntegration({ embedUrl }: IntegrationProps) {
   return (

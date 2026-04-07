@@ -1,4 +1,4 @@
-export type Artist = {
+type Artist = {
     id: number;
     name: string;
     image_url: string | null;
@@ -6,7 +6,7 @@ export type Artist = {
     updated_at: string;
 };
 
-export type Project = {
+type Project = {
     id: number;
     name: string;
     image_url: string | null;
@@ -14,7 +14,7 @@ export type Project = {
     updated_at: string;
 };
 
-export type ProjectDetail = {
+type ProjectDetail = {
     id: number;
     name: string;
     image_url: string | null;
@@ -23,7 +23,7 @@ export type ProjectDetail = {
     artists: Artist[];
 };
 
-export type ProjectLinks = {
+type ProjectLinks = {
     project_id: number;
     spotify_url: string | null;
     deezer_url: string | null;
@@ -32,10 +32,18 @@ export type ProjectLinks = {
     youtube_url: string | null;
 };
 
-export type ProjectIntegrations = {
+type ProjectIntegrations = {
     project_id: number;
     spotify_embed_url: string | null;
     deezer_embed_url: string | null;
     apple_music_embed_url: string | null;
     soundcloud_embed_url: string | null;
+};
+
+export type {
+    Artist,
+    Project,
+    ProjectDetail,
+    ProjectIntegrations,
+    ProjectLinks,
 };
