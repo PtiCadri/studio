@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+import { API_BASE_URL } from "./constants";
 
 export function getImageUrl(path: string | null): string | null {
     if (!path) return null;

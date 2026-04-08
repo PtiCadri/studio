@@ -5,21 +5,9 @@ import type {
     ProjectLinks,
 } from "./types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+import { fetchJson } from "@/utils/fetchJson";
 
-async function fetchJson<T>(path: string): Promise<T> {
-    const response = await fetch(`${API_BASE_URL}${path}`, {
-        method: "GET",
-        cache: "no-store",
-    });
-
-    if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
-    }
-
-    return response.json() as Promise<T>;
-}
-
+// PROJECTS
 export function getProjects(): Promise<Project[]> {
     return fetchJson<Project[]>("/projects/");
 }
@@ -37,3 +25,5 @@ export function getProjectIntegrations(
 ): Promise<ProjectIntegrations> {
     return fetchJson<ProjectIntegrations>(`/projects/${id}/integrations`);
 }
+
+// ARTISTS

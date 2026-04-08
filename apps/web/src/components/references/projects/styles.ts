@@ -23,6 +23,7 @@ const containerSx: SxProps<Theme> = {
     },
     gap: 3,
     alignItems: "start",
+    mb: 5,
 };
 
 export { containerSx };

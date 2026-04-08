@@ -1,5 +1,5 @@
 import Projects from "@/components/references/projects/Projects";
-import { MainLogo } from "@/components/ui";
+import { Divider, MainLogo } from "@/components/ui";
 
 export const metadata = {
   title: "Références",
@@ -11,6 +11,7 @@ export default function References() {
     <>
       <MainLogo marginBottom={5} />
       <Projects />
+      <Divider />
     </>
   );
 }
