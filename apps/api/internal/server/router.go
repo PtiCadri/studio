@@ -8,14 +8,14 @@ import (
 
 	"github.com/PtiCadri/studio/apps/api/internal/config"
 	"github.com/PtiCadri/studio/apps/api/internal/handlers"
-	adminHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/admins"
-	artistHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/artists"
-	projectHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/projects"
+	adminHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/admin"
+	artistHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/artist"
+	projectHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/project"
 	uploadHandlers "github.com/PtiCadri/studio/apps/api/internal/handlers/uploads"
 
-	adminRepo "github.com/PtiCadri/studio/apps/api/internal/repository/admins"
-	artistRepo "github.com/PtiCadri/studio/apps/api/internal/repository/artists"
-	projectRepo "github.com/PtiCadri/studio/apps/api/internal/repository/projects"
+	adminRepo "github.com/PtiCadri/studio/apps/api/internal/repository/admin"
+	artistRepo "github.com/PtiCadri/studio/apps/api/internal/repository/artist"
+	projectRepo "github.com/PtiCadri/studio/apps/api/internal/repository/project"
 
 	"github.com/PtiCadri/studio/apps/api/internal/middleware"
 )

@@ -11,6 +11,9 @@ type contextKey string
 
 const adminIDKey contextKey = "admin_id"
 
+// AdminAuth returns a middleware function that checks if the admin_session cookie is valid.
+// If the cookie is invalid, it returns a 401 Unauthorized response.
+// If the cookie is valid, it sets the admin_id context key to the value of the cookie.
 func AdminAuth(secret string) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

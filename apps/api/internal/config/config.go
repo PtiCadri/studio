@@ -9,6 +9,9 @@ type Config struct {
 	FrontendUrl string
 }
 
+// Load returns a Config object from environment variables.
+// If the environment variable "API_PORT" is empty, it defaults to "8080".
+// The other environment variables are "DATABASE_URL", "AUTH_SECRET" and "FRONTEND_URL".
 func Load() Config {
 	port := os.Getenv("API_PORT")
 	if port == "" {

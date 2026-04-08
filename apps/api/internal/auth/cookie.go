@@ -9,6 +9,12 @@ import (
 	"strings"
 )
 
+// SignUserID generates a signed user ID cookie value.
+// It takes an integer user ID and a secret string as input.
+// The function returns a string in the format of "userID.signature"
+// where signature is the base64 encoded HMAC-SHA256 value of the user ID
+// and the secret string.
+// The returned string is a valid cookie value.
 func SignUserID(userID int64, secret string) string {
 	payload := strconv.FormatInt(userID, 10)
 
@@ -19,6 +25,11 @@ func SignUserID(userID int64, secret string) string {
 	return payload + "." + signature
 }
 
+// VerifyUserID verifies a signed user ID cookie value.
+// It takes a signed user ID cookie value and a secret string as input.
+// The function returns the user ID as an integer if the signature is valid,
+// or an error if the signature is invalid or the user ID is invalid.
+// The returned error is of type *fmt.Error.
 func VerifyUserID(value string, secret string) (int64, error) {
 	parts := strings.Split(value, ".")
 	if len(parts) != 2 {

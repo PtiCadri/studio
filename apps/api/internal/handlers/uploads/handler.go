@@ -1,4 +1,4 @@
-package uploadHandler
+package uploads
 
 type Uploads struct{}
 

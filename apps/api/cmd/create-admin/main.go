@@ -8,7 +8,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 
 	"github.com/PtiCadri/studio/apps/api/internal/config"
-	adminRepo "github.com/PtiCadri/studio/apps/api/internal/repository/admins"
+	adminRepo "github.com/PtiCadri/studio/apps/api/internal/repository/admin"
 	"github.com/PtiCadri/studio/apps/api/internal/storage"
 )
 
