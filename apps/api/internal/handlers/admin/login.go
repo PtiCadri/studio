@@ -20,16 +20,21 @@ var (
 	ErrFetchAdmin         = errors.New("failed to fetch admin user")
 )
 
-func (h Admin) Login(w http.ResponseWriter, r *http.Request) {
+func (h Handler) Login(w http.ResponseWriter, r *http.Request) {
 	request, err := decodeLoginRequest(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
+	if err := validateLoginRequest(request); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
 	admin, err := h.authenticateAdmin(r.Context(), request)
 	if err != nil {
-		h.handleLoginError(w, err)
+		handleLoginError(w, err)
 		return
 	}
 
@@ -46,20 +51,22 @@ func decodeLoginRequest(r *http.Request) (adminRequests.Login, error) {
 		return adminRequests.Login{}, errors.New("invalid request body")
 	}
 
-	if request.Email == "" || request.Password == "" {
-		return adminRequests.Login{}, errors.New(
-			"email and password are required",
-		)
-	}
-
 	return request, nil
 }
 
-func (h Admin) authenticateAdmin(
+func validateLoginRequest(request adminRequests.Login) error {
+	if request.Email == "" || request.Password == "" {
+		return errors.New("email and password are required")
+	}
+
+	return nil
+}
+
+func (h Handler) authenticateAdmin(
 	ctx context.Context,
 	request adminRequests.Login,
 ) (adminModels.Admin, error) {
-	admin, err := h.adminRepo.GetByEmail(ctx, request.Email)
+	admin, err := h.repo.GetByEmail(ctx, request.Email)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return adminModels.Admin{}, ErrInvalidCredentials
@@ -79,7 +86,7 @@ func (h Admin) authenticateAdmin(
 	return admin, nil
 }
 
-func (h Admin) handleLoginError(w http.ResponseWriter, err error) {
+func handleLoginError(w http.ResponseWriter, err error) {
 	switch err {
 	case ErrInvalidCredentials:
 		http.Error(w, err.Error(), http.StatusUnauthorized)

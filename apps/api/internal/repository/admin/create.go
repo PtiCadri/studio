@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r AdminRepository) Create(
+func (r *AdminRepository) Create(
 	ctx context.Context,
 	email string,
 	passwordHash string,

@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r AdminRepository) GetByEmail(
+func (r *AdminRepository) GetByEmail(
 	ctx context.Context,
 	email string,
 ) (models.Admin, error) {
