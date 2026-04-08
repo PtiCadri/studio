@@ -8,7 +8,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-func (h Artists) List(w http.ResponseWriter, r *http.Request) {
+func (h Handler) List(w http.ResponseWriter, r *http.Request) {
 	artists, err := h.artistRepo.List(r.Context())
 	if err != nil {
 		http.Error(w, "failed to fetch artists", http.StatusInternalServerError)

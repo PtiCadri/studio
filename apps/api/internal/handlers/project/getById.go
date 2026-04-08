@@ -13,7 +13,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-func (h Projects) GetByID(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetByID(w http.ResponseWriter, r *http.Request) {
 	idStr := chi.URLParam(r, "id")
 	id, err := strconv.ParseInt(idStr, 10, 64)
 	if err != nil {

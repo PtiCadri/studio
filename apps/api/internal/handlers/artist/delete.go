@@ -7,7 +7,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func (h Artists) Delete(w http.ResponseWriter, r *http.Request) {
+func (h Handler) Delete(w http.ResponseWriter, r *http.Request) {
 	artistIDStr := chi.URLParam(r, "id")
 	artistID, err := strconv.ParseInt(artistIDStr, 10, 64)
 	if err != nil {

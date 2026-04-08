@@ -8,7 +8,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func (h Projects) AddArtist(w http.ResponseWriter, r *http.Request) {
+func (h Handler) AddArtist(w http.ResponseWriter, r *http.Request) {
 	projectIDStr := chi.URLParam(r, "id")
 	projectID, err := strconv.ParseInt(projectIDStr, 10, 64)
 	if err != nil {

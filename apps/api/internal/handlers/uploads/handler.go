@@ -1,7 +1,7 @@
 package uploads
 
-type Uploads struct{}
+type Handler struct{}
 
-func New() Uploads {
-	return Uploads{}
+func New() Handler {
+	return Handler{}
 }

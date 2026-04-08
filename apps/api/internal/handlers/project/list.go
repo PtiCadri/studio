@@ -8,7 +8,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-func (h Projects) List(w http.ResponseWriter, r *http.Request) {
+func (h Handler) List(w http.ResponseWriter, r *http.Request) {
 	projects, err := h.projectRepo.List(r.Context())
 	if err != nil {
 		http.Error(w, "failed to fetch projects", http.StatusInternalServerError)

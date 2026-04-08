@@ -32,7 +32,7 @@ var allowedMimeTypes = map[string]bool{
 	"image/webp": true,
 }
 
-func (h Uploads) Create(w http.ResponseWriter, r *http.Request) {
+func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 	r.Body = http.MaxBytesReader(w, r.Body, 5<<20) // 5 MB
 	err := r.ParseMultipartForm(10 << 20)          // 10 MB
 	if err != nil {

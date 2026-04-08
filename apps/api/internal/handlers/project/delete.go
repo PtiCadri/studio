@@ -7,7 +7,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func (h Projects) Delete(w http.ResponseWriter, r *http.Request) {
+func (h Handler) Delete(w http.ResponseWriter, r *http.Request) {
 	projectIDStr := chi.URLParam(r, "id")
 	projectID, err := strconv.ParseInt(projectIDStr, 10, 64)
 	if err != nil {

@@ -12,7 +12,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-func (h Projects) GetIntegrations(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetIntegrations(w http.ResponseWriter, r *http.Request) {
 	projectIDStr := chi.URLParam(r, "id")
 	projectID, err := strconv.ParseInt(projectIDStr, 10, 64)
 	if err != nil {

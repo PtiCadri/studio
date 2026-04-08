@@ -12,7 +12,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-func (h Artists) PutLinks(w http.ResponseWriter, r *http.Request) {
+func (h Handler) PutLinks(w http.ResponseWriter, r *http.Request) {
 	artistIDStr := chi.URLParam(r, "id")
 	artistID, err := strconv.ParseInt(artistIDStr, 10, 64)
 	if err != nil {

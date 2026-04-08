@@ -13,7 +13,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-func (h Projects) PatchIntegrations(w http.ResponseWriter, r *http.Request) {
+func (h Handler) PatchIntegrations(w http.ResponseWriter, r *http.Request) {
 	projectIDStr := chi.URLParam(r, "id")
 	projectID, err := strconv.ParseInt(projectIDStr, 10, 64)
 	if err != nil {

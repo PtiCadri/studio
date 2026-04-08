@@ -8,7 +8,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-func (h Artists) Create(w http.ResponseWriter, r *http.Request) {
+func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 	var request struct {
 		Name     string  `json:"name"`
 		ImageURL *string `json:"image_url"`
