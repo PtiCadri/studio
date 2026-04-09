@@ -29,16 +29,6 @@ func ToProjectDetailResponse(
 		ImageURL:  base.ImageURL,
 		CreatedAt: base.CreatedAt,
 		UpdatedAt: base.UpdatedAt,
-		Artists:   toArtistResponses(artists),
+		Artists:   artistResp.ToArtistResponses(artists),
 	}
-}
-
-func toArtistResponses(artists []models.Artist) []artistResp.ArtistResponse {
-	response := make([]artistResp.ArtistResponse, 0, len(artists))
-
-	for _, artist := range artists {
-		response = append(response, artistResp.ToArtistResponse(artist))
-	}
-
-	return response
 }

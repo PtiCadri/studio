@@ -24,3 +24,13 @@ func ToArtistResponse(artist models.Artist) ArtistResponse {
 		UpdatedAt: artist.UpdatedAt,
 	}
 }
+
+func ToArtistResponses(artists []models.Artist) []ArtistResponse {
+	response := make([]ArtistResponse, 0, len(artists))
+
+	for _, artist := range artists {
+		response = append(response, ToArtistResponse(artist))
+	}
+
+	return response
+}

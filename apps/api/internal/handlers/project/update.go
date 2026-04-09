@@ -4,24 +4,20 @@ import (
 	"database/sql"
 	"encoding/json"
 	"net/http"
-	"strconv"
 
-	"github.com/go-chi/chi/v5"
-
-	projectRequests "github.com/PtiCadri/studio/apps/api/internal/requests/project"
-	projectResponse "github.com/PtiCadri/studio/apps/api/internal/responses/project"
+	projectReq "github.com/PtiCadri/studio/apps/api/internal/requests/project"
+	projectResp "github.com/PtiCadri/studio/apps/api/internal/responses/project"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
-	projectIDStr := chi.URLParam(r, "id")
-	projectID, err := strconv.ParseInt(projectIDStr, 10, 64)
+	projectID, err := utils.ParseIDParam(r, "id")
 	if err != nil {
 		http.Error(w, "invalid project id", http.StatusBadRequest)
 		return
 	}
 
-	var request projectRequests.PatchProject
+	var request projectReq.PatchProject
 
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
@@ -71,17 +67,7 @@ func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// 4. Response
-	response := projectResponse.ProjectResponse{
-		ID:        project.ID,
-		Name:      project.Name,
-		ImageURL:  utils.NullStringToPointer(project.ImageURL),
-		CreatedAt: project.CreatedAt,
-		UpdatedAt: project.UpdatedAt,
-	}
+	response := projectResp.ToProjectResponse(project)
 
-	w.Header().Set("Content-Type", "application/json")
-
-	if err := json.NewEncoder(w).Encode(response); err != nil {
-		http.Error(w, "failed to encode project", http.StatusInternalServerError)
-	}
+	utils.WriteJSON(w, http.StatusOK, response)
 }

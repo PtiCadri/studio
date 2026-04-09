@@ -2,14 +2,12 @@ package project
 
 import (
 	"net/http"
-	"strconv"
 
-	"github.com/go-chi/chi/v5"
+	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) Delete(w http.ResponseWriter, r *http.Request) {
-	projectIDStr := chi.URLParam(r, "id")
-	projectID, err := strconv.ParseInt(projectIDStr, 10, 64)
+	projectID, err := utils.ParseIDParam(r, "id")
 	if err != nil {
 		http.Error(w, "invalid project id", http.StatusBadRequest)
 		return

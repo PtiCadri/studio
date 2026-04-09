@@ -1,28 +1,23 @@
 package project
 
 import (
-	"encoding/json"
 	"net/http"
-	"strconv"
 
-	"github.com/go-chi/chi/v5"
-
-	projectRequests "github.com/PtiCadri/studio/apps/api/internal/requests/project"
-	projectResponse "github.com/PtiCadri/studio/apps/api/internal/responses/project"
+	projectReq "github.com/PtiCadri/studio/apps/api/internal/requests/project"
+	projectResp "github.com/PtiCadri/studio/apps/api/internal/responses/project"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) PutLinks(w http.ResponseWriter, r *http.Request) {
-	projectIDStr := chi.URLParam(r, "id")
-	projectID, err := strconv.ParseInt(projectIDStr, 10, 64)
+	projectID, err := utils.ParseIDParam(r, "id")
 	if err != nil {
 		http.Error(w, "invalid project id", http.StatusBadRequest)
 		return
 	}
 
-	var request projectRequests.PutLinks
+	var request projectReq.PutLinks
 
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	if err := utils.DecodeJSON(r, &request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
@@ -45,18 +40,7 @@ func (h Handler) PutLinks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := projectResponse.ProjectLinksResponse{
-		ProjectID:     links.ProjectID,
-		SpotifyURL:    utils.NullStringToPointer(links.SpotifyURL),
-		DeezerURL:     utils.NullStringToPointer(links.DeezerURL),
-		AppleMusicURL: utils.NullStringToPointer(links.AppleMusicURL),
-		SoundcloudURL: utils.NullStringToPointer(links.SoundcloudURL),
-		YoutubeURL:    utils.NullStringToPointer(links.YoutubeURL),
-	}
+	response := projectResp.ToProjectLinksResponse(links)
 
-	w.Header().Set("Content-Type", "application/json")
-
-	if err := json.NewEncoder(w).Encode(response); err != nil {
-		http.Error(w, "failed to encode project links", http.StatusInternalServerError)
-	}
+	utils.WriteJSON(w, http.StatusOK, response)
 }
