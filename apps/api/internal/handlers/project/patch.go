@@ -2,7 +2,6 @@ package project
 
 import (
 	"database/sql"
-	"encoding/json"
 	"net/http"
 
 	projectReq "github.com/PtiCadri/studio/apps/api/internal/requests/project"
@@ -18,13 +17,11 @@ func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var request projectReq.PatchProject
-
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	if err := utils.DecodeJSON(r, &request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
 
-	// 1. Fetch current project
 	currentProject, err := h.projectRepo.GetByID(r.Context(), projectID)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -36,25 +33,8 @@ func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 2. Merge values
-	name := currentProject.Name
-	if request.Name != nil {
-		name = *request.Name
-	}
+	name, imageURL := mergeProjectPatch(currentProject, request)
 
-	var imageURL *string
-
-	// keep current value if exists
-	if currentProject.ImageURL.Valid {
-		imageURL = &currentProject.ImageURL.String
-	}
-
-	// override if provided
-	if request.ImageURL != nil {
-		imageURL = request.ImageURL
-	}
-
-	// 3. Reuse existing update method
 	project, err := h.projectRepo.Update(
 		r.Context(),
 		projectID,
@@ -66,8 +46,6 @@ func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// 4. Response
 	response := projectResp.ToProjectResponse(project)
-
 	utils.WriteJSON(w, http.StatusOK, response)
 }
