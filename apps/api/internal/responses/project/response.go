@@ -1,4 +1,4 @@
-package artist
+package project
 
 import (
 	"time"
@@ -7,7 +7,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
-type ArtistResponse struct {
+type ProjectResponse struct {
 	ID        int64     `json:"id"`
 	Name      string    `json:"name"`
 	ImageURL  *string   `json:"image_url"`
@@ -15,12 +15,12 @@ type ArtistResponse struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
-func ToArtistResponse(artist models.Artist) ArtistResponse {
-	return ArtistResponse{
-		ID:        artist.ID,
-		Name:      artist.Name,
-		ImageURL:  utils.NullStringToPointer(artist.ImageURL),
-		CreatedAt: artist.CreatedAt,
-		UpdatedAt: artist.UpdatedAt,
+func ToProjectResponse(project models.Project) ProjectResponse {
+	return ProjectResponse{
+		ID:        project.ID,
+		Name:      project.Name,
+		ImageURL:  utils.NullStringToPointer(project.ImageURL),
+		CreatedAt: project.CreatedAt,
+		UpdatedAt: project.UpdatedAt,
 	}
 }

@@ -3,7 +3,7 @@ package project
 import (
 	"net/http"
 
-	projectResponse "github.com/PtiCadri/studio/apps/api/internal/responses/project"
+	projectResp "github.com/PtiCadri/studio/apps/api/internal/responses/project"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
@@ -14,10 +14,10 @@ func (h Handler) List(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := make([]projectResponse.ProjectResponse, 0, len(projects))
+	response := make([]projectResp.ProjectResponse, 0, len(projects))
 
 	for _, project := range projects {
-		response = append(response, toProjectResponse(project))
+		response = append(response, projectResp.ToProjectResponse(project))
 	}
 
 	utils.WriteJSON(w, http.StatusOK, response)

@@ -7,6 +7,8 @@ import (
 
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
+
+	projectResp "github.com/PtiCadri/studio/apps/api/internal/responses/project"
 )
 
 func (h Handler) GetByID(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +30,7 @@ func (h Handler) GetByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := toProjectDetailResponse(project, artists)
+	response := projectResp.ToProjectDetailResponse(project, artists)
 	utils.WriteJSON(w, http.StatusOK, response)
 }
 

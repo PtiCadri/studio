@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	req "github.com/PtiCadri/studio/apps/api/internal/requests/project"
+	projectResp "github.com/PtiCadri/studio/apps/api/internal/responses/project"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
@@ -35,7 +36,7 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := toProjectResponse(project)
+	response := projectResp.ToProjectResponse(project)
 
 	utils.WriteJSON(w, http.StatusCreated, response)
 }
