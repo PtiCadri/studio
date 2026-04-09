@@ -1,11 +1,13 @@
 export type IconKey =
     | "spotify"
-    | "deezer"
     | "appleMusic"
+    | "deezer"
+    | "youtube"
+    | "tiktok"
     | "soundcloud"
-    | "youtube";
+    | "instagram";
 
-export type ProjectAction = {
+export type ArtistAction = {
     key: string;
     icon: IconKey;
     action:

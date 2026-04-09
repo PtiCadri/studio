@@ -1,4 +1,6 @@
-type Artist = {
+import { Project } from "../projects/types";
+
+export type Artist = {
     id: number;
     name: string;
     image_url: string | null;
@@ -6,43 +8,29 @@ type Artist = {
     updated_at: string;
 };
 
-type Project = {
+export type ArtistDetail = {
     id: number;
     name: string;
     image_url: string | null;
     created_at: string;
     updated_at: string;
+    projects: Project[];
 };
 
-type ProjectDetail = {
-    id: number;
-    name: string;
-    image_url: string | null;
-    created_at: string;
-    updated_at: string;
-    artists: Artist[];
-};
-
-type ProjectLinks = {
-    project_id: number;
+export type ArtistLinks = {
+    artist_id: number;
     spotify_url: string | null;
     deezer_url: string | null;
     apple_music_url: string | null;
     soundcloud_url: string | null;
     youtube_url: string | null;
+    instagram_url: string | null;
+    tiktok_url: string | null;
 };
 
-type ProjectIntegrations = {
+export type ArtistIntegrations = {
     project_id: number;
     spotify_embed_url: string | null;
     deezer_embed_url: string | null;
     apple_music_embed_url: string | null;
-};
-
-export type {
-    Artist,
-    Project,
-    ProjectDetail,
-    ProjectIntegrations,
-    ProjectLinks,
 };
