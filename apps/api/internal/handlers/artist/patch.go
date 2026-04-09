@@ -2,28 +2,23 @@ package artist
 
 import (
 	"database/sql"
-	"encoding/json"
 	"net/http"
-	"strconv"
 
-	"github.com/go-chi/chi/v5"
-
-	artistRequests "github.com/PtiCadri/studio/apps/api/internal/requests/artist"
-	artistResponse "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
+	artistReq "github.com/PtiCadri/studio/apps/api/internal/requests/artist"
+	artistResp "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
-	artistIDStr := chi.URLParam(r, "id")
-	artistID, err := strconv.ParseInt(artistIDStr, 10, 64)
+	artistID, err := utils.ParseIDParam(r, "id")
 	if err != nil {
 		http.Error(w, "invalid artist id", http.StatusBadRequest)
 		return
 	}
 
-	var request artistRequests.PatchArtist
+	var request artistReq.PatchArtist
 
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	if err := utils.DecodeJSON(r, &request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
@@ -39,20 +34,7 @@ func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	name := currentArtist.Name
-	if request.Name != nil {
-		name = *request.Name
-	}
-
-	var imageURL *string
-
-	if currentArtist.ImageURL.Valid {
-		imageURL = &currentArtist.ImageURL.String
-	}
-
-	if request.ImageURL != nil {
-		imageURL = request.ImageURL
-	}
+	name, imageURL := mergeArtistPatch(currentArtist, request)
 
 	artist, err := h.artistRepo.Update(
 		r.Context(),
@@ -65,17 +47,6 @@ func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := artistResponse.ArtistResponse{
-		ID:        artist.ID,
-		Name:      artist.Name,
-		ImageURL:  utils.NullStringToPointer(artist.ImageURL),
-		CreatedAt: artist.CreatedAt,
-		UpdatedAt: artist.UpdatedAt,
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-
-	if err := json.NewEncoder(w).Encode(response); err != nil {
-		http.Error(w, "failed to encode artist", http.StatusInternalServerError)
-	}
+	response := artistResp.ToArtistResponse(artist)
+	utils.WriteJSON(w, http.StatusOK, response)
 }

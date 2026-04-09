@@ -2,28 +2,23 @@ package artist
 
 import (
 	"database/sql"
-	"encoding/json"
 	"net/http"
-	"strconv"
 
-	"github.com/go-chi/chi/v5"
-
-	artistRequests "github.com/PtiCadri/studio/apps/api/internal/requests/artist"
-	artistResponse "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
+	artistReq "github.com/PtiCadri/studio/apps/api/internal/requests/artist"
+	artistResp "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) PatchLinks(w http.ResponseWriter, r *http.Request) {
-	artistIDStr := chi.URLParam(r, "id")
-	artistID, err := strconv.ParseInt(artistIDStr, 10, 64)
+	artistID, err := utils.ParseIDParam(r, "id")
 	if err != nil {
 		http.Error(w, "invalid artist id", http.StatusBadRequest)
 		return
 	}
 
-	var request artistRequests.PatchLinks
+	var request artistReq.PatchLinks
 
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	if err := utils.DecodeJSON(r, &request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
@@ -90,20 +85,6 @@ func (h Handler) PatchLinks(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := artistResponse.ArtistLinksResponse{
-		ArtistID:      links.ArtistID,
-		SpotifyURL:    utils.NullStringToPointer(links.SpotifyURL),
-		DeezerURL:     utils.NullStringToPointer(links.DeezerURL),
-		AppleMusicURL: utils.NullStringToPointer(links.AppleMusicURL),
-		SoundcloudURL: utils.NullStringToPointer(links.SoundcloudURL),
-		YoutubeURL:    utils.NullStringToPointer(links.YoutubeURL),
-		InstagramURL:  utils.NullStringToPointer(links.InstagramURL),
-		TiktokURL:     utils.NullStringToPointer(links.TiktokURL),
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-
-	if err := json.NewEncoder(w).Encode(response); err != nil {
-		http.Error(w, "failed to encode artist links", http.StatusInternalServerError)
-	}
+	response := artistResp.ToArtistLinksResponse(links)
+	utils.WriteJSON(w, http.StatusOK, response)
 }

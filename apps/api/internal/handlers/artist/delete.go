@@ -2,14 +2,12 @@ package artist
 
 import (
 	"net/http"
-	"strconv"
 
-	"github.com/go-chi/chi/v5"
+	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) Delete(w http.ResponseWriter, r *http.Request) {
-	artistIDStr := chi.URLParam(r, "id")
-	artistID, err := strconv.ParseInt(artistIDStr, 10, 64)
+	artistID, err := utils.ParseIDParam(r, "id")
 	if err != nil {
 		http.Error(w, "invalid artist id", http.StatusBadRequest)
 		return

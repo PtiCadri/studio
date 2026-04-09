@@ -17,6 +17,7 @@ func (h Handler) Patch(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var request projectReq.PatchProject
+
 	if err := utils.DecodeJSON(r, &request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return

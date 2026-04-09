@@ -1,20 +1,17 @@
 package artist
 
 import (
-	"encoding/json"
 	"net/http"
 
-	artistResponse "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
+	artistReq "github.com/PtiCadri/studio/apps/api/internal/requests/artist"
+	artistResp "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
-	var request struct {
-		Name     string  `json:"name"`
-		ImageURL *string `json:"image_url"`
-	}
+	var request artistReq.CreateArtist
 
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	if err := utils.DecodeJSON(r, &request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
@@ -38,22 +35,6 @@ func (h Handler) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := artistResponse.ArtistResponse{
-		ID:        artist.ID,
-		Name:      artist.Name,
-		ImageURL:  utils.NullStringToPointer(artist.ImageURL),
-		CreatedAt: artist.CreatedAt,
-		UpdatedAt: artist.UpdatedAt,
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
-
-	if err := json.NewEncoder(w).Encode(response); err != nil {
-		http.Error(
-			w,
-			"failed to encode artist",
-			http.StatusInternalServerError,
-		)
-	}
+	response := artistResp.ToArtistResponse(artist)
+	utils.WriteJSON(w, http.StatusCreated, response)
 }

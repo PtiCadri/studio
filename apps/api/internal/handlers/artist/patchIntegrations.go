@@ -2,28 +2,23 @@ package artist
 
 import (
 	"database/sql"
-	"encoding/json"
 	"net/http"
-	"strconv"
 
-	"github.com/go-chi/chi/v5"
-
-	artistRequests "github.com/PtiCadri/studio/apps/api/internal/requests/artist"
-	artistResponse "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
+	artistReq "github.com/PtiCadri/studio/apps/api/internal/requests/artist"
+	artistResp "github.com/PtiCadri/studio/apps/api/internal/responses/artist"
 	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 func (h Handler) PatchIntegrations(w http.ResponseWriter, r *http.Request) {
-	artistIDStr := chi.URLParam(r, "id")
-	artistID, err := strconv.ParseInt(artistIDStr, 10, 64)
+	artistID, err := utils.ParseIDParam(r, "id")
 	if err != nil {
 		http.Error(w, "invalid artist id", http.StatusBadRequest)
 		return
 	}
 
-	var request artistRequests.PatchIntegrations
+	var request artistReq.PatchIntegrations
 
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	if err := utils.DecodeJSON(r, &request); err != nil {
 		http.Error(w, "invalid request body", http.StatusBadRequest)
 		return
 	}
@@ -87,20 +82,6 @@ func (h Handler) PatchIntegrations(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := artistResponse.ArtistIntegrationsResponse{
-		ArtistID:           integrations.ArtistID,
-		SpotifyEmbedURL:    utils.NullStringToPointer(integrations.SpotifyEmbedURL),
-		DeezerEmbedURL:     utils.NullStringToPointer(integrations.DeezerEmbedURL),
-		AppleMusicEmbedURL: utils.NullStringToPointer(integrations.AppleMusicEmbedURL),
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-
-	if err := json.NewEncoder(w).Encode(response); err != nil {
-		http.Error(
-			w,
-			"failed to encode artist integrations",
-			http.StatusInternalServerError,
-		)
-	}
+	response := artistResp.ToArtistIntegrationsResponse(integrations)
+	utils.WriteJSON(w, http.StatusOK, response)
 }
