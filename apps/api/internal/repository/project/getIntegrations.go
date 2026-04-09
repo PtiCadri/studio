@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ProjectRepository) GetIntegrations(
+func (r *ProjectRepository) GetIntegrations(
 	ctx context.Context,
 	projectID int64,
 ) (models.ProjectIntegrations, error) {

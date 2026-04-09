@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ArtistRepository) Update(
+func (r *ArtistRepository) Update(
 	ctx context.Context,
 	id int64,
 	name string,

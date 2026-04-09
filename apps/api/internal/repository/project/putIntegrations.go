@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ProjectRepository) PutIntegrations(
+func (r *ProjectRepository) PutIntegrations(
 	ctx context.Context,
 	projectID int64,
 	spotifyEmbedURL *string,
@@ -20,7 +20,7 @@ func (r ProjectRepository) PutIntegrations(
 			deezer_embed_url,
 			apple_music_embed_url
 		)
-		VALUES ($1, $2, $3, $4, $5)
+		VALUES ($1, $2, $3, $4)
 		ON CONFLICT (project_id)
 		DO UPDATE SET
 			spotify_embed_url = EXCLUDED.spotify_embed_url,

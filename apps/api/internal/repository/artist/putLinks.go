@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ArtistRepository) PutLinks(
+func (r *ArtistRepository) PutLinks(
 	ctx context.Context,
 	artistID int64,
 	spotifyURL *string,

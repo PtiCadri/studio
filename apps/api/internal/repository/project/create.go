@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ProjectRepository) Create(
+func (r *ProjectRepository) Create(
 	ctx context.Context,
 	name string,
 	imageURL *string,

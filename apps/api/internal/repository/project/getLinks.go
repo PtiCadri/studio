@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ProjectRepository) GetLinks(
+func (r *ProjectRepository) GetLinks(
 	ctx context.Context,
 	projectID int64,
 ) (models.ProjectLinks, error) {

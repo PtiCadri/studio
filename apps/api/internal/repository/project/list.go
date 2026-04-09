@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ProjectRepository) List(
+func (r *ProjectRepository) List(
 	ctx context.Context,
 ) ([]models.Project, error) {
 	const query = `

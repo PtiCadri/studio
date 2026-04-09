@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ProjectRepository) GetArtistsByProjectID(
+func (r *ProjectRepository) GetArtistsByProjectID(
 	ctx context.Context,
 	projectID int64,
 ) ([]models.Artist, error) {

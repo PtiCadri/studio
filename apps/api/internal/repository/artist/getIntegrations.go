@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ArtistRepository) GetIntegrations(
+func (r *ArtistRepository) GetIntegrations(
 	ctx context.Context,
 	artistID int64,
 ) (models.ArtistIntegrations, error) {

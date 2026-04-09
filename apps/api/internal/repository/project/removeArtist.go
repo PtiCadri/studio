@@ -2,7 +2,7 @@ package project
 
 import "context"
 
-func (r ProjectRepository) RemoveArtist(
+func (r *ProjectRepository) RemoveArtist(
 	ctx context.Context,
 	projectID int64,
 	artistID int64,

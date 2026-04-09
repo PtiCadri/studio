@@ -2,7 +2,7 @@ package project
 
 import "context"
 
-func (r ProjectRepository) AddArtist(
+func (r *ProjectRepository) AddArtist(
 	ctx context.Context,
 	projectID int64,
 	artistID int64,

@@ -2,7 +2,7 @@ package artist
 
 import "context"
 
-func (r ArtistRepository) Delete(
+func (r *ArtistRepository) Delete(
 	ctx context.Context,
 	id int64,
 ) error {

@@ -2,7 +2,7 @@ package project
 
 import "context"
 
-func (r ProjectRepository) Delete(
+func (r *ProjectRepository) Delete(
 	ctx context.Context,
 	id int64,
 ) error {

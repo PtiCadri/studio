@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ArtistRepository) List(
+func (r *ArtistRepository) List(
 	ctx context.Context,
 ) ([]models.Artist, error) {
 	const query = `

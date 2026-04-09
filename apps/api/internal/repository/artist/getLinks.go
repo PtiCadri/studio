@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ArtistRepository) GetLinks(
+func (r *ArtistRepository) GetLinks(
 	ctx context.Context,
 	artistID int64,
 ) (models.ArtistLinks, error) {

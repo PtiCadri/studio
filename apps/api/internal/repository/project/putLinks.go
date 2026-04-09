@@ -6,7 +6,7 @@ import (
 	"github.com/PtiCadri/studio/apps/api/internal/domain/models"
 )
 
-func (r ProjectRepository) PutLinks(
+func (r *ProjectRepository) PutLinks(
 	ctx context.Context,
 	projectID int64,
 	spotifyURL *string,
