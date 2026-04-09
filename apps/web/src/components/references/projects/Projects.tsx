@@ -1,5 +1,5 @@
 "use client";
-import { useProjects } from "@/hooks/references/useProjects";
+import { useProjects } from "@/hooks/server/projects/useProjects";
 import { Box } from "@mui/material";
 import Project from "./Project";
 

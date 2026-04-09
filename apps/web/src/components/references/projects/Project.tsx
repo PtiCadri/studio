@@ -3,11 +3,10 @@
 import { Typography } from "@mui/material";
 
 import { GlassySurface } from "@/components/ui";
-import { useProject } from "@/hooks/references/useProject";
+import { useProjectActions, useProjectDetails } from "@/hooks/server/projects";
+import { useIntegration } from "@/hooks/server/useIntegration";
 import { getImageUrl } from "@/utils/getImageUrl";
 
-import { useProjectActions } from "@/hooks/references/useProjectActions";
-import { useProjectIntegration } from "@/hooks/references/useProjectIntegration";
 import ProjectDefaultCard from "./DefaultCard";
 import ProjectIntegrationCard from "./IntegrationCard";
 import { surfaceSx } from "./styles";
@@ -20,10 +19,11 @@ type ProjectProps = {
 
 export default function Project({ id, name, image_url }: ProjectProps) {
   const imageSrc = getImageUrl(image_url);
-  const { links, integrations, isLoading, error } = useProject(id);
+
+  const { links, integrations, isLoading, error } = useProjectDetails(id);
 
   const { activeIntegration, setActiveIntegration, resetIntegration } =
-    useProjectIntegration();
+    useIntegration();
 
   const actions = useProjectActions({
     links,

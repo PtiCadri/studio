@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import type { ActiveIntegration } from "@/components/references/projects/types";
+import type { ActiveIntegration } from "@/components/references/types";
 
-export function useProjectIntegration() {
+export function useIntegration() {
     const [activeIntegration, setActiveIntegration] =
         useState<ActiveIntegration>(null);
 

@@ -8,8 +8,8 @@ import type { ActiveIntegration } from "@/components/references/types";
 import type { ProjectIntegrations, ProjectLinks } from "./types";
 
 type UseProjectActionsParams = {
-    links: ProjectLinks;
-    integrations: ProjectIntegrations;
+    links: ProjectLinks | null;
+    integrations: ProjectIntegrations | null;
     setActiveIntegration: (value: Exclude<ActiveIntegration, null>) => void;
 };
 

@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 
+import type { ActiveIntegration } from "../types";
 import AppleMusicIntegration from "./integrations/AppleMusic";
 import DeezerIntegration from "./integrations/Deezer";
 import SpotifyIntegration from "./integrations/Spotify";
-import type { ActiveIntegration } from "./types";
 
 import {
   backButtonSx,

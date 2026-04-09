@@ -2,7 +2,8 @@ import { IconButton } from "@mui/material";
 
 import { iconPaths } from "@/components/footer/socialLinks/constants";
 import CustomIcon from "@/components/ui/CustomIcon";
-import type { IconKey, LinkIconAction } from "./types";
+import type { LinkIconAction } from "../types";
+import type { IconKey } from "./types";
 
 import { iconSx } from "./styles";
 

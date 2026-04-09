@@ -1,7 +1,7 @@
 "use client";
 
 import { useArtist } from "./useArtist";
-import { useArtistIntegrations } from "./useArtistIntegration";
+import { useArtistIntegrations } from "./useArtistIntegrations";
 import { useArtistLinks } from "./useArtistLinks";
 
 export function useArtistDetails(artistId: number | null) {

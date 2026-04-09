@@ -8,8 +8,8 @@ import type { ActiveIntegration } from "@/components/references/types";
 import type { ArtistIntegrations, ArtistLinks } from "./types";
 
 type UseArtistActionsParams = {
-    links: ArtistLinks;
-    integrations: ArtistIntegrations;
+    links: ArtistLinks | null;
+    integrations: ArtistIntegrations | null;
     setActiveIntegration: (value: Exclude<ActiveIntegration, null>) => void;
 };
 
