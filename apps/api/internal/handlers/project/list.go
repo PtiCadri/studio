@@ -1,7 +1,6 @@
 package project
 
 import (
-	"encoding/json"
 	"net/http"
 
 	projectResponse "github.com/PtiCadri/studio/apps/api/internal/responses/project"
@@ -18,15 +17,8 @@ func (h Handler) List(w http.ResponseWriter, r *http.Request) {
 	response := make([]projectResponse.ProjectResponse, 0, len(projects))
 
 	for _, project := range projects {
-		response = append(response, projectResponse.ProjectResponse{
-			ID:        project.ID,
-			Name:      project.Name,
-			ImageURL:  utils.NullStringToPointer(project.ImageURL),
-			CreatedAt: project.CreatedAt,
-			UpdatedAt: project.UpdatedAt,
-		})
+		response = append(response, toProjectResponse(project))
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	_ = json.NewEncoder(w).Encode(response)
+	utils.WriteJSON(w, http.StatusOK, response)
 }

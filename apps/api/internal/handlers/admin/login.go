@@ -13,6 +13,7 @@ import (
 	auth "github.com/PtiCadri/studio/apps/api/internal/auth"
 	adminModels "github.com/PtiCadri/studio/apps/api/internal/domain/models"
 	adminRequests "github.com/PtiCadri/studio/apps/api/internal/requests/admin"
+	"github.com/PtiCadri/studio/apps/api/internal/utils"
 )
 
 var (
@@ -39,7 +40,7 @@ func (h Handler) Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	setAdminSessionCookie(w, admin.ID, h.authSecret)
-	writeJSON(w, http.StatusOK, map[string]any{
+	utils.WriteJSON(w, http.StatusOK, map[string]any{
 		"message": "login successful",
 	})
 }
@@ -113,10 +114,4 @@ func setAdminSessionCookie(
 		Secure:   false,
 		Expires:  time.Now().Add(24 * time.Hour),
 	})
-}
-
-func writeJSON(w http.ResponseWriter, status int, payload any) {
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(status)
-	_ = json.NewEncoder(w).Encode(payload)
 }
