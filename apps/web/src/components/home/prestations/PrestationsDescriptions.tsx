@@ -96,7 +96,7 @@ export const masteringDesc = (
 export const liveDesc = (
   <Box>
     <Typography variant="body1" gutterBottom sx={bodySx}>
-      Répétions live, préparation et construction de set, traitement de voix
+      Répétitions live, préparation et construction de set, traitement de voix
       live, l’objectif est de permettre aux artistes d’aborder la scène avec un
       rendu maîtrisé, fidèle à l’univers développé en studio.
     </Typography>

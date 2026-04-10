@@ -22,6 +22,10 @@ func registerAdminPublic(r chi.Router, deps Dependencies) {
 	r.Post("/login", deps.Admins.Login)
 }
 
+func registerAdminSession(r chi.Router, deps Dependencies) {
+	r.Get("/me", deps.Admins.Me)
+}
+
 func registerAdminProtected(
 	r chi.Router,
 	deps Dependencies,
@@ -30,6 +34,7 @@ func registerAdminProtected(
 	r.Group(func(r chi.Router) {
 		r.Use(middleware.AdminAuth(cfg.AuthSecret))
 
+		registerAdminSession(r, deps)
 		registerAdminUploads(r, deps)
 		registerAdminProjects(r, deps)
 		registerAdminArtists(r, deps)

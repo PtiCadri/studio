@@ -35,3 +35,9 @@ func AdminAuth(secret string) func(http.Handler) http.Handler {
 		})
 	}
 }
+
+func GetAdminID(r *http.Request) (int64, bool) {
+	value := r.Context().Value(adminIDKey)
+	adminID, ok := value.(int64)
+	return adminID, ok
+}
